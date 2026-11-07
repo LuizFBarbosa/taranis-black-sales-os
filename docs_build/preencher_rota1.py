@@ -10,7 +10,7 @@ from PIL import Image
 
 ENT = Path(__file__).resolve().parents[1]  # raiz do repositório
 PR = ENT / "saidas" / "prints"
-SITE = "https://claude.ai/artifact/TJSgBbGfyC8QHMyHBixRJ7"
+SITE = "https://luizfbarbosa.github.io/taranis-black-sales-os/"
 
 # recorte com borda completa do canvas
 im = Image.open(PR / "diagnostico.png")
@@ -70,8 +70,8 @@ def fill(cell, blocks):
 
 
 # ---------------- Identificação ----------------
-fill(T[2].rows[0].cells[1], ["[Seu nome completo]"])
-fill(T[2].rows[1].cells[1], ["barbosa@arcom.com.br"])
+fill(T[2].rows[0].cells[1], ["[Luiz Fernando Barbosa]"])
+fill(T[2].rows[1].cells[1], ["luizfbarbosa@gmail.com"])
 for p in T[3].rows[0].cells[0].paragraphs:
     for r in p.runs:
         if "[ ]  Rota 1" in r.text:
