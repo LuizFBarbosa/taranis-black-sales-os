@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Consultoria de IA para a Taranis Black — Challenge ONE G11">
+</head>
+<body>
+<title>Taranis Black Sales OS</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: barra de navegação fixa no topo + páginas por hash; grade de 12 colunas que vira 1 coluna no celular. */
+:root{
+  --paper:#EDEFF1; --surface:#FFFFFF; --ink:#15181C; --ink-2:#4A525C; --line:#D5D9DE;
+  --accent:#2747C8; --accent-soft:#E3E8FB; --mesh:#1E2227;
+  --ok:#1F7A4D; --ok-soft:#DDF1E5; --warn:#9A6200; --warn-soft:#FBEFD2; --bad:#B3261E; --bad-soft:#F8DEDB;
+  --display:"Archivo","Arial Narrow",Arial,sans-serif; --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif; --mono:"IBM Plex Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#111316; --surface:#1A1D21; --ink:#ECEEF0; --ink-2:#A4ACB6; --line:#2E333A;
+  --accent:#8EA4FF; --accent-soft:#232C4D; --mesh:#0B0C0E;
+  --ok:#6FD39C; --ok-soft:#173326; --warn:#F2C062; --warn-soft:#3A2D12; --bad:#FF8A80; --bad-soft:#3D1C1A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111316; --surface:#1A1D21; --ink:#ECEEF0; --ink-2:#A4ACB6; --line:#2E333A;
+  --accent:#8EA4FF; --accent-soft:#232C4D; --mesh:#0B0C0E;
+  --ok:#6FD39C; --ok-soft:#173326; --warn:#F2C062; --warn-soft:#3A2D12; --bad:#FF8A80; --bad-soft:#3D1C1A; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--mesh)}
+h1,h2,h3,h4{font-family:var(--display);font-stretch:112%;letter-spacing:-.01em;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,54px);font-weight:800;line-height:1.02}
+h2{font-size:clamp(22px,3vw,30px);font-weight:750;line-height:1.1}
+h3{font-size:18px;font-weight:700}
+h4{font-size:14px;font-weight:700}
+p{margin:0}
+a{color:var(--accent)}
+.mono,.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-2)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--mesh);color:#F1F2F4}
+header.top .wrap{display:flex;align-items:center;gap:18px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-stretch:125%;letter-spacing:.06em;font-size:15px;color:#F1F2F4;text-decoration:none;text-transform:uppercase}
+.brand svg{width:22px;height:22px}
+nav.tabs{display:flex;gap:2px;flex-wrap:wrap;margin-left:auto}
+nav.tabs a{color:#B9C0C9;text-decoration:none;font-size:13px;padding:6px 10px;border-radius:6px;font-weight:500}
+nav.tabs a:hover{color:#fff;background:#2A2F36}
+nav.tabs a[aria-current="page"]{color:#fff;background:#2747C8}
+nav.tabs a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main section.page{display:none;padding-block:36px 72px}
+main section.page.on{display:block}
+.stack{display:flex;flex-direction:column;gap:24px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:900px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.g2,.g3,.g4{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;min-width:0}
+.card.flat{background:transparent}
+.lede{font-size:17px;color:var(--ink-2);max-width:68ch}
+.kpi .v{font-family:var(--display);font-stretch:100%;font-size:30px;font-weight:750;font-variant-numeric:tabular-nums;line-height:1.1}
+.kpi .l{font-size:13px;color:var(--ink-2)}
+.kpi .d{font-family:var(--mono);font-size:12px;margin-top:4px}
+.bad{color:var(--bad)}.ok{color:var(--ok)}.warn{color:var(--warn)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11.5px;padding:2px 8px;border-radius:99px;border:1px solid var(--line);white-space:nowrap}
+.pill.A{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.pill.B{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.pill.C{background:var(--bad-soft);color:var(--bad);border-color:transparent}
+.pill.acc{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2);font-weight:500;background:var(--paper)}
+tr:last-child td{border-bottom:0}
+tbody tr.click{cursor:pointer}
+tbody tr.click:hover td{background:var(--accent-soft)}
+.r{text-align:right}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;min-width:60px}
+.bar>i{display:block;height:100%;background:var(--accent)}
+ul.clean{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+ul.dots{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.split>div{padding:16px 18px;min-width:0}
+.split>div+div{border-left:1px solid var(--line)}
+@media (max-width:620px){.split{grid-template-columns:minmax(0,1fr)}.split>div+div{border-left:0;border-top:1px solid var(--line)}}
+.yes{background:var(--ok-soft)}.no{background:var(--bad-soft)}
+.btn{font:600 13.5px var(--body);border-radius:8px;padding:9px 14px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn:disabled{opacity:.5;cursor:default}
+select,input,textarea{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+label{font-size:12.5px;color:var(--ink-2);display:flex;flex-direction:column;gap:4px}
+pre.prompt{white-space:pre-wrap;font-family:var(--mono);font-size:12.5px;line-height:1.55;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:14px;margin:0;max-height:420px;overflow:auto}
+details{border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+details>summary{cursor:pointer;padding:14px 18px;list-style:none;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+details>summary::-webkit-details-marker{display:none}
+details>summary::after{content:"+";margin-left:auto;font-family:var(--mono);color:var(--ink-2)}
+details[open]>summary::after{content:"–"}
+details .in{padding:0 18px 18px;display:flex;flex-direction:column;gap:14px}
+.hero{background:var(--mesh);color:#EEF0F3;border-radius:14px;padding:clamp(22px,4vw,44px);position:relative;overflow:hidden}
+.hero .lede{color:#B9C0C9}
+.hero .eyebrow{color:#8D96A1}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.55;pointer-events:none}
+.hero>*{position:relative}
+.prod{display:flex;flex-direction:column;gap:6px}
+.prod .price{font-family:var(--mono);font-size:14px;color:var(--accent)}
+.note{font-size:13px;color:var(--ink-2)}
+.callout{border-left:3px solid var(--accent);padding:10px 14px;background:var(--accent-soft);border-radius:0 8px 8px 0;font-size:14px}
+.callout.w{border-color:var(--warn);background:var(--warn-soft)}
+.callout.b{border-color:var(--bad);background:var(--bad-soft)}
+/* drawer */
+#drawer{position:fixed;inset:0;z-index:40;display:none}
+#drawer.on{display:block}
+#drawer .scrim{position:absolute;inset:0;background:rgba(10,12,14,.5)}
+#drawer .panel{position:absolute;top:0;right:0;bottom:0;width:min(640px,100%);background:var(--surface);overflow:auto;padding:24px max(18px,env(safe-area-inset-right,0px)) 40px 22px;display:flex;flex-direction:column;gap:18px;border-left:1px solid var(--line)}
+.x{margin-left:auto;background:none;border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:4px 10px;cursor:pointer}
+/* chat */
+.chat{display:flex;flex-direction:column;gap:10px;min-height:280px;max-height:520px;overflow:auto;padding:14px;background:var(--paper);border:1px solid var(--line);border-radius:10px}
+.msg{max-width:85%;padding:10px 13px;border-radius:12px;font-size:14px;white-space:pre-wrap}
+.msg.u{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:4px}
+.msg.a{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg.s{align-self:center;font-size:12px;color:var(--ink-2);background:transparent}
+/* flow */
+.flow{display:flex;flex-direction:column;gap:10px}
+.node{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:12px 14px}
+.node.if{border-style:dashed}
+.branch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:760px){.branch{grid-template-columns:minmax(0,1fr)}}
+.arrow{font-family:var(--mono);color:var(--ink-2);text-align:center;font-size:12px}
+.svgwrap{overflow-x:auto}
+svg text{font-family:var(--mono)}
+.agent{display:flex;flex-direction:column;gap:8px}
+.agent .tag{font-family:var(--mono);font-size:11px;color:var(--accent)}
+.foot{border-top:1px solid var(--line);padding-block:20px;font-size:12.5px;color:var(--ink-2)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sp{justify-content:space-between}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Taranis Black — início">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13.5 2 5 13.2h6.2L9.8 22 19 10.3h-6.4L13.5 2Z" fill="#8EA4FF"/></svg>
+      Taranis Black
+    </a>
+    <nav class="tabs" aria-label="Seções">
+      <a href="#inicio">Empresa</a>
+      <a href="#diagnostico">Rota 0 · Estratégia</a>
+      <a href="#politica">Política de IA</a>
+      <a href="#pipeline">Pipeline IA</a>
+      <a href="#playbook">Playbook</a>
+      <a href="#simulador">Simulador</a>
+      <a href="#calculadora">TCO</a>
+      <a href="#regua">Régua</a>
+      <a href="#agentes">Agentes</a>
+      <a href="#materiais">Materiais</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ============================ EMPRESA ============================ -->
+<section class="page" id="p-inicio"><div class="wrap stack">
+  <div class="hero">
+    <canvas id="mesh" aria-hidden="true"></canvas>
+    <div class="stack" style="gap:16px;max-width:760px">
+      <span class="eyebrow">Ergonomia corporativa · NR-17 · B2B e D2C</span>
+      <h1>Infraestrutura ergonômica para empresas que crescem rápido.</h1>
+      <p class="lede">Cadeiras ErgoPro, mesas elevatórias SmartDesk e cabines acústicas Silence, com laudo ergonômico individual por posto e garantia de até 5 anos.</p>
+      <div class="row"><a class="btn" href="#pipeline" style="text-decoration:none">Abrir o Sales OS</a><a class="btn ghost" href="#diagnostico" style="text-decoration:none;color:#BFCBFF;border-color:#5B6FD0">Ver diagnóstico de IA</a></div>
+    </div>
+  </div>
+  <div class="grid g4">
+    <div class="card kpi"><div class="l">Faturamento anual</div><div class="v">R$ 48 mi</div><div class="d">70% B2B · 30% D2C</div></div>
+    <div class="card kpi"><div class="l">Crescimento</div><div class="v">35% a.a.</div><div class="d">nos últimos 3 anos</div></div>
+    <div class="card kpi"><div class="l">Colaboradores</div><div class="v">280</div><div class="d">55 no comercial B2B</div></div>
+    <div class="card kpi"><div class="l">EBITDA realizado vs. orçado</div><div class="v bad">−41%</div><div class="d">R$ 5,8 mi vs. R$ 9,8 mi</div></div>
+  </div>
+  <div class="stack" style="gap:12px">
+    <span class="eyebrow">Catálogo oficial 2026</span>
+    <div class="grid g3" id="catalogo"></div>
+  </div>
+  <div class="card flat">
+    <h3>Condições comerciais B2B</h3>
+    <div class="grid g2" style="margin-top:12px">
+      <ul class="dots">
+        <li><b>Faturado 30/60/90</b> para CNPJ ativo há mais de 2 anos, com aprovação de crédito. Abaixo de R$ 10 mil: 30 dias ou 6x no cartão.</li>
+        <li><b>Prazo:</b> Sul e Sudeste em 5–8 dias úteis (estoque) ou 15 dias (customizado). Demais regiões: 12–20 dias úteis.</li>
+      </ul>
+      <ul class="dots">
+        <li><b>Frete CIF</b> acima de R$ 35 mil para capitais do Sul e Sudeste; abaixo disso, FOB ou compartilhado.</li>
+        <li><b>Personalização gratuita</b> acima de 30 posições (+5 dias úteis) e laudo NR-17 individual em toda compra B2B.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============================ ROTA 0 ============================ -->
+<section class="page" id="p-diagnostico"><div class="wrap stack">
+  <div class="stack" style="gap:10px">
+    <span class="eyebrow">Rota 0 · Base estratégica</span>
+    <h1>O crescimento está sendo pago com margem.</h1>
+    <p class="lede">A receita bateu o orçamento (R$ 48,5 mi realizados vs. R$ 48,6 mi), mas o EBITDA caiu 41%. Quase toda a diferença vem de trabalho manual entre vendas, crédito e expedição: fretes de emergência, reentregas, inadimplência sem régua de cobrança e pedidos cancelados por lentidão.</p>
+  </div>
+  <div class="grid g4">
+    <div class="card kpi"><div class="l">Fretes acima do orçado</div><div class="v bad">+R$ 1,36 mi</div><div class="d">+57% · R$ 960 mil em fretes duplicados</div></div>
+    <div class="card kpi"><div class="l">Pedidos cancelados por lentidão</div><div class="v bad">R$ 1,25 mi</div><div class="d">crédito leva 48h (meta 4h)</div></div>
+    <div class="card kpi"><div class="l">Inadimplência &gt; 90 dias</div><div class="v bad">3,4%</div><div class="d">meta 1,2% · R$ 1,11 mi em PDD</div></div>
+    <div class="card kpi"><div class="l">Tempo do vendedor em tarefa manual</div><div class="v warn">40%+</div><div class="d">turnover comercial 30,9%</div></div>
+  </div>
+  <div class="card">
+    <div class="row sp"><h3>Onde o EBITDA foi perdido (orçado − realizado, R$ mil)</h3><span class="note">Fonte: 05_Financas_Orcado_vs_Realizado</span></div>
+    <div class="svgwrap" id="ebitdaChart" style="margin-top:12px"></div>
+  </div>
+
+  <h2 style="margin-top:12px">AI Canvas: 3 casos de uso prioritários</h2>
+  <div class="grid g3" id="canvas"></div>
+
+  <h2 style="margin-top:12px">Matriz Esforço × Impacto</h2>
+  <div class="grid" style="grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)">
+    <div class="card"><div class="svgwrap" id="matrix"></div></div>
+    <div class="card stack" style="gap:12px" id="ondas"></div>
+  </div>
+
+  <h2 style="margin-top:12px">Métricas de sucesso e retorno</h2>
+  <div class="tbl"><table id="roi"></table></div>
+  <p class="note">Premissas: 55 pessoas no comercial B2B, 44 h/semana, 46 semanas/ano, custo-hora carregado de R$ 75 (salário médio R$ 7.359 × 1,8 de encargos ÷ 176 h). Margem bruta média de 43,8%. Custo de reposição de uma pessoa estimado em 3 salários mensais (artigo técnico Taranis Labs). Valores de investimento são estimativas para validação com TI e Compras.</p>
+
+  <h2 style="margin-top:12px">Plano de gestão de mudança</h2>
+  <div class="grid g4" id="mudanca"></div>
+</div></section>
+
+<!-- ============================ POLÍTICA ============================ -->
+<section class="page" id="p-politica"><div class="wrap stack">
+  <div class="stack" style="gap:10px">
+    <span class="eyebrow">Rota 0 · Etapa 3 · Governança</span>
+    <h1>Política Corporativa de IA Responsável</h1>
+    <p class="lede">Vale para os 280 colaboradores, terceiros e parceiros. Princípio central: a IA prepara, uma pessoa decide. Nenhuma saída de IA chega a cliente, candidato ou colaborador sem revisão humana identificada.</p>
+  </div>
+  <div class="split">
+    <div class="yes"><h3 class="ok">Pode</h3><ul class="dots" style="margin-top:10px" id="pode"></ul></div>
+    <div class="no"><h3 class="bad">Não pode</h3><ul class="dots" style="margin-top:10px" id="naopode"></ul></div>
+  </div>
+  <h2>Classificação de dados</h2>
+  <div class="tbl"><table id="dados"></table></div>
+  <h2>Human-in-the-Loop por iniciativa</h2>
+  <div class="tbl"><table id="hitl"></table></div>
+  <h2>Riscos de viés e LGPD encontrados nos dados</h2>
+  <div class="grid g2" id="riscos"></div>
+  <h2>Comitê de IA e rituais de auditoria</h2>
+  <div class="grid g2">
+    <div class="card"><h3>Composição</h3><ul class="dots" style="margin-top:10px" id="comite"></ul></div>
+    <div class="card"><h3>Cadência</h3><div class="tbl" style="margin-top:10px;border:0"><table id="rituais"></table></div></div>
+  </div>
+</div></section>
+
+<!-- ============================ PIPELINE ============================ -->
+<section class="page" id="p-pipeline"><div class="wrap stack">
+  <div class="stack" style="gap:10px">
+    <span class="eyebrow">Rota 1 · Sales OS · Fila do dia</span>
+    <h1>Quem ligar primeiro, e o que dizer.</h1>
+    <p class="lede">Os 20 leads parados no CRM, reordenados pelo Agente Qualificador e conferidos pelo Agente Guardião contra o catálogo. Clique em uma linha para ver o contorno, o rascunho de e-mail e os alertas.</p>
+  </div>
+  <div class="grid g4" id="pipeKpis"></div>
+  <div class="row"><label style="flex-direction:row;align-items:center;gap:8px">Filtrar
+    <select id="fTier" style="width:auto"><option value="">Todos os tiers</option><option>A</option><option>B</option><option>C</option></select></label>
+    <select id="fObj" style="width:auto" aria-label="Filtrar por objeção"><option value="">Todas as objeções</option></select>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>#</th><th>Empresa</th><th>Decisor</th><th class="r">Valor</th><th>Score</th><th>Objeção</th><th>Próxima ação</th><th>Alertas</th></tr></thead>
+    <tbody id="leadRows"></tbody>
+  </table></div>
+  <div class="callout w"><b>O Agente Guardião achou um erro que destrava R$ 199 mil.</b> A FinCloud (BH) recebeu prazo de 25 dias, mas o catálogo garante 5 a 8 dias úteis para itens em estoque no Sudeste. A objeção principal deste lead pode ser um erro da própria proposta.</div>
+</div></section>
+
+<!-- ============================ PLAYBOOK ============================ -->
+<section class="page" id="p-playbook"><div class="wrap stack">
+  <div class="stack" style="gap:10px">
+    <span class="eyebrow">Rota 1 · Etapa 1 · Playbook comercial</span>
+    <h1>Playbook de Vendas Consultivas</h1>
+    <p class="lede">Vendemos redução de risco e de custo de pessoas, não cadeiras. Cada etapa tem um objetivo, um critério de saída e um prompt pronto.</p>
+  </div>
+  <div class="tbl"><table id="etapas"></table></div>
+  <h2>Personas de decisão</h2>
+  <div class="grid g3" id="personas"></div>
+  <h2>As 5 objeções e como contornar</h2>
+  <div class="stack" style="gap:10px" id="objecoes"></div>
+  <h2>Dicas de campo</h2>
+  <div class="grid g3" id="dicas"></div>
+</div></section>
+
+<!-- ============================ SIMULADOR ============================ -->
+<section class="page" id="p-simulador"><div class="wrap stack">
+  <div class="stack" style="gap:10px">
+    <span class="eyebrow">Rota 1 · Treino de argumentação</span>
+    <h1>Simulador de cliente</h1>
+    <p class="lede">Escolha um lead real. A IA assume o papel do decisor, com a dor e a objeção registradas no CRM, e resiste como um comprador de verdade. Ao final, peça a avaliação para receber nota e feedback.</p>
+  </div>
+  <div class="grid" style="grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)">
+    <div class="stack" style="gap:12px">
+      <div class="row">
+        <label style="flex:1 1 260px">Cliente simulado<select id="simLead"></select></label>
+        <label style="flex:0 1 160px">Dificuldade<select id="simLvl"><option value="moderado">Moderado</option><option value="difícil">Difícil</option><option value="cético extremo">Cético extremo</option></select></label>
+      </div>
+      <div class="chat" id="chat" aria-live="polite"></div>
+      <div class="row" style="align-items:stretch">
+        <textarea id="chatIn" rows="2" style="flex:1 1 300px" placeholder="Escreva sua resposta ao cliente…"></textarea>
+        <div class="stack" style="gap:6px"><button class="btn" id="send">Enviar</button><button class="btn ghost" id="stop" hidden>Parar</button></div>
+      </div>
+      <div class="row"><button class="btn ghost" id="evalBtn">Avaliar minha argumentação</button><button class="btn ghost" id="resetBtn">Recomeçar</button><span class="note" id="simStatus"></span><span class="pill acc" id="simMode"></span></div>
+      <div id="evalOut"></div>
+    </div>
+    <div class="stack" style="gap:12px">
+      <div class="card" id="simCtx"></div>
+      <details><summary><h4>Prompt de simulação usado</h4></summary><div class="in"><pre class="prompt" id="simPrompt"></pre><button class="btn ghost" data-copy="simPrompt">Copiar prompt</button></div></details>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============================ TCO ============================ -->
+<section class="page" id="p-calculadora"><div class="wrap stack">
+  <div class="stack" style="gap:10px">
+    <span class="eyebrow">Rota 1 · Munição para a objeção de preço</span>
+    <h1>Calculadora de TCO e retorno</h1>
+    <p class="lede">Compare o custo por posto ao longo do tempo e o retorno com menos atestados e menos rotatividade. Os números padrão vêm do catálogo e do artigo técnico da Taranis Labs; ajuste com os dados do cliente.</p>
+  </div>
+  <div class="grid" style="grid-template-columns:minmax(0,1fr) minmax(0,1.4fr)">
+    <div class="card stack" style="gap:12px">
+      <label>Produto Taranis<select id="tProd"></select></label>
+      <div class="grid g2">
+        <label>Posições<input id="tQtd" type="number" min="1" value="80"></label>
+        <label>Horizonte (anos)<input id="tAnos" type="number" min="1" max="10" value="5"></label>
+        <label>Preço do concorrente (R$)<input id="tConc" type="number" value="800"></label>
+        <label>Vida útil concorrente (meses)<input id="tVida" type="number" value="14"></label>
+        <label>Salário médio do cliente (R$)<input id="tSal" type="number" value="6500"></label>
+        <label>Dias de atestado/ano por pessoa (coluna)<input id="tAt" type="number" step="0.5" value="3"></label>
+        <label>Redução esperada de atestados (%)<input id="tRed" type="number" value="25"></label>
+        <label>Saídas evitadas por ano<input id="tSai" type="number" value="2"></label>
+      </div>
+      <p class="note">Redução de queixas: a matriz oficial de objeções cita "até 40%". Usamos 25% por padrão para ficar conservador.</p>
+    </div>
+    <div class="stack" style="gap:12px">
+      <div class="grid g3" id="tKpis"></div>
+      <div class="card"><div class="svgwrap" id="tChart"></div></div>
+      <div class="callout" id="tScript"></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============================ RÉGUA ============================ -->
+<section class="page" id="p-regua"><div class="wrap stack">
+  <div class="stack" style="gap:10px">
+    <span class="eyebrow">Rota 1 · Etapa 2 (opcional) · Nutrição de leads</span>
+    <h1>Régua de e-mail condicional</h1>
+    <p class="lede">A régua segmenta pelo tipo de objeção e reage ao comportamento do lead. Todo disparo nasce como rascunho e é aprovado pelo vendedor dono da conta.</p>
+  </div>
+  <div class="flow" id="flow"></div>
+  <div class="grid g2">
+    <div class="card stack" style="gap:10px"><h3>Prompt de assunto</h3><pre class="prompt" id="pAssunto"></pre><button class="btn ghost" data-copy="pAssunto">Copiar</button></div>
+    <div class="card stack" style="gap:10px"><h3>Prompt de corpo por segmento</h3><pre class="prompt" id="pCorpo"></pre><button class="btn ghost" data-copy="pCorpo">Copiar</button></div>
+  </div>
+  <div class="card stack" style="gap:12px">
+    <div class="row sp"><h3>Gerar e-mail para um lead</h3>
+      <div class="row"><select id="mailLead" style="width:auto" aria-label="Lead"></select><button class="btn" id="mailGen">Gerar com Claude</button></div></div>
+    <div id="mailOut" class="stack" style="gap:8px"></div>
+  </div>
+</div></section>
+
+<!-- ============================ MATERIAIS ============================ -->
+<section class="page" id="p-materiais"><div class="wrap stack">
+  <div class="stack" style="gap:10px">
+    <span class="eyebrow">Entregáveis do challenge</span>
+    <h1>Materiais para download</h1>
+    <p class="lede">Todos os artefatos produzidos na consultoria. O site funciona sem login: o simulador usa um cliente por regras (modo demonstração) e, na versão publicada no Claude, conversa com a IA ao vivo.</p>
+  </div>
+  <div class="stack" style="gap:10px"><span class="eyebrow">Relatórios</span><ul class="clean"><li class="card" style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div style="min-width:0"><h4>Relatório executivo (template oficial)</h4><p class="note">Rota 0 + Rota 1 preenchidas, com prints e prompts.</p></div><a class="btn ghost" style="text-decoration:none" href="materiais/rota1_vendas_preenchido.docx" download>Baixar DOCX</a></li><li class="card" style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div style="min-width:0"><h4>Política Corporativa de IA</h4><p class="note">Pode/não pode, dados, HITL, LGPD, vieses e comitê.</p></div><a class="btn ghost" style="text-decoration:none" href="materiais/Politica_Corporativa_IA_Taranis_Black.docx" download>Baixar DOCX</a></li><li class="card" style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div style="min-width:0"><h4>Fila priorizada dos 20 leads</h4><p class="note">Score, tier, próxima ação, alertas, notas de CRM e e-mails.</p></div><a class="btn ghost" style="text-decoration:none" href="materiais/leads_priorizados.xlsx" download>Baixar XLSX</a></li><li class="card" style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div style="min-width:0"><h4>Relatório de execução dos agentes</h4><p class="note">Trilha de auditoria da última execução.</p></div><a class="btn ghost" style="text-decoration:none" href="materiais/relatorio_execucao.md" download>Baixar MD</a></li></ul></div><div class="stack" style="gap:10px"><span class="eyebrow">Prompts e configuração de IA</span><ul class="clean"><li class="card" style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div style="min-width:0"><h4>Custom GPT / Gem / Projeto Claude</h4><p class="note">Instruções completas do Coach de Vendas.</p></div><a class="btn ghost" style="text-decoration:none" href="materiais/01_custom_gpt_playbook_taranis.md" download>Baixar MD</a></li><li class="card" style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div style="min-width:0"><h4>Simulador de cliente + avaliação</h4><p class="note">Prompt de roleplay e scorecard.</p></div><a class="btn ghost" style="text-decoration:none" href="materiais/02_simulador_cliente_e_avaliacao.md" download>Baixar MD</a></li><li class="card" style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div style="min-width:0"><h4>5 objeções + régua de e-mail</h4><p class="note">Prompts de contorno, régua IF/ELSE e exemplo.</p></div><a class="btn ghost" style="text-decoration:none" href="materiais/03_objecoes_e_regua_email.md" download>Baixar MD</a></li><li class="card" style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div style="min-width:0"><h4>Instruções dos agentes</h4><p class="note">Prompts de sistema e contratos de saída.</p></div><a class="btn ghost" style="text-decoration:none" href="materiais/04_agentes_system_prompts.md" download>Baixar MD</a></li><li class="card" style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div style="min-width:0"><h4>Skill do Claude</h4><p class="note">taranis-sales-coach.</p></div><a class="btn ghost" style="text-decoration:none" href="materiais/SKILL.md" download>Baixar MD</a></li></ul></div><div class="stack" style="gap:10px"><span class="eyebrow">Código dos agentes</span><ul class="clean"><li class="card" style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div style="min-width:0"><h4>Esquadrão de agentes (Python)</h4><p class="note">Rode com --offline ou --online (Claude).</p></div><a class="btn ghost" style="text-decoration:none" href="materiais/taranis_sales_agents.py" download>Baixar PY</a></li></ul></div>
+  <div class="callout">Os e-mails gerados pelos agentes estão em <b>Pipeline IA</b> (clique em um lead) e na aba <i>Notas_CRM_e_Emails</i> da planilha.</div>
+</div></section>
+<!-- ============================ AGENTES ============================ -->
+<section class="page" id="p-agentes"><div class="wrap stack">
+  <div class="stack" style="gap:10px">
+    <span class="eyebrow">Automação · Agentes para trabalho repetitivo</span>
+    <h1>Esquadrão de agentes comerciais</h1>
+    <p class="lede">Seis agentes com uma tarefa cada, rodando em horários fixos. Eles devolvem ao vendedor as horas de CRM, e-mail e conferência. Toda ação externa passa por um portão de aprovação humana.</p>
+  </div>
+  <div class="card"><div class="svgwrap" id="arch"></div></div>
+  <div class="grid g3" id="agentCards"></div>
+  <div class="grid g2">
+    <div class="card stack" style="gap:10px"><h3>Um dia com o esquadrão</h3><div class="tbl" style="border:0"><table id="rotina"></table></div></div>
+    <div class="card stack" style="gap:10px"><h3>Como executar</h3>
+      <pre class="prompt">cd entregaveis/agentes
+# modo determinístico (sem API) — usado nesta entrega
+python taranis_sales_agents.py --offline
+# modo IA (Claude) — contorno, e-mail e nota de CRM
+set ANTHROPIC_API_KEY=...
+python taranis_sales_agents.py --online</pre>
+      <p class="note">Saídas: fila priorizada (.xlsx), base para este site (.json), rascunhos de e-mail (.md) e relatório de execução com trilha de auditoria. Em produção, o agendamento roda em uma rotina diária e os rascunhos entram no CRM como tarefas para aprovação.</p>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<div class="wrap foot">Taranis Black é uma empresa fictícia do Challenge ONE G11 · AI for Business (Alura). Dados simulados do kit oficial do challenge. Solução de consultoria: Rota 0 + Rota 1 (Vendas).</div>
+
+<div id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle"><div class="scrim" data-close></div><div class="panel" id="dPanel"></div></div>
+
+<script>
+const LEADS = [{"id": "#1058", "empresa": "Prime Health Operadora", "segmento": "Plano de Saúde", "porte": 310, "decisor": "Dra. Renata Beltrão", "cargo": "Superintendente de Recursos Humanos", "email": "renata.beltrao@primehealth.com.br", "produtos": "120x ErgoPro Specialist", "valor": 298800.0, "dores": "Paradoxo interno: operadora de saúde sofreu processo trabalhista por lesão por esforço repetitivo de operadores de teleatendimento e regulação médica.", "objecao": "Fornecedor Atual: Histórico de comprar móveis baratos de aço sem ergonomia; resistência da diretoria tradicional em investir em design ergonômico.", "status": "Aguardando Contorno", "obj_id": "OBJ-03", "score": 76, "score_detalhe": {"valor": 15.5, "urgencia": 25, "estagio": 12, "objecao_contornavel": 10, "poder_decisor": 13}, "tier": "A", "probabilidade": 0.55, "valor_ponderado": 164340.0, "gatilho": "Risco regulatório / NR-17", "alertas": [], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "120 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Oferecer piloto de 2 posições por 15 dias com laudo antes/depois", "prazo_acao": "21/10/2026", "contorno": "Renata, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.", "evidencias": ["Piloto sem compromisso: 2 posições por 15 dias", "Laudo ABERGO / NR-17 que generalistas não entregam", "Ergonomistas certificados no pós-venda"], "email_assunto": "Piloto de 15 dias na Prime Health Operadora, sem troca de fornecedor", "email_corpo": "Olá, Dra. Renata Beltrão,\n\nObrigado pela conversa. Sei que faz todo sentido preservar a relação com fornecedores já homologados.\n\nEm operações sob fiscalização, o laudo ergonômico individual por posto é a evidência que o auditor pede — e ele acompanha toda compra B2B da Taranis Black.\n\nRenata, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.\n\nProposta de próximo passo: oferecer piloto de 2 posições por 15 dias com laudo antes/depois.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 76 (Tier A) | Gatilho: Risco regulatório / NR-17 | Objeção: OBJ-03 Fornecedor atual | Próxima ação: Oferecer piloto de 2 posições por 15 dias com laudo antes/depois até 21/10/2026 | Alertas: 0"}, {"id": "#1044", "empresa": "Studio Alfa Arquitetura", "segmento": "Arquitetura & Design", "porte": 45, "decisor": "Renata Vasconcellos", "cargo": "Sócia Proprietária", "email": "renata@studioalfa.arq.br", "produtos": "150x ErgoPro Executive + 4x Silence Quad", "valor": 635500.0, "dores": "Especificando projeto turn-key para cliente multinacional de tecnologia com sede na Faria Lima (SP); exigência de estética minimalista e acústica impecável.", "objecao": "Dúvida de Customização: Exige tecido em tom 'Terracota Corporativo Pantone 18-1440' e laudo emitido em nome do cliente final.", "status": "Proposta Técnica Enviada", "obj_id": "OBJ-05", "score": 75, "score_detalhe": {"valor": 22.0, "urgencia": 11, "estagio": 14, "objecao_contornavel": 13, "poder_decisor": 15}, "tier": "A", "probabilidade": 0.54, "valor_ponderado": 343170.0, "gatilho": "Imagem / ESG", "alertas": [], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "150 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis).", "Laudo ergonômico individualizado é padrão em toda compra B2B: confirmar emissão em nome do cliente final."], "proxima_acao": "Enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura", "prazo_acao": "21/10/2026", "contorno": "Renata, esse é o tipo de projeto em que nosso núcleo de engenharia de aplicação entra junto com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento é sem custo (+5 dias úteis), e enviamos amostras físicas em 48h e os blocos BIM para a planta. Agendamos 30 minutos com o seu time?", "evidencias": ["Personalização gratuita acima de 30 posições (+5 dias úteis)", "Biblioteca BIM/Revit/SketchUp gratuita", "Amostras físicas de tecido em 48h", "Tampos FSC certificados"], "email_assunto": "Amostras e blocos BIM para o projeto da Studio Alfa Arquitetura", "email_corpo": "Olá, Renata Vasconcellos,\n\nObrigado pela conversa. Sei que a identidade do projeto precisa estar no mobiliário também, e temos como garantir isso.\n\nProjetos com exigência estética e de certificação pedem fornecedor que entregue especificação técnica, amostra e documentação, não só catálogo.\n\nRenata, esse é o tipo de projeto em que nosso núcleo de engenharia de aplicação entra junto com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento é sem custo (+5 dias úteis), e enviamos amostras físicas em 48h e os blocos BIM para a planta. Agendamos 30 minutos com o seu time?\n\nProposta de próximo passo: enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 75 (Tier A) | Gatilho: Imagem / ESG | Objeção: OBJ-05 Customização | Próxima ação: Enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura até 21/10/2026 | Alertas: 0"}, {"id": "#1045", "empresa": "Vanguarda Softwares", "segmento": "SaaS / Tecnologia", "porte": 320, "decisor": "Felipe Antunes", "cargo": "VP de Gente & Gestão", "email": "felipe.antunes@vanguardasoft.io", "produtos": "110x SmartDesk Pro Dual + 110x ErgoPro Specialist", "valor": 801900.0, "dores": "Disputa acirrada por programadores seniores; pacote de benefícios precisa incluir estações elevatórias para atrair talentos e evitar lesões por LER.", "objecao": "Orçamento Congelado: CFO travou novos investimentos em CAPEX até o início do Q1; quer parcelamento em 12x sem juros ou modelo 'as a service'.", "status": "Em Nutrição Executiva", "obj_id": "OBJ-02", "score": 74, "score_detalhe": {"valor": 24.0, "urgencia": 17, "estagio": 9, "objecao_contornavel": 9, "poder_decisor": 15}, "tier": "A", "probabilidade": 0.53, "valor_ponderado": 425007.0, "gatilho": "Retenção de talentos / clientes", "alertas": ["Condição de pagamento fora do padrão 30/60/90: enviar ao Agente de Crédito (Rota 4) antes de prometer."], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "220 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento", "prazo_acao": "21/10/2026", "contorno": "Felipe, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?", "evidencias": ["Faturado 30/60/90 para CNPJ > 2 anos", "Até 6x sem juros no cartão para pedidos < R$ 10 mil", "Custo de atestados e turnover > custo da parcela mensal"], "email_assunto": "Uma alternativa ao CAPEX para o projeto da Vanguarda Softwares", "email_corpo": "Olá, Felipe Antunes,\n\nObrigado pela conversa. Sei que entendo que o orçamento está travado neste momento — por isso trago uma alternativa que não depende de reabrir o CAPEX.\n\nQuando o posto de trabalho vira motivo de saída, a conta da cadeira passa a competir com o custo de repor uma pessoa — que costuma ser várias vezes maior.\n\nFelipe, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?\n\nProposta de próximo passo: enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 74 (Tier A) | Gatilho: Retenção de talentos / clientes | Objeção: OBJ-02 Orçamento / CAPEX | Próxima ação: Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento até 21/10/2026 | Alertas: 1"}, {"id": "#1050", "empresa": "Atlas Manufatura Inteligente", "segmento": "Indústria 4.0", "porte": 580, "decisor": "Eng. Marcelo Tavares", "cargo": "Gerente de EHS (Segurança)", "email": "marcelo.tavares@atlasmanuf.com.br", "produtos": "90x ErgoPro Specialist", "valor": 224100.0, "dores": "Equipe de engenharia e planejamento de fábrica auditada pela fiscalização do trabalho; exigência de apresentação de laudo ABERGO em 30 dias sob risco de multa pesada.", "objecao": "Fornecedor Atual: Compras quer manter fabricante que vende barato em leilão eletrônico, mas segurança do trabalho rejeita por falta de laudo ergonômico idôneo.", "status": "Aguardando Decisão", "obj_id": "OBJ-03", "score": 74, "score_detalhe": {"valor": 13.0, "urgencia": 25, "estagio": 17, "objecao_contornavel": 10, "poder_decisor": 9}, "tier": "A", "probabilidade": 0.53, "valor_ponderado": 118773.0, "gatilho": "Risco regulatório / NR-17", "alertas": [], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "90 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Oferecer piloto de 2 posições por 15 dias com laudo antes/depois", "prazo_acao": "21/10/2026", "contorno": "Marcelo, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.", "evidencias": ["Piloto sem compromisso: 2 posições por 15 dias", "Laudo ABERGO / NR-17 que generalistas não entregam", "Ergonomistas certificados no pós-venda"], "email_assunto": "Piloto de 15 dias na Atlas Manufatura Inteligente, sem troca de fornecedor", "email_corpo": "Olá, Eng. Marcelo Tavares,\n\nObrigado pela conversa. Sei que faz todo sentido preservar a relação com fornecedores já homologados.\n\nEm operações sob fiscalização, o laudo ergonômico individual por posto é a evidência que o auditor pede — e ele acompanha toda compra B2B da Taranis Black.\n\nMarcelo, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.\n\nProposta de próximo passo: oferecer piloto de 2 posições por 15 dias com laudo antes/depois.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 74 (Tier A) | Gatilho: Risco regulatório / NR-17 | Objeção: OBJ-03 Fornecedor atual | Próxima ação: Oferecer piloto de 2 posições por 15 dias com laudo antes/depois até 21/10/2026 | Alertas: 0"}, {"id": "#1056", "empresa": "Prisma Sociedade de Advogados", "segmento": "Jurídico", "porte": 80, "decisor": "Dr. Henrique Vasques", "cargo": "Sócio Administrador", "email": "henrique@prismaadvogados.com.br", "produtos": "25x ErgoPro Executive + 1x Silence Duo", "valor": 108250.0, "dores": "Advogados lidam com prazos judiciais estressantes e processos físicos/virtuais; foco em imagem de autoridade e conforto postural impecável.", "objecao": "Prazo de Entrega: Reforma da nova sede termina em 8 dias corridos; necessitam de entrega urgente em São Paulo (Itaim Bibi).", "status": "Qualificação Concluída", "obj_id": "OBJ-04", "score": 74, "score_detalhe": {"valor": 6.7, "urgencia": 20, "estagio": 17, "objecao_contornavel": 15, "poder_decisor": 15}, "tier": "A", "probabilidade": 0.53, "valor_ponderado": 57372.5, "gatilho": "Data-limite (obra / mudança)", "alertas": [], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "Itaim Bibi (SP): itens em estoque saem em 5–8 dias úteis; reservar lote no CD Joinville hoje para caber nos 8 dias corridos da obra."], "proxima_acao": "Confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada", "prazo_acao": "20/10/2026", "contorno": "Henrique, o prazo importa e podemos melhorá-lo. Nosso CD em Joinville tem estoque regulador dos modelos de maior giro: o lote essencial sai em até 7 dias úteis e o saldo segue escalonado. Confirmo hoje a disponibilidade e te envio o cronograma por lote?", "evidencias": ["CD Joinville/SC com estoque regulador (ErgoPro preta, SmartDesk 140)", "Sudeste/Sul: 5–8 dias úteis em estoque", "Entrega escalonada do lote essencial"], "email_assunto": "Prisma Sociedade de Advogados: cronograma de entrega por lote", "email_corpo": "Olá, Dr. Henrique Vasques,\n\nObrigado pela conversa. Sei que o prazo é crítico para vocês, e revisei o que conseguimos fazer a partir do nosso CD.\n\nComo há uma data de ocupação definida, organizamos a proposta em torno do cronograma, e não só do preço.\n\nHenrique, o prazo importa e podemos melhorá-lo. Nosso CD em Joinville tem estoque regulador dos modelos de maior giro: o lote essencial sai em até 7 dias úteis e o saldo segue escalonado. Confirmo hoje a disponibilidade e te envio o cronograma por lote?\n\nProposta de próximo passo: confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 74 (Tier A) | Gatilho: Data-limite (obra / mudança) | Objeção: OBJ-04 Prazo de entrega | Próxima ação: Confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada até 20/10/2026 | Alertas: 0"}, {"id": "#1061", "empresa": "NeoOffice Hub de Coworking", "segmento": "Espaços Flexíveis", "porte": 90, "decisor": "Lucas Silveira", "cargo": "CEO", "email": "lucas@neooffice.com.br", "produtos": "60x ErgoPro Core + 8x Silence Solo", "valor": 229400.0, "dores": "Membros do coworking cancelando planos por falta de privacidade para call e cadeiras desconfortáveis nas estações compartilhadas.", "objecao": "Prazo e Pagamento: Quer parcelamento em 10 boletos mensais vinculados ao fluxo de caixa de assinaturas dos clientes.", "status": "Negociação Aberta", "obj_id": "OBJ-02", "score": 68, "score_detalhe": {"valor": 13.2, "urgencia": 17, "estagio": 14, "objecao_contornavel": 9, "poder_decisor": 15}, "tier": "B", "probabilidade": 0.48, "valor_ponderado": 110112.0, "gatilho": "Retenção de talentos / clientes", "alertas": ["Condição de pagamento fora do padrão 30/60/90: enviar ao Agente de Crédito (Rota 4) antes de prometer."], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "60 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento", "prazo_acao": "22/10/2026", "contorno": "Lucas, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?", "evidencias": ["Faturado 30/60/90 para CNPJ > 2 anos", "Até 6x sem juros no cartão para pedidos < R$ 10 mil", "Custo de atestados e turnover > custo da parcela mensal"], "email_assunto": "Uma alternativa ao CAPEX para o projeto da NeoOffice Hub de Coworking", "email_corpo": "Olá, Lucas Silveira,\n\nObrigado pela conversa. Sei que entendo que o orçamento está travado neste momento — por isso trago uma alternativa que não depende de reabrir o CAPEX.\n\nQuando o posto de trabalho vira motivo de saída, a conta da cadeira passa a competir com o custo de repor uma pessoa — que costuma ser várias vezes maior.\n\nLucas, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?\n\nProposta de próximo passo: enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 68 (Tier B) | Gatilho: Retenção de talentos / clientes | Objeção: OBJ-02 Orçamento / CAPEX | Próxima ação: Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento até 22/10/2026 | Alertas: 1"}, {"id": "#1046", "empresa": "BioSaúde Diagnósticos", "segmento": "Saúde / Laboratórios", "porte": 175, "decisor": "Dra. Camila Toledo", "cargo": "Diretora de Operações", "email": "camila.toledo@biosaude.med.br", "produtos": "45x ErgoPro Specialist + 2x Silence Duo", "valor": 154050.0, "dores": "Médicos laudadores e biomédicos relatam dores cervicais severas; laboratório foi advertido pelo sindicato sobre adequação de NR-17 nos postos de microscopia.", "objecao": "Fornecedor Atual: Contrato de 4 anos com fabricante tradicional de móveis de escritório; relutância do financeiro em homologar novo fornecedor.", "status": "Qualificação Avançada", "obj_id": "OBJ-03", "score": 68, "score_detalhe": {"valor": 9.7, "urgencia": 25, "estagio": 10, "objecao_contornavel": 10, "poder_decisor": 13}, "tier": "B", "probabilidade": 0.48, "valor_ponderado": 73944.0, "gatilho": "Risco regulatório / NR-17", "alertas": [], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "45 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Oferecer piloto de 2 posições por 15 dias com laudo antes/depois", "prazo_acao": "22/10/2026", "contorno": "Camila, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.", "evidencias": ["Piloto sem compromisso: 2 posições por 15 dias", "Laudo ABERGO / NR-17 que generalistas não entregam", "Ergonomistas certificados no pós-venda"], "email_assunto": "Piloto de 15 dias na BioSaúde Diagnósticos, sem troca de fornecedor", "email_corpo": "Olá, Dra. Camila Toledo,\n\nObrigado pela conversa. Sei que faz todo sentido preservar a relação com fornecedores já homologados.\n\nEm operações sob fiscalização, o laudo ergonômico individual por posto é a evidência que o auditor pede — e ele acompanha toda compra B2B da Taranis Black.\n\nCamila, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.\n\nProposta de próximo passo: oferecer piloto de 2 posições por 15 dias com laudo antes/depois.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 68 (Tier B) | Gatilho: Risco regulatório / NR-17 | Objeção: OBJ-03 Fornecedor atual | Próxima ação: Oferecer piloto de 2 posições por 15 dias com laudo antes/depois até 22/10/2026 | Alertas: 0"}, {"id": "#1060", "empresa": "Zenith Seguradora Global", "segmento": "Seguros & Previdência", "porte": 340, "decisor": "Otávio Mesquita Jr.", "cargo": "Diretor de TI e Infraestrutura", "email": "otavio@zenithseguros.com.br", "produtos": "80x SmartDesk Studio + 80x ErgoPro Specialist", "valor": 488000.0, "dores": "Implantação de modelo de trabalho 3x2 (3 dias presencial, 2 home office); mesas rotativas precisam de memórias de altura individuais automáticas para múltiplos colaboradores.", "objecao": "Preço: Compras encontrou mesa similar em marketplace e questiona por que a SmartDesk é mais cara.", "status": "Aguardando Contorno", "obj_id": "OBJ-01", "score": 67, "score_detalhe": {"valor": 19.7, "urgencia": 15, "estagio": 12, "objecao_contornavel": 7, "poder_decisor": 13}, "tier": "B", "probabilidade": 0.47, "valor_ponderado": 229360.0, "gatilho": "Saúde ocupacional / absenteísmo", "alertas": ["Valor do CRM (R$ 488,000) diverge do preço de tabela (R$ 487,200)."], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "160 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada", "prazo_acao": "21/10/2026", "contorno": "Otávio, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?", "evidencias": ["Garantia estrutural de 5 anos (ErgoPro Executive/Specialist)", "Laudo NR-17 individualizado por posto", "TCO 5 anos: cadeira de R$ 800 com vida útil de ~14 meses = 4,3 trocas = R$ 3.430"], "email_assunto": "Zenith Seguradora Global: custo por posto em 5 anos, lado a lado", "email_corpo": "Olá, Otávio Mesquita Jr.,\n\nObrigado pela conversa. Sei que comparar preço é uma decisão responsável, e quero te ajudar a fazer essa comparação com o ciclo completo.\n\nCada dia de atestado por dor lombar ou cervical tem custo direto e de continuidade; é esse número que a ergonomia ativa reduz.\n\nOtávio, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?\n\nProposta de próximo passo: enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 67 (Tier B) | Gatilho: Saúde ocupacional / absenteísmo | Objeção: OBJ-01 Preço | Próxima ação: Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada até 21/10/2026 | Alertas: 1"}, {"id": "#1042", "empresa": "FinCloud Soluções", "segmento": "Fintech", "porte": 85, "decisor": "Mariana Silveira", "cargo": "Diretora de RH", "email": "m.silveira@fincloud.com.br", "produtos": "80x ErgoPro Specialist", "valor": 199200.0, "dores": "80 colaboradores reclamando de lombalgia após retorno híbrido; aumento de 15% nos atestados médicos de coluna no último trimestre.", "objecao": "Prazo de entrega: Acha o prazo de 25 dias para Belo Horizonte longo demais; quer em 10 dias.", "status": "Aguardando Contorno", "obj_id": "OBJ-04", "score": 67, "score_detalhe": {"valor": 12.0, "urgencia": 15, "estagio": 12, "objecao_contornavel": 15, "poder_decisor": 13}, "tier": "B", "probabilidade": 0.47, "valor_ponderado": 93624.0, "gatilho": "Saúde ocupacional / absenteísmo", "alertas": ["Prazo cotado (25 dias para BH) contradiz o catálogo: Sudeste = 5 a 8 dias úteis para itens em estoque. Corrigir proposta — a objeção pode desaparecer."], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "80 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada", "prazo_acao": "20/10/2026", "contorno": "Mariana, o prazo importa e podemos melhorá-lo. Nosso CD em Joinville tem estoque regulador dos modelos de maior giro: o lote essencial sai em até 7 dias úteis e o saldo segue escalonado. Confirmo hoje a disponibilidade e te envio o cronograma por lote?", "evidencias": ["CD Joinville/SC com estoque regulador (ErgoPro preta, SmartDesk 140)", "Sudeste/Sul: 5–8 dias úteis em estoque", "Entrega escalonada do lote essencial"], "email_assunto": "FinCloud Soluções: cronograma de entrega por lote", "email_corpo": "Olá, Mariana Silveira,\n\nObrigado pela conversa. Sei que o prazo é crítico para vocês, e revisei o que conseguimos fazer a partir do nosso CD.\n\nCada dia de atestado por dor lombar ou cervical tem custo direto e de continuidade; é esse número que a ergonomia ativa reduz.\n\nMariana, o prazo importa e podemos melhorá-lo. Nosso CD em Joinville tem estoque regulador dos modelos de maior giro: o lote essencial sai em até 7 dias úteis e o saldo segue escalonado. Confirmo hoje a disponibilidade e te envio o cronograma por lote?\n\nProposta de próximo passo: confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 67 (Tier B) | Gatilho: Saúde ocupacional / absenteísmo | Objeção: OBJ-04 Prazo de entrega | Próxima ação: Confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada até 20/10/2026 | Alertas: 1"}, {"id": "#1052", "empresa": "Apex Capital Gestão", "segmento": "Asset Management", "porte": 90, "decisor": "Bernardo Rezende", "cargo": "Chief Operating Officer", "email": "bernardo.rezende@apexcap.com.br", "produtos": "30x ErgoPro Executive + 2x Silence Quad", "valor": 160700.0, "dores": "Traders e gestores de fundos operando com 4 a 6 telas simultâneas; tensão severa em trapézios e ombros.", "objecao": "Preço: Quer inclusão de suportes articulados de monitor (Taranis DualArm) como brinde de bonificação.", "status": "Negociação Final", "obj_id": "OBJ-01", "score": 67, "score_detalhe": {"valor": 10.1, "urgencia": 15, "estagio": 20, "objecao_contornavel": 7, "poder_decisor": 15}, "tier": "B", "probabilidade": 0.47, "valor_ponderado": 75529.0, "gatilho": "Saúde ocupacional / absenteísmo", "alertas": [], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "Acessórios têm margem bruta de 61%: bonificar suportes DualArm custa pouco vs. ticket de R$ 160 mil."], "proxima_acao": "Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada", "prazo_acao": "21/10/2026", "contorno": "Bernardo, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?", "evidencias": ["Garantia estrutural de 5 anos (ErgoPro Executive/Specialist)", "Laudo NR-17 individualizado por posto", "TCO 5 anos: cadeira de R$ 800 com vida útil de ~14 meses = 4,3 trocas = R$ 3.430"], "email_assunto": "Apex Capital Gestão: custo por posto em 5 anos, lado a lado", "email_corpo": "Olá, Bernardo Rezende,\n\nObrigado pela conversa. Sei que comparar preço é uma decisão responsável, e quero te ajudar a fazer essa comparação com o ciclo completo.\n\nCada dia de atestado por dor lombar ou cervical tem custo direto e de continuidade; é esse número que a ergonomia ativa reduz.\n\nBernardo, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?\n\nProposta de próximo passo: enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 67 (Tier B) | Gatilho: Saúde ocupacional / absenteísmo | Objeção: OBJ-01 Preço | Próxima ação: Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada até 21/10/2026 | Alertas: 0"}, {"id": "#1059", "empresa": "Aurora Cosméticos Naturais", "segmento": "Indústria de Beleza", "porte": 190, "decisor": "Juliana Paes Leme", "cargo": "Gerente de Facilities", "email": "juliana@auroracosmeticos.com.br", "produtos": "50x ErgoPro Specialist + 2x Silence Quad", "valor": 180500.0, "dores": "Mudança para novo prédio corporativo conceito 'Wellbeing'; exigência de selos ergonômicos internacionais e estética alinhada à marca.", "objecao": "Dúvida de Customização: Exige acabamento em madeira clara de reflorestamento nas mesas e rodízios especiais para piso de cimento queimado.", "status": "Em Ajuste de Escopo", "obj_id": "OBJ-05", "score": 65, "score_detalhe": {"valor": 11.1, "urgencia": 20, "estagio": 12, "objecao_contornavel": 13, "poder_decisor": 9}, "tier": "B", "probabilidade": 0.45, "valor_ponderado": 81225.0, "gatilho": "Data-limite (obra / mudança)", "alertas": [], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "50 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura", "prazo_acao": "21/10/2026", "contorno": "Juliana, esse é o tipo de projeto em que nosso núcleo de engenharia de aplicação entra junto com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento é sem custo (+5 dias úteis), e enviamos amostras físicas em 48h e os blocos BIM para a planta. Agendamos 30 minutos com o seu time?", "evidencias": ["Personalização gratuita acima de 30 posições (+5 dias úteis)", "Biblioteca BIM/Revit/SketchUp gratuita", "Amostras físicas de tecido em 48h", "Tampos FSC certificados"], "email_assunto": "Amostras e blocos BIM para o projeto da Aurora Cosméticos Naturais", "email_corpo": "Olá, Juliana Paes Leme,\n\nObrigado pela conversa. Sei que a identidade do projeto precisa estar no mobiliário também, e temos como garantir isso.\n\nComo há uma data de ocupação definida, organizamos a proposta em torno do cronograma, e não só do preço.\n\nJuliana, esse é o tipo de projeto em que nosso núcleo de engenharia de aplicação entra junto com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento é sem custo (+5 dias úteis), e enviamos amostras físicas em 48h e os blocos BIM para a planta. Agendamos 30 minutos com o seu time?\n\nProposta de próximo passo: enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 65 (Tier B) | Gatilho: Data-limite (obra / mudança) | Objeção: OBJ-05 Customização | Próxima ação: Enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura até 21/10/2026 | Alertas: 0"}, {"id": "#1049", "empresa": "Nexo Consultoria Estratégica", "segmento": "Consultoria", "porte": 70, "decisor": "Guilherme Boulos Jr.", "cargo": "Sócio Diretor", "email": "guilherme@nexoconsulting.com", "produtos": "40x ErgoPro Executive", "valor": 139600.0, "dores": "Consultores trabalham até 14 horas diárias; foco em manter padrão premium para impressionar clientes internacionais que visitam a sede.", "objecao": "Prazo de Entrega: Quer entrega escalonada em duas semanas sem cobrança de frete fracionado.", "status": "Negociação Aberta", "obj_id": "OBJ-04", "score": 64, "score_detalhe": {"valor": 8.9, "urgencia": 11, "estagio": 14, "objecao_contornavel": 15, "poder_decisor": 15}, "tier": "B", "probabilidade": 0.44, "valor_ponderado": 61424.0, "gatilho": "Imagem / ESG", "alertas": [], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "40 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada", "prazo_acao": "20/10/2026", "contorno": "Guilherme, o prazo importa e podemos melhorá-lo. Nosso CD em Joinville tem estoque regulador dos modelos de maior giro: o lote essencial sai em até 7 dias úteis e o saldo segue escalonado. Confirmo hoje a disponibilidade e te envio o cronograma por lote?", "evidencias": ["CD Joinville/SC com estoque regulador (ErgoPro preta, SmartDesk 140)", "Sudeste/Sul: 5–8 dias úteis em estoque", "Entrega escalonada do lote essencial"], "email_assunto": "Nexo Consultoria Estratégica: cronograma de entrega por lote", "email_corpo": "Olá, Guilherme Boulos Jr.,\n\nObrigado pela conversa. Sei que o prazo é crítico para vocês, e revisei o que conseguimos fazer a partir do nosso CD.\n\nProjetos com exigência estética e de certificação pedem fornecedor que entregue especificação técnica, amostra e documentação, não só catálogo.\n\nGuilherme, o prazo importa e podemos melhorá-lo. Nosso CD em Joinville tem estoque regulador dos modelos de maior giro: o lote essencial sai em até 7 dias úteis e o saldo segue escalonado. Confirmo hoje a disponibilidade e te envio o cronograma por lote?\n\nProposta de próximo passo: confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 64 (Tier B) | Gatilho: Imagem / ESG | Objeção: OBJ-04 Prazo de entrega | Próxima ação: Confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada até 20/10/2026 | Alertas: 0"}, {"id": "#1057", "empresa": "Delta Cadeia de Suprimentos", "segmento": "Supply Chain", "porte": 220, "decisor": "Aline Fontes", "cargo": "Coordenadora de Compras", "email": "aline.fontes@deltasupply.com.br", "produtos": "40x ErgoPro Specialist + 5x SmartDesk Studio", "valor": 117600.0, "dores": "Turnover de analistas de logística elevado; estações operacionais improvisadas pós-fusão de empresas.", "objecao": "Orçamento Congelado: Compras autorizadas apenas com faturamento para 45/90/120 dias.", "status": "Em Análise Financeira", "obj_id": "OBJ-02", "score": 63, "score_detalhe": {"valor": 7.4, "urgencia": 17, "estagio": 15, "objecao_contornavel": 9, "poder_decisor": 15}, "tier": "B", "probabilidade": 0.43, "valor_ponderado": 50568.0, "gatilho": "Retenção de talentos / clientes", "alertas": ["Condição de pagamento fora do padrão 30/60/90: enviar ao Agente de Crédito (Rota 4) antes de prometer."], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "45 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento", "prazo_acao": "22/10/2026", "contorno": "Aline, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?", "evidencias": ["Faturado 30/60/90 para CNPJ > 2 anos", "Até 6x sem juros no cartão para pedidos < R$ 10 mil", "Custo de atestados e turnover > custo da parcela mensal"], "email_assunto": "Uma alternativa ao CAPEX para o projeto da Delta Cadeia de Suprimentos", "email_corpo": "Olá, Aline Fontes,\n\nObrigado pela conversa. Sei que entendo que o orçamento está travado neste momento — por isso trago uma alternativa que não depende de reabrir o CAPEX.\n\nQuando o posto de trabalho vira motivo de saída, a conta da cadeira passa a competir com o custo de repor uma pessoa — que costuma ser várias vezes maior.\n\nAline, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?\n\nProposta de próximo passo: enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 63 (Tier B) | Gatilho: Retenção de talentos / clientes | Objeção: OBJ-02 Orçamento / CAPEX | Próxima ação: Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento até 22/10/2026 | Alertas: 1"}, {"id": "#1054", "empresa": "MetaData Ciência de Dados", "segmento": "Inteligência Artificial", "porte": 150, "decisor": "Dr. Thiago Ferraz", "cargo": "CTO & Co-fundador", "email": "thiago@metadata.ai", "produtos": "50x ErgoPro Specialist + 4x Silence Solo", "valor": 182500.0, "dores": "Engenheiros de machine learning trabalham focados por longos blocos; ruídos de conversas paralelas prejudicam concentração profunda.", "objecao": "Fornecedor Atual: Cotação simultânea com importadora de cadeiras chinesas sem garantia no Brasil por valor 35% inferior.", "status": "Aguardando Contorno", "obj_id": "OBJ-03", "score": 62, "score_detalhe": {"valor": 11.2, "urgencia": 14, "estagio": 12, "objecao_contornavel": 10, "poder_decisor": 15}, "tier": "B", "probabilidade": 0.43, "valor_ponderado": 78475.0, "gatilho": "Acústica / confidencialidade", "alertas": [], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "50 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Oferecer piloto de 2 posições por 15 dias com laudo antes/depois", "prazo_acao": "22/10/2026", "contorno": "Thiago, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.", "evidencias": ["Piloto sem compromisso: 2 posições por 15 dias", "Laudo ABERGO / NR-17 que generalistas não entregam", "Ergonomistas certificados no pós-venda"], "email_assunto": "Piloto de 15 dias na MetaData Ciência de Dados, sem troca de fornecedor", "email_corpo": "Olá, Dr. Thiago Ferraz,\n\nObrigado pela conversa. Sei que faz todo sentido preservar a relação com fornecedores já homologados.\n\nApós uma interrupção sonora, uma pessoa leva em média 23 minutos para recuperar a concentração profunda; isolamento de 32 dB devolve esse tempo.\n\nThiago, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.\n\nProposta de próximo passo: oferecer piloto de 2 posições por 15 dias com laudo antes/depois.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 62 (Tier B) | Gatilho: Acústica / confidencialidade | Objeção: OBJ-03 Fornecedor atual | Próxima ação: Oferecer piloto de 2 posições por 15 dias com laudo antes/depois até 22/10/2026 | Alertas: 0"}, {"id": "#1051", "empresa": "Solaris Energia Sustentável", "segmento": "Energia Solar", "porte": 130, "decisor": "Vanessa Kuhlmann", "cargo": "Head de People & Culture", "email": "vanessa@solarisenergia.com.br", "produtos": "35x SmartDesk Studio + 35x ErgoPro Specialist", "valor": 213500.0, "dores": "Empresa com forte apelo ESG quer certificar novo escritório com selo sustentável; móveis precisam comprovar origem de madeira reciclada e selo FSC.", "objecao": "Dúvida de Customização: Pergunta se a Taranis Black tem relatório de emissões de carbono e cadeia produtiva sustentável comprovada.", "status": "Em Demonstração", "obj_id": "OBJ-05", "score": 59, "score_detalhe": {"valor": 12.6, "urgencia": 11, "estagio": 10, "objecao_contornavel": 13, "poder_decisor": 12}, "tier": "C", "probabilidade": 0.4, "valor_ponderado": 85400.0, "gatilho": "Imagem / ESG", "alertas": ["Valor do CRM (R$ 213,500) diverge do preço de tabela (R$ 213,150).", "Não há relatório de emissões no catálogo. NÃO afirmar dados de carbono — oferecer FSC e escalar ao time ESG."], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "70 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura", "prazo_acao": "21/10/2026", "contorno": "Vanessa, esse é o tipo de projeto em que nosso núcleo de engenharia de aplicação entra junto com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento é sem custo (+5 dias úteis), e enviamos amostras físicas em 48h e os blocos BIM para a planta. Agendamos 30 minutos com o seu time?", "evidencias": ["Personalização gratuita acima de 30 posições (+5 dias úteis)", "Biblioteca BIM/Revit/SketchUp gratuita", "Amostras físicas de tecido em 48h", "Tampos FSC certificados"], "email_assunto": "Amostras e blocos BIM para o projeto da Solaris Energia Sustentável", "email_corpo": "Olá, Vanessa Kuhlmann,\n\nObrigado pela conversa. Sei que a identidade do projeto precisa estar no mobiliário também, e temos como garantir isso.\n\nProjetos com exigência estética e de certificação pedem fornecedor que entregue especificação técnica, amostra e documentação, não só catálogo.\n\nVanessa, esse é o tipo de projeto em que nosso núcleo de engenharia de aplicação entra junto com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento é sem custo (+5 dias úteis), e enviamos amostras físicas em 48h e os blocos BIM para a planta. Agendamos 30 minutos com o seu time?\n\nProposta de próximo passo: enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 59 (Tier C) | Gatilho: Imagem / ESG | Objeção: OBJ-05 Customização | Próxima ação: Enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura até 21/10/2026 | Alertas: 2"}, {"id": "#1055", "empresa": "OmniVarejo Soluções Digitais", "segmento": "E-commerce", "porte": 480, "decisor": "Danilo Castro", "cargo": "Diretor de Atendimento ao Cliente", "email": "danilo.castro@omnivarejo.com", "produtos": "75x ErgoPro Core", "valor": 141750.0, "dores": "Central de SAC e pós-vendas com 38% de taxa de evasão anual; cadeiras velhas com espuma gasta são apontadas como motivo recorrente de desmotivação.", "objecao": "Preço: Compras exige preço unitário abaixo de R$ 1.500 para fechar o lote de 75 unidades.", "status": "Aguardando Negociação", "obj_id": "OBJ-01", "score": 58, "score_detalhe": {"valor": 9.0, "urgencia": 17, "estagio": 12, "objecao_contornavel": 7, "poder_decisor": 13}, "tier": "C", "probabilidade": 0.39, "valor_ponderado": 55282.5, "gatilho": "Retenção de talentos / clientes", "alertas": ["Preço-alvo R$ 1,500 = 20.6% abaixo da tabela da ErgoPro Core: fora da alçada. Contraproposta: 10% (gerente) + 6x no cartão ou TCO de 3 anos."], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "75 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada", "prazo_acao": "21/10/2026", "contorno": "Danilo, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?", "evidencias": ["Garantia estrutural de 5 anos (ErgoPro Executive/Specialist)", "Laudo NR-17 individualizado por posto", "TCO 5 anos: cadeira de R$ 800 com vida útil de ~14 meses = 4,3 trocas = R$ 3.430"], "email_assunto": "OmniVarejo Soluções Digitais: custo por posto em 5 anos, lado a lado", "email_corpo": "Olá, Danilo Castro,\n\nObrigado pela conversa. Sei que comparar preço é uma decisão responsável, e quero te ajudar a fazer essa comparação com o ciclo completo.\n\nQuando o posto de trabalho vira motivo de saída, a conta da cadeira passa a competir com o custo de repor uma pessoa — que costuma ser várias vezes maior.\n\nDanilo, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?\n\nProposta de próximo passo: enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 58 (Tier C) | Gatilho: Retenção de talentos / clientes | Objeção: OBJ-01 Preço | Próxima ação: Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada até 21/10/2026 | Alertas: 1"}, {"id": "#1047", "empresa": "InovaPay Meios de Pagamento", "segmento": "Fintech", "porte": 110, "decisor": "Rodrigo Nogueira", "cargo": "Head de Facilities", "email": "rodrigo.nogueira@inovapay.com.br", "produtos": "6x Silence Solo + 2x Silence Quad", "valor": 143000.0, "dores": "Escritório em conceito open-space com nível de ruído insuportável; reuniões virtuais vazam áudio confidencial de transações e clientes.", "objecao": "Preço / Custo de Instalação: Considera investimento de cabine acústica alto em relação a fazer reformas com drywall no prédio alugado.", "status": "Aguardando Contorno", "obj_id": "OBJ-01", "score": 54, "score_detalhe": {"valor": 9.1, "urgencia": 14, "estagio": 12, "objecao_contornavel": 7, "poder_decisor": 12}, "tier": "C", "probabilidade": 0.36, "valor_ponderado": 51480.0, "gatilho": "Acústica / confidencialidade", "alertas": [], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça)."], "proxima_acao": "Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada", "prazo_acao": "21/10/2026", "contorno": "Rodrigo, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?", "evidencias": ["Garantia estrutural de 5 anos (ErgoPro Executive/Specialist)", "Laudo NR-17 individualizado por posto", "TCO 5 anos: cadeira de R$ 800 com vida útil de ~14 meses = 4,3 trocas = R$ 3.430"], "email_assunto": "InovaPay Meios de Pagamento: custo por posto em 5 anos, lado a lado", "email_corpo": "Olá, Rodrigo Nogueira,\n\nObrigado pela conversa. Sei que comparar preço é uma decisão responsável, e quero te ajudar a fazer essa comparação com o ciclo completo.\n\nApós uma interrupção sonora, uma pessoa leva em média 23 minutos para recuperar a concentração profunda; isolamento de 32 dB devolve esse tempo.\n\nRodrigo, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?\n\nProposta de próximo passo: enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 54 (Tier C) | Gatilho: Acústica / confidencialidade | Objeção: OBJ-01 Preço | Próxima ação: Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada até 21/10/2026 | Alertas: 0"}, {"id": "#1053", "empresa": "Hub Criativo Comunicação", "segmento": "Publicidade / Mídia", "porte": 50, "decisor": "Bia Arantes", "cargo": "Head de Produção", "email": "bia@hubcriativo.ag", "produtos": "20x SmartDesk Pro Dual", "valor": 96000.0, "dores": "Designers e editores de vídeo exigem alternância entre trabalhar em pé e sentados para fluidez criativa.", "objecao": "Orçamento: Empresa sofreu corte de verba de cliente e solicitou renegociação em 6 parcelas sem entrada.", "status": "Aguardando Aprovação de Crédito", "obj_id": "OBJ-02", "score": 51, "score_detalhe": {"valor": 5.6, "urgencia": 8, "estagio": 16, "objecao_contornavel": 9, "poder_decisor": 12}, "tier": "C", "probabilidade": 0.34, "valor_ponderado": 32640.0, "gatilho": "Sem gatilho explícito", "alertas": ["Condição de pagamento fora do padrão 30/60/90: enviar ao Agente de Crédito (Rota 4) antes de prometer."], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça)."], "proxima_acao": "Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento", "prazo_acao": "22/10/2026", "contorno": "Bia, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?", "evidencias": ["Faturado 30/60/90 para CNPJ > 2 anos", "Até 6x sem juros no cartão para pedidos < R$ 10 mil", "Custo de atestados e turnover > custo da parcela mensal"], "email_assunto": "Uma alternativa ao CAPEX para o projeto da Hub Criativo Comunicação", "email_corpo": "Olá, Bia Arantes,\n\nObrigado pela conversa. Sei que entendo que o orçamento está travado neste momento — por isso trago uma alternativa que não depende de reabrir o CAPEX.\n\nOrganizamos as condições para caber no processo de aprovação de vocês.\n\nBia, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?\n\nProposta de próximo passo: enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 51 (Tier C) | Gatilho: Sem gatilho explícito | Objeção: OBJ-02 Orçamento / CAPEX | Próxima ação: Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento até 22/10/2026 | Alertas: 1"}, {"id": "#1048", "empresa": "Rede Orion Educação", "segmento": "EdTech / Escolas", "porte": 420, "decisor": "Letícia Mendonça", "cargo": "Gerente Administrativa", "email": "leticia@orioneducacao.com.br", "produtos": "60x ErgoPro Core", "valor": 113400.0, "dores": "Professores do estúdio de gravação de videoaulas e suporte pedagógico sofrem com cadeiras quebradas e braços sem regulagem.", "objecao": "Orçamento: Depende de aprovação em conselho diretor bimestral; quer carência de 60 dias para o primeiro pagamento.", "status": "Proposta em Avaliação", "obj_id": "OBJ-02", "score": 46, "score_detalhe": {"valor": 7.1, "urgencia": 8, "estagio": 13, "objecao_contornavel": 9, "poder_decisor": 9}, "tier": "C", "probabilidade": 0.3, "valor_ponderado": 34020.0, "gatilho": "Sem gatilho explícito", "alertas": ["Condição de pagamento fora do padrão 30/60/90: enviar ao Agente de Crédito (Rota 4) antes de prometer."], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).", "60 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."], "proxima_acao": "Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento", "prazo_acao": "22/10/2026", "contorno": "Letícia, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?", "evidencias": ["Faturado 30/60/90 para CNPJ > 2 anos", "Até 6x sem juros no cartão para pedidos < R$ 10 mil", "Custo de atestados e turnover > custo da parcela mensal"], "email_assunto": "Uma alternativa ao CAPEX para o projeto da Rede Orion Educação", "email_corpo": "Olá, Letícia Mendonça,\n\nObrigado pela conversa. Sei que entendo que o orçamento está travado neste momento — por isso trago uma alternativa que não depende de reabrir o CAPEX.\n\nOrganizamos as condições para caber no processo de aprovação de vocês.\n\nLetícia, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?\n\nProposta de próximo passo: enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 46 (Tier C) | Gatilho: Sem gatilho explícito | Objeção: OBJ-02 Orçamento / CAPEX | Próxima ação: Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento até 22/10/2026 | Alertas: 1"}, {"id": "#1043", "empresa": "LogiMax Transportes", "segmento": "Logística", "porte": 260, "decisor": "Carlos Eduardo Prado", "cargo": "Gerente de Compras", "email": "carlos.prado@logimax.log.br", "produtos": "12x ErgoPro Core + 12x SmartDesk Studio", "valor": 65880.0, "dores": "Turnover alto na equipe de rastreamento 24/7; operadores reclamam de cansaço extremo por ficarem sentados 10h direto.", "objecao": "Preço: Orçamento rígido do semestre; alega que cadeira de magazine concorrente custa R$ 800 e pede 25% de desconto à vista.", "status": "Negociação Travada", "obj_id": "OBJ-01", "score": 35, "score_detalhe": {"valor": 2.4, "urgencia": 17, "estagio": 8, "objecao_contornavel": 7, "poder_decisor": 9, "penalidade_desconto": -8}, "tier": "C", "probabilidade": 0.23, "valor_ponderado": 15152.4, "gatilho": "Retenção de talentos / clientes", "alertas": ["Desconto pedido de 25% está acima de qualquer alçada (máx. 15%). Responder com TCO e composição de mix, não com preço."], "oportunidades": ["Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça)."], "proxima_acao": "Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada", "prazo_acao": "21/10/2026", "contorno": "Carlos, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?", "evidencias": ["Garantia estrutural de 5 anos (ErgoPro Executive/Specialist)", "Laudo NR-17 individualizado por posto", "TCO 5 anos: cadeira de R$ 800 com vida útil de ~14 meses = 4,3 trocas = R$ 3.430"], "email_assunto": "LogiMax Transportes: custo por posto em 5 anos, lado a lado", "email_corpo": "Olá, Carlos Eduardo Prado,\n\nObrigado pela conversa. Sei que comparar preço é uma decisão responsável, e quero te ajudar a fazer essa comparação com o ciclo completo.\n\nQuando o posto de trabalho vira motivo de saída, a conta da cadeira passa a competir com o custo de repor uma pessoa — que costuma ser várias vezes maior.\n\nCarlos, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?\n\nProposta de próximo passo: enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n", "nota_crm": "[20/10/2026] Score 35 (Tier C) | Gatilho: Retenção de talentos / clientes | Objeção: OBJ-01 Preço | Próxima ação: Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada até 21/10/2026 | Alertas: 1"}];
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const brl = v => "R$ " + Math.round(v).toLocaleString("pt-BR");
+const brlk = v => v >= 1e6 ? "R$ " + (v/1e6).toLocaleString("pt-BR",{maximumFractionDigits:2}) + " mi" : "R$ " + Math.round(v/1e3).toLocaleString("pt-BR") + " mil";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const OBJ = {"OBJ-01":"Preço","OBJ-02":"Orçamento / CAPEX","OBJ-03":"Fornecedor atual","OBJ-04":"Prazo de entrega","OBJ-05":"Customização"};
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* ---------- roteamento ---------- */
+const PAGES = ["inicio","diagnostico","politica","pipeline","playbook","simulador","calculadora","regua","agentes","materiais"];
+function route(){
+  const h = location.hash.slice(1); const p = PAGES.includes(h) ? h : "inicio";
+  $$("section.page").forEach(s => s.classList.toggle("on", s.id === "p-" + p));
+  $$("nav.tabs a").forEach(a => a.toggleAttribute("aria-current", a.getAttribute("href") === "#" + p) || a.setAttribute("aria-current","page"));
+  $$("nav.tabs a").forEach(a => { if (a.getAttribute("href") === "#" + p) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  window.scrollTo(0,0);
+  if (p === "diagnostico") { drawEbitda(); drawMatrix(); }
+  if (p === "calculadora") calcTCO();
+  if (p === "agentes") drawArch();
+}
+addEventListener("hashchange", route);
+
+/* ---------- catálogo ---------- */
+const CAT = [
+  ["ErgoPro Executive",3490,"Cadeira · C-Level e diretoria","Mesh alemão, lombar 3D, braços 4D, Synchro-Tilt italiano. Laudo ABERGO + BIFMA X5.1. 5 anos."],
+  ["ErgoPro Specialist",2490,"Cadeira · tecnologia, finanças, operações","Espuma D60, lombar em 6 níveis, braços 3D, até 135 kg. Laudo NR-17. 5 anos estrutural."],
+  ["ErgoPro Core",1890,"Cadeira · atendimento e grandes volumes","Encosto em tela pré-moldado, D50, braços 2D, bloqueio a 90°. Atestado NR-17. 3 anos."],
+  ["SmartDesk Pro Dual 160",4800,"Mesa elevatória · 160 × 80 cm","Motor duplo alemão &lt;43 dB, 38 mm/s, 4 memórias, anticolisão giroscópico, tampo FSC."],
+  ["SmartDesk Studio 140",3600,"Mesa elevatória · 140 × 70 cm","Motor duplo &lt;46 dB, 32 mm/s, 4 memórias, sensor anti-impacto, passa-fios."],
+  ["SmartDesk Compact 120",2700,"Mesa elevatória · 120 × 60 cm","Motor único de alto torque, 3 memórias, montagem em 20 minutos."],
+  ["Silence Quad",28000,"Cabine acústica · 4 lugares","32 dB (ISO 23351-1), troca total do ar a cada 90 s, LED 4000K, HDMI e USB-C 65 W."],
+  ["Silence Duo",21000,"Cabine acústica · 2 lugares","32 dB, ventilação &lt;28 dB, luz por presença. Feedbacks, entrevistas de RH, 1-on-1."],
+  ["Silence Solo",14500,"Phone booth individual","30 dB, sensor de presença, bancada em madeira maciça com carregador por indução."],
+];
+$("#catalogo").innerHTML = CAT.map(([n,p,t,d]) => `<div class="card prod"><span class="eyebrow">${t}</span><h3>Taranis ${n}</h3><span class="price">${brl(p)}</span><p class="note">${d}</p></div>`).join("");
+
+/* ---------- hero mesh (textura de tela mesh) ---------- */
+(function(){
+  const c = $("#mesh"); if (!c) return; const x = c.getContext("2d");
+  function draw(){ const r = c.getBoundingClientRect(); c.width = r.width*devicePixelRatio; c.height = r.height*devicePixelRatio;
+    x.scale(devicePixelRatio,devicePixelRatio); x.strokeStyle = "rgba(142,164,255,.18)"; x.lineWidth = 1;
+    for (let i=-r.height;i<r.width;i+=14){ x.beginPath(); x.moveTo(i,0); x.bezierCurveTo(i+r.height*.3,r.height*.3,i+r.height*.5,r.height*.7,i+r.height,r.height); x.stroke(); }
+    for (let i=0;i<r.width+r.height;i+=14){ x.beginPath(); x.moveTo(i,0); x.bezierCurveTo(i-r.height*.3,r.height*.3,i-r.height*.5,r.height*.7,i-r.height,r.height); x.stroke(); } }
+  draw(); addEventListener("resize", () => { const ctx = c.getContext("2d"); ctx.setTransform(1,0,0,1,0,0); draw(); });
+})();
+
+/* ---------- Rota 0 ---------- */
+const PERDAS = [["Fretes e logística",1360],["Cancelamentos e devoluções",675],["Provisão de inadimplência",670],["Reentregas e multas",515],["Matéria-prima (CMV)",400],["Sistemas legados",260],["Mão de obra fabril",110]];
+function drawEbitda(){
+  const W=760,rowH=34,L=210,H=PERDAS.length*rowH+30, max=1500, sx=v=>L+(W-L-70)*v/max;
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:520px" role="img" aria-label="Perdas de EBITDA por conta">`;
+  [0,500,1000,1500].forEach(t=>{s+=`<line x1="${sx(t)}" x2="${sx(t)}" y1="0" y2="${H-24}" stroke="${css('--line')}"/><text x="${sx(t)}" y="${H-6}" font-size="11" fill="${css('--ink-2')}" text-anchor="middle">${t}</text>`});
+  PERDAS.forEach(([n,v],i)=>{const y=i*rowH+6; s+=`<text x="${L-10}" y="${y+17}" font-size="12" fill="${css('--ink')}" text-anchor="end">${n}</text><rect x="${L}" y="${y+4}" width="${sx(v)-L}" height="20" rx="3" fill="${i<4?css('--bad'):css('--ink-2')}" opacity="${i<4?.85:.45}"/><text x="${sx(v)+6}" y="${y+18}" font-size="12" fill="${css('--ink')}">${v.toLocaleString('pt-BR')}</text>`});
+  s+=`</svg><p class="note" style="margin-top:8px">As quatro barras em vermelho somam R$ 3,2 mi e têm a mesma causa raiz: dados digitados à mão entre proposta, crédito e expedição. Total da diferença de EBITDA: R$ 4,08 mi.</p>`;
+  $("#ebitdaChart").innerHTML=s;
+}
+const CANVAS = [
+  {t:"Copiloto Comercial", tipo:"Generativa + Preditiva", cor:"--accent",
+   prob:"Vendedores gastam 40%+ da semana com CRM, e-mails genéricos e qualificação sem dados. 20 leads (R$ 4,7 mi) parados aguardando contorno.",
+   dados:"CRM (20 leads com dores, objeções e estágio), catálogo e política comercial, matriz de 5 objeções, guia de tom de voz.",
+   sol:"Agentes que priorizam leads (score explicável), conferem a proposta contra a política, escrevem e-mails e notas de CRM e treinam argumentação com um cliente simulado.",
+   val:"+5% de conversão B2B (R$ 1,68 mi de receita; R$ 736 mil de margem) e ~20 mil horas/ano devolvidas à venda.",
+   hitl:"Sim. Todo e-mail e proposta é aprovado pelo vendedor; descontos seguem alçada humana.",
+   kpi:"Tempo em tarefa manual 40%→20% · resposta a lead &lt;4h · conversão proposta→pedido +5 p.p."},
+  {t:"Order-to-Cash Inteligente", tipo:"Tradicional (regras/OCR) + Preditiva", cor:"--ok",
+   prob:"Crédito leva 48h (meta 4h), pedidos são redigitados do PDF ao ERP e ao CD. Resultado: R$ 1,25 mi cancelados, R$ 960 mil em fretes duplicados, 6,8% de boletos com erro.",
+   dados:"Propostas em PDF, ERP legado, Serasa, planilha de limites, tabela de frete CIF/FOB, histórico de pagamentos.",
+   sol:"Extração automática da proposta para pedido estruturado, motor de regras de alçada (aprova automático clientes recorrentes até o limite) e score de risco de inadimplência.",
+   val:"R$ 1,27 mi/ano: margem de pedidos recuperados (R$ 328 mil) + 70% menos fretes duplicados (R$ 672 mil) + 70% menos boletos com erro (R$ 273 mil).",
+   hitl:"Sim. Crédito negado ou acima da alçada vai para o gerente financeiro com parecer da IA; o cliente pode pedir revisão (LGPD art. 20).",
+   kpi:"Homologação 48h→4h · reentregas 2,8%→0,8% do faturamento · fechamento contábil 7→2 dias"},
+  {t:"Radar de Pessoas", tipo:"Preditiva + Generativa", cor:"--warn",
+   prob:"Turnover de 30,9% no comercial e 38,5% no suporte; 29% saem nos primeiros 90 dias. Causa nº 1 no comercial: sobrecarga com tarefa manual.",
+   dados:"Base de 280 colaboradores, entrevistas de saída, pesquisa de clima (comentários abertos), eNPS por área.",
+   sol:"Análise de sentimento dos comentários, alerta de risco de saída por equipe (não por indivíduo nominal) e assistente de onboarding com o playbook comercial.",
+   val:"−25% de saídas no comercial e suporte (~10 pessoas/ano) ≈ R$ 180 mil em custo de reposição, além de rampa mais curta para novos SDRs.",
+   hitl:"Obrigatório. A IA nunca decide promoção, desligamento ou avaliação; alertas vão ao RH em nível agregado.",
+   kpi:"Turnover 90 dias 29%→15% · eNPS comercial +18→+35 · tempo até 1ª venda do SDR −30%"},
+];
+$("#canvas").innerHTML = CANVAS.map((c,i)=>`<div class="card stack" style="gap:12px;border-top:4px solid var(${c.cor})">
+  <div class="row sp"><span class="eyebrow">Caso ${i+1}</span><span class="pill acc">${c.tipo}</span></div><h3>${c.t}</h3>
+  ${[["Problema",c.prob],["Dados",c.dados],["Solução de IA",c.sol],["Valor de negócio",c.val],["Supervisão humana",c.hitl],["Métricas",c.kpi]].map(([k,v])=>`<div><div class="eyebrow" style="margin-bottom:2px">${k}</div><p style="font-size:14px">${v}</p></div>`).join("")}</div>`).join("");
+
+const INIT = [
+  {id:"A",n:"Copiloto Comercial (CRM, e-mail, objeções)",e:3,i:8.5,w:1,c:1},
+  {id:"B",n:"Lead scoring explicável",e:3.5,i:7,w:1,c:1},
+  {id:"C",n:"Régua de cobrança automatizada",e:2.5,i:7.5,w:1},
+  {id:"D",n:"Conteúdo de marketing com tom de voz (Gem)",e:1.8,i:5.6,w:1},
+  {id:"E",n:"Order-to-Cash: extração + motor de crédito",e:6.8,i:8.8,w:2,c:2},
+  {id:"F",n:"Radar de Pessoas + onboarding",e:5,i:6.5,w:2,c:3},
+  {id:"G",n:"Rastreio de pedidos no atendimento",e:5.5,i:6,w:2},
+  {id:"H",n:"Conciliação contábil automática",e:7,i:6,w:3},
+  {id:"I",n:"Previsão de demanda do CD",e:8.5,i:5.5,w:3},
+];
+function drawMatrix(){
+  const W=560,H=460,P=46,sx=v=>P+(W-P-14)*v/10,sy=v=>H-P-(H-P-14)*v/10;
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:420px" role="img" aria-label="Matriz esforço por impacto">`;
+  const q=[[0,5,5,10,"Ganhos rápidos",css('--ok-soft')],[5,5,10,10,"Projetos estratégicos",css('--accent-soft')],[0,0,5,5,"Preencher agenda",css('--paper')],[5,0,10,5,"Evitar / adiar",css('--bad-soft')]];
+  q.forEach(([x0,y0,x1,y1,l,f])=>{s+=`<rect x="${sx(x0)}" y="${sy(y1)}" width="${sx(x1)-sx(x0)}" height="${sy(y0)-sy(y1)}" fill="${f}"/><text x="${sx(x0)+8}" y="${sy(y1)+18}" font-size="11" fill="${css('--ink-2')}">${l.toUpperCase()}</text>`});
+  s+=`<rect x="${P}" y="14" width="${W-P-14}" height="${H-P-14}" fill="none" stroke="${css('--line')}"/>`;
+  s+=`<text x="${(W+P)/2}" y="${H-10}" font-size="12" fill="${css('--ink')}" text-anchor="middle">Esforço (custo, integração, risco) →</text><text transform="translate(14 ${(H-P)/2}) rotate(-90)" font-size="12" fill="${css('--ink')}" text-anchor="middle">Impacto no resultado →</text>`;
+  const wc={1:css('--ok'),2:css('--accent'),3:css('--ink-2')};
+  INIT.forEach(d=>{s+=`<circle cx="${sx(d.e)}" cy="${sy(d.i)}" r="${d.c?15:12}" fill="${wc[d.w]}" ${d.c?`stroke="${css('--ink')}" stroke-width="2"`:""}/><text x="${sx(d.e)}" y="${sy(d.i)+4}" font-size="12" font-weight="600" fill="${css('--surface')}" text-anchor="middle">${d.id}</text>`});
+  s+=`</svg><p class="note">Círculos com borda = os 3 casos do AI Canvas. Cor = onda de implantação.</p>`;
+  $("#matrix").innerHTML=s;
+}
+const ONDAS=[["Onda 1 · 0–90 dias","--ok",["A","B","C","D"],"Ganhos rápidos sobre ferramentas que já existem (Claude/ChatGPT Team, CRM, planilhas). Financiam e dão credibilidade às próximas ondas."],
+ ["Onda 2 · 3–6 meses","--accent",["E","F","G"],"Projetos com integração ao ERP e dados de pessoas. Dependem da política de IA aprovada e do RIPD (LGPD)."],
+ ["Onda 3 · 6–12 meses","--ink-2",["H","I"],"Exigem ERP com API e histórico limpo; entram depois da Onda 2 corrigir a qualidade dos dados."]];
+$("#ondas").innerHTML = ONDAS.map(([t,c,ids,d])=>`<div class="stack" style="gap:6px"><div class="row"><span style="width:10px;height:10px;border-radius:50%;background:var(${c});display:inline-block"></span><h4>${t}</h4></div>
+<ul class="clean" style="gap:4px">${ids.map(id=>{const x=INIT.find(i=>i.id===id);return `<li class="note"><b class="mono" style="color:var(--ink)">${id}</b> ${x.n}</li>`}).join("")}</ul><p class="note">${d}</p></div>`).join("");
+
+const ROI=[["Copiloto Comercial (A+B)","R$ 180 mil","R$ 846 mil","~2,6 meses","Horas manuais −50% · conversão +5 p.p. · 80% dos vendedores usando toda semana em 60 dias"],
+ ["Régua de cobrança (C)","R$ 60 mil","R$ 390 mil","~1,8 mês","Inadimplência &gt;90 dias 3,4%→2,2% · 100% dos boletos com lembrete automático"],
+ ["Order-to-Cash (E)","R$ 450 mil","R$ 1,27 mi","~4,3 meses","Crédito 48h→4h · reentregas 2,8%→0,8% · boletos com erro 6,8%→&lt;1%"],
+ ["Radar de Pessoas (F)","R$ 120 mil","R$ 180 mil","~8 meses","Turnover 90 dias 29%→15% · eNPS comercial +18→+35"],
+ ["Total do programa (ano 1)","R$ 810 mil","R$ 2,69 mi","~3,6 meses","ROI ano 1 ≈ 3,3× · em regime, recupera ~66% da perda de EBITDA"]];
+$("#roi").innerHTML=`<thead><tr><th>Iniciativa</th><th class="r">Investimento ano 1</th><th class="r">Benefício anual</th><th>Payback</th><th>Metas de adoção e resultado</th></tr></thead><tbody>${ROI.map((r,i)=>`<tr${i===ROI.length-1?' style="font-weight:600"':''}><td>${r[0]}</td><td class="r num">${r[1]}</td><td class="r num">${r[2]}</td><td class="num">${r[3]}</td><td>${r[4]}</td></tr>`).join("")}</tbody>`;
+const MUD=[["Patrocínio visível","A CEO abre o programa e apresenta o placar mensal. Mensagem única: a IA tira a digitação do caminho; quem vende continua sendo a pessoa."],
+ ["Embaixadores por time","1 embaixador a cada 8 pessoas (7 no comercial). Recebem treino antecipado, testam os prompts e respondem dúvidas no dia a dia."],
+ ["Treino em 3 trilhas","Básico (todos, 2h, política e prompts seguros) · Aplicado (vendas, 6h, playbook e simulador) · Avançado (embaixadores, agentes e auditoria)."],
+ ["Medir e celebrar","Placar semanal de uso e de horas devolvidas; reconhecimento do melhor contorno simulado; office hours às sextas; pesquisa de adoção em 30/60/90 dias."]];
+$("#mudanca").innerHTML=MUD.map(([t,d],i)=>`<div class="card stack" style="gap:8px"><span class="eyebrow">Ação ${i+1}</span><h4>${t}</h4><p class="note">${d}</p></div>`).join("");
+
+/* ---------- Política ---------- */
+const PODE=["Usar ferramentas homologadas (Claude Team/Enterprise, ChatGPT Team/Enterprise, Gemini no Workspace corporativo) com treino de modelo desativado.","Redigir rascunhos de e-mails, propostas, posts e resumos com dados públicos ou internos.","Usar dados de leads B2B (nome, cargo, empresa, e-mail corporativo) dentro das ferramentas homologadas, sob legítimo interesse.","Pedir à IA análise de planilhas internas anonimizadas ou agregadas.","Criar Custom GPTs, Gems, Projetos e agentes registrados no inventário de IA e aprovados pelo comitê."];
+const NAOPODE=["Colar dados pessoais sensíveis (atestados, CID, saúde, biometria, dados de dependentes) em qualquer IA.","Usar contas pessoais ou ferramentas não homologadas para dados da empresa.","Enviar ao cliente texto, preço, prazo ou laudo gerado por IA sem revisão humana.","Deixar a IA decidir sozinha crédito, contratação, promoção, desligamento ou avaliação de desempenho.","Afirmar fatos que não estão no catálogo (ex.: dados de carbono) ou prometer descontos fora da alçada.","Gerar conteúdo que imite pessoas reais, concorrentes ou laudos técnicos assinados."];
+$("#pode").innerHTML=PODE.map(x=>`<li>${x}</li>`).join(""); $("#naopode").innerHTML=NAOPODE.map(x=>`<li>${x}</li>`).join("");
+const DADOS=[["Pública","Catálogo, site, posts publicados","Qualquer ferramenta homologada","pill A"],["Interna","Playbook, metas, processos, preços de tabela","Ferramentas homologadas","pill A"],["Confidencial","CRM, propostas, margens, DRE, dados de clientes","Apenas ambientes corporativos com contrato de não treino; mínimo necessário","pill B"],["Restrita","Salários, avaliações, entrevistas de saída nominais, dados de saúde","Proibida em IA externa; só anonimizada/agregada e com RIPD aprovado","pill C"]];
+$("#dados").innerHTML=`<thead><tr><th>Classe</th><th>Exemplos</th><th>Uso com IA</th></tr></thead><tbody>${DADOS.map(d=>`<tr><td><span class="${d[3]}">${d[0]}</span></td><td>${d[1]}</td><td>${d[2]}</td></tr>`).join("")}</tbody>`;
+const HITL=[["E-mails e propostas (Copiloto)","Vendedor dono da conta","Antes de todo envio","Baixo, se revisado"],["Desconto acima de 5%","Gerente (≤10%) · Diretoria (≤15%)","Antes da proposta","Médio"],["Score de lead","Coordenador comercial","Revisão mensal do modelo","Médio (viés de segmento)"],["Decisão de crédito","Gerente financeiro","Toda negativa ou acima da alçada","Alto (LGPD art. 20)"],["Radar de Pessoas","RH + gestor","Todo alerta; nunca nominal fora do RH","Alto (viés, dado sensível)"],["Conteúdo público (marketing)","Marketing","Antes de publicar","Médio (reputação)"]];
+$("#hitl").innerHTML=`<thead><tr><th>Iniciativa</th><th>Quem aprova</th><th>Quando</th><th>Risco</th></tr></thead><tbody>${HITL.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody>`;
+const RISCOS=[["Viés salarial de gênero","No comercial, mulheres ganham em média R$ 6.805 e homens R$ 8.645 (−21%). Mulheres também saem mais (25,3% vs. 20,0%). Um modelo de turnover treinado com salário vai aprender e repetir essa desigualdade.","Remover gênero e variáveis-proxy, medir paridade de erro por gênero a cada trimestre e levar a diferença salarial ao RH como achado.","b"],
+ ["Dados de saúde (sensíveis)","A base tem absenteísmo e as dores dos clientes falam de lombalgia e atestados. Saúde é dado sensível (LGPD art. 11).","Absenteísmo só em nível agregado; proibido colar atestados ou CID em IA; RIPD antes do Radar de Pessoas.","b"],
+ ["Decisão automatizada de crédito","Score de risco pode negar prazo a uma empresa. O titular tem direito a revisão (LGPD art. 20).","Negativa sempre revisada por pessoa, com explicação dos fatores e canal de contestação.","w"],
+ ["Viés de segmento no lead scoring","O score favorece tickets altos e cargos C-Level; leads de educação e PMEs podem ser sempre deixados para depois.","Cota de atendimento para Tier C, auditoria mensal de conversão por segmento e recalibração com dados reais de ganho/perda.","w"],
+ ["Alucinação comercial","A matriz oficial diz \"menos de R$ 1,90 por dia\" de custo, mas a conta com preço e garantia do catálogo dá R$ 2,26/dia (Specialist, 5 anos). Um cliente que refaz a conta perde confiança.","Agente Guardião confere toda afirmação numérica contra o catálogo; claims sem fonte viram \"[confirmar]\".","w"],
+ ["Qualidade dos dados de RH","Há SDR Pleno ganhando R$ 11.140 e Executivo Sênior ganhando R$ 3.850. Dados assim distorcem qualquer modelo.","Saneamento da base antes de treinar qualquer modelo; dono de dado nomeado por área.","w"]];
+$("#riscos").innerHTML=RISCOS.map(([t,d,m,c])=>`<div class="card stack" style="gap:8px"><h4>${t}</h4><p style="font-size:14px">${d}</p><div class="callout ${c}"><b>Mitigação:</b> ${m}</div></div>`).join("");
+$("#comite").innerHTML=["<b>CEO</b> — patrocinadora e voto de desempate","<b>Encarregado de Dados (DPO)</b> + Jurídico — LGPD e contratos de fornecedores de IA","<b>TI e Segurança da Informação</b> — homologação, acessos e logs","<b>Gente e Cultura</b> — vieses em pessoas, treino e cultura","<b>Diretoria Comercial</b> e <b>Finanças</b> — donos dos casos de uso","<b>2 embaixadores de IA</b> (rodízio semestral) — voz de quem usa"].map(x=>`<li>${x}</li>`).join("");
+$("#rituais").innerHTML=`<tbody>${[["Semanal","Revisão de incidentes e pedidos de novos usos (embaixadores + TI)"],["Mensal","Comitê: métricas de adoção, ROI, inventário de IA, aprovação de agentes"],["Trimestral","Auditoria de viés (score de leads, crédito, Radar de Pessoas) e amostragem de 50 saídas por agente"],["Anual","Revisão da política, RIPD e contratos; treino obrigatório de recertificação"],["Em até 24h","Resposta a incidente: vazamento, saída ofensiva ou decisão contestada"]].map(r=>`<tr><td class="mono" style="white-space:nowrap">${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</tbody>`;
+
+/* ---------- Pipeline ---------- */
+function pipeKpis(){
+  const tot=LEADS.reduce((a,l)=>a+l.valor,0), pond=LEADS.reduce((a,l)=>a+l.valor_ponderado,0), A=LEADS.filter(l=>l.tier==="A"), al=LEADS.reduce((a,l)=>a+l.alertas.length,0);
+  $("#pipeKpis").innerHTML=[["Pipeline parado no CRM",brlk(tot),"20 leads aguardando ação"],["Pipeline ponderado pela IA",brlk(pond),Math.round(pond/tot*100)+"% de probabilidade média"],["Tier A para hoje",A.length+" leads",brlk(A.reduce((a,l)=>a+l.valor,0))+" em jogo"],["Alertas do Guardião",al,"erros de proposta e alçada"]].map(([l,v,d])=>`<div class="card kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join("");
+}
+Object.entries(OBJ).forEach(([k,v])=>$("#fObj").insertAdjacentHTML("beforeend",`<option value="${k}">${k} · ${v}</option>`));
+function rows(){
+  const t=$("#fTier").value,o=$("#fObj").value;
+  $("#leadRows").innerHTML=LEADS.filter(l=>(!t||l.tier===t)&&(!o||l.obj_id===o)).map(l=>`<tr class="click" tabindex="0" data-id="${l.id}">
+  <td class="num">${LEADS.indexOf(l)+1}</td><td><b>${esc(l.empresa)}</b><div class="note">${esc(l.segmento)} · ${l.porte} pessoas</div></td>
+  <td>${esc(l.decisor)}<div class="note">${esc(l.cargo)}</div></td><td class="r num" style="white-space:nowrap">${brl(l.valor)}</td>
+  <td><div class="row" style="gap:8px;flex-wrap:nowrap"><span class="pill ${l.tier}">${l.tier} · ${l.score}</span></div><div class="bar" style="margin-top:6px"><i style="width:${l.score}%"></i></div></td>
+  <td><span class="pill">${l.obj_id}</span><div class="note">${OBJ[l.obj_id]}</div></td><td style="min-width:220px">${esc(l.proxima_acao)}<div class="note mono">até ${l.prazo_acao}</div></td>
+  <td class="num">${l.alertas.length?`<span class="pill C">${l.alertas.length}</span>`:`<span class="note">—</span>`}</td></tr>`).join("");
+}
+$("#fTier").onchange=rows; $("#fObj").onchange=rows;
+$("#leadRows").addEventListener("click",e=>{const tr=e.target.closest("tr[data-id]"); if(tr) openLead(tr.dataset.id)});
+$("#leadRows").addEventListener("keydown",e=>{if(e.key==="Enter"){const tr=e.target.closest("tr[data-id]"); if(tr) openLead(tr.dataset.id)}});
+const SD={valor:["Valor do negócio",25],urgencia:["Urgência / gatilho",25],estagio:["Estágio do funil",20],objecao_contornavel:["Objeção contornável",15],poder_decisor:["Poder do decisor",15],penalidade_desconto:["Desconto fora de alçada",-8]};
+function openLead(id){
+  const l=LEADS.find(x=>x.id===id);
+  $("#dPanel").innerHTML=`<div class="row"><span class="eyebrow">${l.id} · ${esc(l.segmento)}</span><button class="x" data-close>Fechar</button></div>
+  <div class="stack" style="gap:6px"><h2 id="dTitle">${esc(l.empresa)}</h2><p class="note">${esc(l.decisor)} · ${esc(l.cargo)} · ${esc(l.produtos)} · <b class="num">${brl(l.valor)}</b></p></div>
+  <div class="grid g3"><div class="card kpi"><div class="l">Score</div><div class="v">${l.score}</div><div class="d"><span class="pill ${l.tier}">Tier ${l.tier}</span></div></div><div class="card kpi"><div class="l">Probabilidade</div><div class="v">${Math.round(l.probabilidade*100)}%</div><div class="d">${brl(l.valor_ponderado)} ponderado</div></div><div class="card kpi"><div class="l">Gatilho</div><div style="font-weight:600;margin-top:6px">${esc(l.gatilho)}</div></div></div>
+  <div><h4>Por que este score</h4><table style="margin-top:6px">${Object.entries(l.score_detalhe).map(([k,v])=>`<tr><td>${SD[k][0]}</td><td style="width:45%"><div class="bar"><i style="width:${Math.max(0,v)/Math.abs(SD[k][1])*100}%;${v<0?'background:var(--bad)':''}"></i></div></td><td class="r num">${v} / ${SD[k][1]}</td></tr>`).join("")}</table></div>
+  <div><h4>Dor registrada</h4><p style="margin-top:4px">${esc(l.dores)}</p></div>
+  <div><h4>Objeção</h4><p style="margin-top:4px"><span class="pill">${l.obj_id} · ${OBJ[l.obj_id]}</span> ${esc(l.objecao)}</p></div>
+  ${l.alertas.length?`<div class="callout b"><b>Alertas do Agente Guardião</b><ul class="dots" style="margin-top:6px">${l.alertas.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>`:""}
+  ${l.oportunidades.length?`<div class="callout"><b>Oportunidades</b><ul class="dots" style="margin-top:6px">${l.oportunidades.map(a=>`<li>${esc(a)}</li>`).join("")}</ul></div>`:""}
+  <div><h4>Contorno sugerido</h4><p style="margin-top:4px">${esc(l.contorno)}</p><p class="note" style="margin-top:6px">Evidências: ${l.evidencias.map(esc).join(" · ")}</p></div>
+  <div class="stack" style="gap:8px"><div class="row sp"><h4>Rascunho de e-mail</h4><span class="pill B">aguardando revisão humana</span></div><p><b>Assunto:</b> ${esc(l.email_assunto)}</p><pre class="prompt" id="dMail">${esc(l.email_corpo)}</pre><div class="row"><button class="btn ghost" data-copy="dMail">Copiar</button><a class="btn ghost" style="text-decoration:none" href="#simulador" data-sim="${l.id}">Treinar este cliente no simulador</a></div></div>
+  <div><h4>Nota de CRM (Agente Escriba)</h4><pre class="prompt" style="margin-top:6px">${esc(l.nota_crm)}</pre></div>`;
+  $("#drawer").classList.add("on"); $("#dPanel").querySelector(".x").focus();
+}
+$("#drawer").addEventListener("click",e=>{ if(e.target.closest("[data-close]")) $("#drawer").classList.remove("on"); const s=e.target.closest("[data-sim]"); if(s){ $("#drawer").classList.remove("on"); $("#simLead").value=s.dataset.sim; resetSim(); }});
+addEventListener("keydown",e=>{ if(e.key==="Escape") $("#drawer").classList.remove("on") });
+
+/* ---------- Playbook ---------- */
+const ETAPAS=[["1. Pesquisa e hipótese","Chegar à 1ª conversa com uma hipótese de dor (NR-17, turnover, acústica, ESG).","Hipótese escrita no CRM","Agente Qualificador + prompt de pesquisa de conta"],
+ ["2. Diagnóstico (SPIN)","Quantificar a dor: atestados, saídas, auditorias, datas de obra.","Dor com número e dono","Roteiro SPIN gerado por IA para a persona"],
+ ["3. Proposta de valor","Traduzir a dor em custo evitado e risco reduzido, com laudo e garantia como prova.","Business case aceito pelo decisor","Calculadora de TCO + one-pager para o CFO"],
+ ["4. Proposta técnica","Mix certo, prazo do CD, frete e condição dentro da política.","Proposta sem alerta do Guardião","Agente Guardião da Política"],
+ ["5. Objeções e negociação","Contornar com evidência, nunca só com desconto. Desconto segue alçada.","Objeção resolvida e registrada","Matriz das 5 objeções + simulador"],
+ ["6. Fechamento e passagem","Pedido estruturado para crédito e CD, sem redigitação.","Pedido aprovado em até 4h","Agente de Pedido (handoff para Order-to-Cash)"],
+ ["7. Pós-venda e expansão","Laudo entregue, NPS em 30 dias, mapear próximas áreas.","Case e indicação","Régua de nutrição pós-venda"]];
+$("#etapas").innerHTML=`<thead><tr><th>Etapa</th><th>Objetivo</th><th>Critério de saída</th><th>Apoio de IA</th></tr></thead><tbody>${ETAPAS.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}</tbody>`;
+const PERS=[["RH / People","Turnover, atração de talentos, atestados","Custo de reposição, eNPS, benefício que retém","Mariana (FinCloud), Felipe (Vanguarda), Vanessa (Solaris)"],
+ ["Facilities / Operações","Layout, prazo de obra, acústica, manutenção","Cronograma do CD, montagem técnica, garantia","Rodrigo (InovaPay), Juliana (Aurora), Camila (BioSaúde)"],
+ ["Compras","Preço unitário, homologação, leilão","TCO, piloto, alçada clara, frete CIF","Carlos (LogiMax), Aline (Delta), Danilo (OmniVarejo)"],
+ ["CFO / COO","Fluxo de caixa, CAPEX, risco","OPEX vs. custo de atestado, faturamento 30/60/90","Bernardo (Apex), CFO da Vanguarda"],
+ ["Segurança do Trabalho (EHS)","Fiscalização, multa, laudo idôneo","Laudo ABERGO individual em PDF por posto","Marcelo (Atlas), Renata (Prime Health)"],
+ ["Arquitetura / Design","Estética, Pantone, BIM, prazo do projeto","Personalização > 30 posições, amostras 48h, BIM","Renata (Studio Alfa)"]];
+$("#personas").innerHTML=PERS.map(([t,d,a,e])=>`<div class="card stack" style="gap:8px"><h4>${t}</h4><p class="note"><b>Preocupa:</b> ${d}</p><p class="note"><b>Argumento:</b> ${a}</p><p class="note"><b>No pipeline:</b> ${e}</p></div>`).join("");
+const OBJS=[
+ {id:"OBJ-01",t:"\"O concorrente é 30% mais barato.\"",n:5,fraco:"\"Mas a nossa qualidade é melhor e o design é mais bonito.\"",forte:"Compare o ciclo, não a etiqueta. Uma cadeira de R$ 800 dura cerca de 14 meses: em 5 anos são 4,3 trocas (R$ 3.430 por posto) e nenhuma tem laudo NR-17. A ErgoPro Specialist custa R$ 2.490 com 5 anos de garantia estrutural, ou R$ 2,26 por dia útil, e vem com laudo individual que serve na fiscalização.",ev:"Garantia de 5 anos · laudo ABERGO · calculadora de TCO",
+  p:"Você é consultor da Taranis Black. O cliente {empresa} ({segmento}) diz: \"{objeção}\". Usando SOMENTE os dados do catálogo anexo, monte: (1) uma resposta de até 80 palavras que reconheça a preocupação e compare custo total em {anos} anos com um produto de R$ {preço_concorrente} e vida útil de 14 meses; (2) uma pergunta de diagnóstico que quantifique a dor do cliente; (3) uma contraproposta dentro da alçada de 5% (vendedor) ou 10% (gerente). Não invente números; marque [confirmar] o que faltar."},
+ {id:"OBJ-02",t:"\"O orçamento está congelado pelo CFO.\"",n:5,fraco:"\"Tudo bem, me ligue quando reabrir.\"",forte:"Trocar mobiliário inadequado é mitigação de risco, não gasto opcional. Monte com o cliente a página para o CFO: custo mensal da parcela 30/60/90 contra o custo atual de atestados e de reposição de pessoas. Em projetos grandes, ofereça entrega por fases para caber no orçamento do trimestre.",ev:"Faturado 30/60/90 · 6x no cartão abaixo de R$ 10 mil · cálculo de absenteísmo",
+  p:"Escreva um one-pager para o CFO da {empresa} justificando a compra de {produtos} ({valor}) como redução de risco operacional. Estrutura: problema em números ({dor}), custo de não agir em 12 meses, opções de pagamento da política Taranis (30/60/90; entrega faseada) e o que precisa ser decidido. Máximo 200 palavras, tom executivo, sem jargão."},
+ {id:"OBJ-03",t:"\"Já temos fornecedor homologado há anos.\"",n:4,fraco:"\"Mas o nosso produto é muito mais moderno.\"",forte:"Não peça para trocar o fornecedor. Proponha um piloto de 15 dias com 2 posições na área com mais queixas, com laudo antes e depois. Quem compra só tem a ganhar; quem cuida de segurança do trabalho ganha a evidência que faltava.",ev:"Piloto 2 posições/15 dias · ergonomistas certificados · laudo idôneo",
+  p:"Aja como consultor consultivo. O cliente {empresa} mantém o fornecedor {fornecedor_atual} por {motivo}. Escreva uma proposta de piloto de 15 dias com 2 posições: área escolhida, indicadores medidos (queixas, conforto, laudo antes/depois), critérios de sucesso e o que acontece se der certo. Não critique o fornecedor atual."},
+ {id:"OBJ-04",t:"\"O prazo de 20 a 25 dias é longo demais.\"",n:3,fraco:"\"Infelizmente a logística no Brasil é complicada.\"",forte:"Primeiro confira se o prazo cotado está certo: no Sudeste, itens em estoque saem em 5 a 8 dias úteis. Depois ofereça entrega escalonada: o lote essencial em até 7 dias úteis a partir do CD de Joinville e o saldo na sequência.",ev:"CD Joinville com estoque regulador · entrega por lotes",
+  p:"Monte um cronograma de entrega escalonada para {empresa} em {cidade}: itens {produtos}, data-limite {data}. Use os prazos oficiais (Sul/Sudeste 5–8 dias úteis em estoque; 15 dias customizado; +5 dias se personalizado; cabines Silence exigem montagem técnica de 4h). Mostre o lote 1 (essencial), lote 2 e riscos. Se o prazo cotado ao cliente estiver acima do oficial, aponte o erro."},
+ {id:"OBJ-05",t:"\"Não sei se combina com o nosso projeto.\"",n:3,fraco:"\"Só temos o modelo preto do site.\"",forte:"Coloque a engenharia de aplicação na conversa com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento não tem custo (+5 dias úteis). Envie amostras em 48h e os blocos BIM. Se pedirem algo que não está no catálogo, como relatório de carbono, não prometa: registre e escale.",ev:"Personalização > 30 posições · BIM/Revit/SketchUp · amostras em 48h · FSC",
+  p:"Você é engenheiro de aplicação da Taranis Black. O escritório {empresa} pede: \"{pedido_customização}\". Responda em 3 partes: o que atendemos pela política (personalização acima de 30 posições, +5 dias úteis, tampos FSC, BIM), o que precisa de validação técnica e o próximo passo (amostras em 48h + call). Nunca confirme algo que não esteja no catálogo."}];
+$("#objecoes").innerHTML=OBJS.map(o=>`<details><summary><span class="pill acc">${o.id}</span><h3 style="font-size:16px">${o.t}</h3><span class="note">${o.n} leads no pipeline</span></summary><div class="in">
+ <div class="split"><div class="no"><div class="eyebrow">Não dizer</div><p style="margin-top:4px">${o.fraco}</p></div><div class="yes"><div class="eyebrow">Dizer</div><p style="margin-top:4px">${o.forte}</p></div></div>
+ <p class="note"><b>Evidência:</b> ${o.ev}</p><div class="eyebrow">Prompt de treino</div><pre class="prompt" id="po${o.id}">${o.p}</pre><div><button class="btn ghost" data-copy="po${o.id}">Copiar prompt</button></div></div></details>`).join("");
+const DICAS=[["Confira a proposta antes de contornar","Em 1 dos 3 casos de prazo (FinCloud), a objeção nasceu de um prazo errado na proposta. Rode o Guardião antes de discutir."],
+ ["Desconto é a última alavanca","Responda preço com TCO e mix. LogiMax pede 25% (fora de qualquer alçada). Trocar as 12 SmartDesk Studio por Compact (−R$ 10.800) e aplicar os 5% do vendedor reduz o pedido em ~21% sem tocar na margem unitária."],
+ ["Venda para quem sente a dor","Em Atlas e Prime Health, Compras trava, mas Segurança do Trabalho e RH sentem o risco. Leve o laudo para eles."],
+ ["Use o brinde de margem alta","Acessórios têm 61% de margem bruta. Bonificar suportes DualArm na Apex custa pouco num pedido de R$ 160 mil."],
+ ["Não prometa o que o catálogo não tem","A Solaris pediu relatório de carbono. Não existe no catálogo: ofereça FSC e escale ao time responsável."],
+ ["Nunca deixe o lead sem próximo passo","Todo contato termina com data e dono no CRM. O Agente Escriba preenche; você confirma."]];
+$("#dicas").innerHTML=DICAS.map(([t,d])=>`<div class="card stack" style="gap:6px"><h4>${t}</h4><p class="note">${d}</p></div>`).join("");
+
+/* ---------- Claude (sample) ---------- */
+let samplePromise = null;
+function getSample(){ if(!samplePromise) samplePromise = (window.claude && window.claude.use) ? window.claude.use("sample").catch(()=>null) : Promise.resolve(null); return samplePromise; }
+const errCopy = c => ({not_granted:"Uso do Claude não autorizado nesta visualização.",rate_limited:"Muitas chamadas seguidas. Aguarde um pouco e tente de novo.",sampling_disabled:"Claude não está disponível nesta conta.",session_expired:"Sua sessão expirou. Entre novamente."}[c] || "Não foi possível falar com o Claude agora. Tente de novo.");
+
+
+/* ---------- Modo demonstração (sem IA): cliente simulado por regras ---------- */
+const DEMO = {
+ "OBJ-01":{abre:"Vou ser direto: Compras achou opção bem mais barata. Por que eu pagaria mais pela Taranis?",
+  empurra:["Isso todo fornecedor diz. Na planilha de Compras o que conta é o preço unitário.","Qualidade não entra na planilha. Me dê um número que eu consiga defender."],
+  cede:"Ok, olhando o custo em 5 anos e o laudo, a conta muda. Mas ainda preciso justificar o valor de entrada para Compras.",
+  segunda:"E se fecharmos só uma parte do lote agora e o restante no próximo trimestre? Muda alguma coisa?"},
+ "OBJ-02":{abre:"O projeto faz sentido, mas o orçamento está travado. Não tenho como aprovar isso agora.",
+  empurra:["O CFO não vai reabrir o CAPEX por causa de mobiliário.","Sem uma condição diferente, isso volta para a gaveta."],
+  cede:"Uma condição que não pese no trimestre muda a conversa com o CFO.",
+  segunda:"Mas quem garante que o crédito sai aprovado no faturado? Já tivemos problema com isso em outro fornecedor."},
+ "OBJ-03":{abre:"Já temos fornecedor homologado há anos. Trocar dá trabalho e risco. Por que eu mudaria?",
+  empurra:["Homologar fornecedor novo aqui leva meses. Não vejo motivo.","Meu fornecedor atual também diz que atende a norma."],
+  cede:"Um piloto pequeno, sem compromisso, eu consigo levar para a diretoria.",
+  segunda:"Quem cuida da instalação e do laudo no piloto? Não quero sobrecarregar meu time."},
+ "OBJ-04":{abre:"O prazo que vocês me passaram não atende. Preciso de uma solução para a nossa data.",
+  empurra:["Prazo é prazo. Se não chegar a tempo, não me serve.","Logística complicada é problema de vocês, não meu."],
+  cede:"Entrega em lotes pode funcionar para nós.",
+  segunda:"E se o primeiro lote atrasar? O que vocês garantem por escrito?"},
+ "OBJ-05":{abre:"Nosso projeto tem exigências específicas de acabamento. Não sei se vocês conseguem atender.",
+  empurra:["Preciso ver que vocês atendem o projeto, não um catálogo padrão.","Isso é genérico. Meu time de arquitetura vai pedir detalhe técnico."],
+  cede:"Amostras e os blocos BIM ajudam muito o time de arquitetura.",
+  segunda:"E o prazo muda com a personalização? Temos data de ocupação."}
+};
+const RX = {
+  evid:/laudo|nr-?17|abergo|garantia|tco|custo total|5 anos|por dia|piloto|joinville|\bcd\b|estoque|lote|escalonad|30\/60\/90|faturad|parcel|amostra|bim|personaliza|atestad|turnover|absente|fsc|32 ?db|motor duplo/gi,
+  emp:/entendo|compreendo|faz sentido|concordo|imagino|é justo|com certeza|sei que|sua preocupa/i,
+  next:/agend|reuni|call|amanhã|segunda|terça|quarta|quinta|sexta|\d{1,2}\/\d{1,2}|envio|te mando|mando hoje|próximo passo|proposta/i,
+  vio:/carbono|garanto que|prometo/i
+};
+const nEvid = t => new Set((t.match(RX.evid)||[]).map(x=>x.toLowerCase())).size;
+function violacao(t){ if(RX.vio.test(t)) return true; const d=t.match(/(\d{2})\s*%/); if(d && +d[1]>15 && /descont/i.test(t)) return true; const p=t.match(/\b(\d)\s*dias?/); if(p && +p[1]<5 && /entreg|prazo/i.test(t)) return true; return false; }
+let demo={stage:0,push:0};
+function demoReply(l,txt){
+  const D=DEMO[l.obj_id];
+  if(violacao(txt)) return "Isso está escrito em algum lugar? Não bate com o que ouvi do seu time. Vou precisar disso formalizado antes de levar adiante.";
+  if(demo.stage===3) return "Já estamos alinhados. Fico no aguardo do material.";
+  if(demo.stage===2) { if(RX.next.test(txt)){ demo.stage=3; return "Combinado. Me manda isso por escrito hoje e seguimos com esse próximo passo."; } return "Certo. Mas preciso de um próximo passo concreto, com data."; }
+  if(nEvid(txt)>=1){
+    if(demo.stage===0){ demo.stage=1; return D.cede+" "+D.segunda; }
+    demo.stage=2; return RX.next.test(txt) ? (demo.stage=3, "Isso responde minha preocupação. Combinado: me manda por escrito e seguimos com esse próximo passo.") : "Ok, isso responde minha preocupação. O que você propõe como próximo passo, e para quando?";
+  }
+  const r=D.empurra[demo.push%D.empurra.length]; demo.push++;
+  return (RX.emp.test(txt)?"Agradeço por entender. ":"")+r;
+}
+function demoEval(l){
+  const us=turns.filter(t=>t.role==="user"&&t.content.startsWith("Consultor:")).map(t=>t.content.slice(11));
+  const all=us.join(" "), ev=nEvid(all);
+  const empN=us.filter(t=>RX.emp.test(t)||/\?/.test(t)).length, vio=us.filter(violacao).length;
+  const notas={empatia_e_escuta:Math.min(10,3+empN*2.5),uso_de_evidencias:Math.min(10,2+ev*2),aderencia_a_politica:Math.max(2,10-vio*4),avanco_para_proximo_passo:demo.stage>=3?10:demo.stage===2?6:demo.stage===1?4:2};
+  Object.keys(notas).forEach(k=>notas[k]=Math.round(notas[k]));
+  const geral=Math.round(Object.values(notas).reduce((a,b)=>a+b,0)/4*10)/10;
+  const melhorar=[];
+  if(notas.empatia_e_escuta<7) melhorar.push("Reconheça a preocupação antes de argumentar e faça uma pergunta de diagnóstico.");
+  if(notas.uso_de_evidencias<7) melhorar.push("Use provas do catálogo: laudo NR-17, garantia de 5 anos, TCO, prazo do CD, piloto, amostras e BIM.");
+  if(vio) melhorar.push("Você prometeu algo fora da política (desconto acima de 15%, prazo abaixo do catálogo ou dado que não existe).");
+  if(notas.avanco_para_proximo_passo<7) melhorar.push("Feche com um próximo passo concreto: o quê, quem e quando.");
+  if(!melhorar.length) melhorar.push("Mantenha esse padrão e teste o nível cético extremo.");
+  const forte=notas.uso_de_evidencias>=notas.empatia_e_escuta?"Trouxe evidências concretas em vez de argumentos genéricos.":"Boa escuta: reconheceu a preocupação do cliente.";
+  return {notas,nota_geral:geral,ponto_forte:forte,melhorar,frase_modelo:l.contorno};
+}
+function renderEval(r,src){
+  $("#evalOut").innerHTML=`<div class="card stack" style="gap:10px"><div class="row sp"><h3>Avaliação</h3><span class="pill acc">Nota geral ${r.nota_geral}/10</span></div>
+    <p class="note">${src}</p>
+    <table>${Object.entries(r.notas||{}).map(([k,v])=>`<tr><td>${k.replaceAll("_"," ")}</td><td style="width:45%"><div class="bar"><i style="width:${v*10}%"></i></div></td><td class="r num">${v}</td></tr>`).join("")}</table>
+    <p><b>Ponto forte:</b> ${esc(r.ponto_forte||"")}</p><ul class="dots">${(r.melhorar||[]).map(m=>`<li>${esc(m)}</li>`).join("")}</ul><div class="callout"><b>Frase-modelo:</b> ${esc(r.frase_modelo||"")}</div></div>`;
+}
+
+/* ---------- Simulador ---------- */
+LEADS.forEach(l=>$("#simLead").insertAdjacentHTML("beforeend",`<option value="${l.id}">${esc(l.empresa)} — ${esc(l.decisor)} (${OBJ[l.obj_id]})</option>`));
+function simPrompt(l,lvl){return `Você vai interpretar ${l.decisor}, ${l.cargo} da ${l.empresa} (${l.segmento}, ${l.porte} colaboradores), em uma negociação com um consultor da Taranis Black.
+
+CONTEXTO DO SEU PERSONAGEM
+- Você está cotando: ${l.produtos} (${brl(l.valor)}).
+- Dor real da empresa: ${l.dores}
+- Sua objeção principal: ${l.objecao}
+- Estágio: ${l.status}.
+
+COMO SE COMPORTAR
+- Nível de resistência: ${lvl}. Não aceite argumentos genéricos ("qualidade", "design"). Só ceda quando o consultor trouxer número, prova (laudo NR-17, garantia, prazo do CD, piloto) ou uma condição que resolva sua restrição.
+- Faça perguntas que um ${l.cargo} faria. Traga uma segunda objeção realista se a primeira for bem contornada.
+- Respostas curtas (2 a 4 frases), em português do Brasil, tom profissional.
+- Nunca saia do personagem e nunca dê dicas ao consultor.
+- Se o consultor prometer algo fora da política (desconto acima de 15%, prazo abaixo de 5 dias úteis, dado que não existe), desconfie e peça por escrito.
+
+Comece com uma frase de abertura apresentando sua objeção.`}
+let turns=[], ctl=null;
+function ctxCard(l){ $("#simCtx").innerHTML=`<span class="eyebrow">Ficha do cliente</span><h3 style="margin-top:4px">${esc(l.decisor)}</h3><p class="note">${esc(l.cargo)} · ${esc(l.empresa)}</p><ul class="dots" style="margin-top:10px;font-size:13.5px"><li><b>Dor:</b> ${esc(l.dores)}</li><li><b>Objeção:</b> ${esc(l.objecao)}</li><li><b>Contorno de referência:</b> ${esc(l.contorno)}</li></ul>`; }
+function addMsg(cls,t){const d=document.createElement("div");d.className="msg "+cls;d.textContent=t;$("#chat").appendChild(d);$("#chat").scrollTop=1e9;return d;}
+async function resetSim(){
+  ctl?.abort(); turns=[]; $("#chat").innerHTML=""; $("#evalOut").innerHTML="";
+  const l=LEADS.find(x=>x.id===$("#simLead").value); ctxCard(l); $("#simPrompt").textContent=simPrompt(l,$("#simLvl").value);
+  const s=await getSample();
+  demo={stage:0,push:0};
+  if(!s){ $("#simMode").textContent="Modo demonstração · sem IA"; addMsg("s","Modo demonstração: o cliente reage às suas evidências, à empatia, a promessas fora da política e ao próximo passo. Para conversar com IA, abra a versão do Claude ou cole o prompt ao lado num GPT ou Gem."); const o=DEMO[l.obj_id].abre; addMsg("a",o); turns.push({role:"assistant",content:o}); return; }
+  $("#simMode").textContent="Claude ao vivo";
+  addMsg("s","Clique em Enviar com a caixa vazia para o cliente abrir a conversa, ou escreva sua abertura.");
+}
+async function send(){
+  const s=await getSample(); const l=LEADS.find(x=>x.id===$("#simLead").value); const txt=$("#chatIn").value.trim();
+  if(!s){ if(!txt) return; $("#chatIn").value=""; addMsg("u",txt); turns.push({role:"user",content:"Consultor: "+txt}); const b=addMsg("a","…"); setTimeout(()=>{const r=demoReply(l,txt); b.textContent=r; turns.push({role:"assistant",content:r}); $("#chat").scrollTop=1e9;},500); return; }
+  if(txt){ addMsg("u",txt); turns.push({role:"user",content:"Consultor: "+txt}); } else if(turns.length===0){ turns.push({role:"user",content:"(O consultor acabou de entrar na reunião. Abra a conversa.)"}); } else return;
+  $("#chatIn").value=""; const b=addMsg("a","Pensando…"); ctl=new AbortController(); $("#send").disabled=true; $("#stop").hidden=false;
+  try{ const {text}=await s([{role:"user",content:simPrompt(l,$("#simLvl").value)},...turns],{cache:false,modelTier:"quick",signal:ctl.signal,onText:({text})=>{b.textContent=text}}); turns.push({role:"assistant",content:text}); }
+  catch(e){ b.textContent=e.text||""; if(!e.text) b.remove(); if(e.code!=="cancelled") $("#simStatus").textContent=errCopy(e.code); turns=turns.filter((t,i)=>!(i===turns.length-1&&t.role==="user")); }
+  finally{ $("#send").disabled=false; $("#stop").hidden=true; }
+}
+$("#send").onclick=send; $("#stop").onclick=()=>ctl?.abort(); $("#resetBtn").onclick=resetSim; $("#simLead").onchange=resetSim; $("#simLvl").onchange=resetSim;
+$("#chatIn").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send()}});
+$("#evalBtn").onclick=async()=>{
+  const s=await getSample(); const l=LEADS.find(x=>x.id===$("#simLead").value);
+  if(!s){ if(turns.filter(t=>t.role==="user").length<2){ $("#evalOut").innerHTML=`<div class="callout w">Troque pelo menos duas mensagens com o cliente antes de pedir a avaliação.</div>`; return; } renderEval(demoEval(l),"Avaliação por regras (modo demonstração). Na versão do Claude, a avaliação é feita pela IA."); return; }
+  if(turns.filter(t=>t.role==="user").length<2){ $("#evalOut").innerHTML=`<div class="callout w">Troque pelo menos duas mensagens com o cliente antes de pedir a avaliação.</div>`; return; }
+  $("#evalOut").innerHTML=`<p class="note">Avaliando…</p>`;
+  const conv=turns.map(t=>(t.role==="user"?"":"Cliente: ")+t.content).join("\n");
+  try{ const r=await s.json(`Você é coach de vendas consultivas B2B da Taranis Black. Avalie o consultor nesta negociação com ${l.decisor} (${l.cargo}), cuja objeção era: ${l.objecao}.
+Critérios (0-10 cada): empatia_e_escuta, uso_de_evidencias (laudo NR-17, garantia, prazos do CD, TCO), aderencia_a_politica (sem promessas fora do catálogo, desconto dentro da alçada), avanco_para_proximo_passo.
+Responda só com JSON: {"notas":{"empatia_e_escuta":n,"uso_de_evidencias":n,"aderencia_a_politica":n,"avanco_para_proximo_passo":n},"nota_geral":n,"ponto_forte":"...","melhorar":["...","..."],"frase_modelo":"uma frase melhor para o momento mais fraco"}
+
+CONVERSA:
+${conv}`,{modelTier:"default"});
+    $("#evalOut").innerHTML=`<div class="card stack" style="gap:10px"><div class="row sp"><h3>Avaliação</h3><span class="pill acc">Nota geral ${r.nota_geral}/10</span></div>
+    <table>${Object.entries(r.notas||{}).map(([k,v])=>`<tr><td>${k.replaceAll("_"," ")}</td><td style="width:45%"><div class="bar"><i style="width:${v*10}%"></i></div></td><td class="r num">${v}</td></tr>`).join("")}</table>
+    <p><b>Ponto forte:</b> ${esc(r.ponto_forte||"")}</p><ul class="dots">${(r.melhorar||[]).map(m=>`<li>${esc(m)}</li>`).join("")}</ul><div class="callout"><b>Frase-modelo:</b> ${esc(r.frase_modelo||"")}</div></div>`;
+  }catch(e){ $("#evalOut").innerHTML=`<div class="callout b">${errCopy(e.code)}</div>`; }
+};
+
+/* ---------- TCO ---------- */
+const TPROD=[["ErgoPro Executive",3490,5],["ErgoPro Specialist",2490,5],["ErgoPro Core",1890,3],["SmartDesk Pro Dual 160",4800,5],["SmartDesk Studio 140",3600,5]];
+TPROD.forEach(([n,p,g],i)=>$("#tProd").insertAdjacentHTML("beforeend",`<option value="${i}" ${i===1?"selected":""}>${n} — ${brl(p)} (${g} anos)</option>`));
+function calcTCO(){
+  const [n,p,g]=TPROD[+$("#tProd").value]; const q=+$("#tQtd").value||1, anos=+$("#tAnos").value||5, pc=+$("#tConc").value, vida=+$("#tVida").value||14, sal=+$("#tSal").value, at=+$("#tAt").value, red=+$("#tRed").value/100, sai=+$("#tSai").value;
+  const meses=anos*12, trocasT=Math.ceil(meses/(g*12)), trocasC=Math.ceil(meses/vida);
+  const custoT=p*trocasT, custoC=pc*trocasC, porDia=custoT/(anos*220);
+  const atest=q*at*red*(sal*1.8/22)*anos, repo=sai*3*sal*anos, ganho=atest+repo, inv=custoT*q;
+  $("#tKpis").innerHTML=[["Custo por posto em "+anos+" anos",brl(custoT),`concorrente: ${brl(custoC)} (${trocasC} compras)`],["Custo por dia útil",brl(porDia).replace(/R\$ (\d+)$/,"R$ $1")+(porDia<10?" ":""),`R$ ${porDia.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})} por posto`],["Retorno em "+anos+" anos",(ganho/inv).toLocaleString("pt-BR",{maximumFractionDigits:1})+"×",`${brl(ganho)} evitados vs. ${brl(inv)} investidos`]].map(([l,v,d])=>`<div class="card kpi"><div class="l">${l}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join("");
+  $("#tKpis .kpi:nth-child(2) .v").textContent="R$ "+porDia.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+  const W=640,H=230,P=50,sx=m=>P+(W-P-16)*m/meses, mx=Math.ceil(Math.max(custoT,custoC)/1000)*1000*1.08, sy=v=>H-30-(H-50)*v/mx;
+  const step=(price,life)=>{let d=`M${sx(0)},${sy(price)}`,acc=price;for(let m=life;m<meses;m+=life){d+=` H${sx(m)} V${sy(acc+price)}`;acc+=price}return d+` H${sx(meses)}`};
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:460px" role="img" aria-label="Custo acumulado por posto">`;
+  for(let y=0;y<=anos;y++) s+=`<line x1="${sx(y*12)}" x2="${sx(y*12)}" y1="12" y2="${H-30}" stroke="${css('--line')}"/><text x="${sx(y*12)}" y="${H-12}" font-size="11" text-anchor="middle" fill="${css('--ink-2')}">${y}a</text>`;
+  const tk=Math.ceil(Math.max(custoT,custoC)/1000)*1000;[0,tk/2,tk].forEach(v=>s+=`<text x="${P-6}" y="${sy(v)+4}" font-size="11" text-anchor="end" fill="${css('--ink-2')}">${(v/1000).toLocaleString('pt-BR')} mil</text>`);
+  s+=`<path d="${step(pc,vida)}" fill="none" stroke="${css('--bad')}" stroke-width="2.5"/><path d="${step(p,g*12)}" fill="none" stroke="${css('--accent')}" stroke-width="2.5"/>`;
+  s+=`<text x="${sx(meses)-4}" y="${sy(custoC)-8}" font-size="12" text-anchor="end" fill="${css('--bad')}">Concorrente ${brl(custoC)}</text><text x="${sx(meses)-4}" y="${sy(custoT)+18}" font-size="12" text-anchor="end" fill="${css('--accent')}">Taranis ${brl(custoT)}</text></svg><p class="note">Custo acumulado de aquisição por posto. Não inclui o valor do laudo NR-17, que o concorrente não entrega.</p>`;
+  $("#tChart").innerHTML=s;
+  $("#tScript").innerHTML=`<b>Fala pronta:</b> "Em ${anos} anos, a ${n} custa ${brl(custoT)} por posto, ou R$ ${porDia.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})} por dia útil. A opção de ${brl(pc)} chega a ${brl(custoC)} com ${trocasC} compras e sem laudo NR-17. Com ${q} posições, reduzir ${Math.round(red*100)}% dos atestados e evitar ${sai} saída(s) por ano devolve cerca de ${brl(ganho)} no período."`;
+}
+$$("#p-calculadora input, #p-calculadora select").forEach(i=>i.addEventListener("input",calcTCO));
+
+/* ---------- Régua ---------- */
+$("#flow").innerHTML=`
+<div class="node"><span class="eyebrow">Gatilho diário · 07:00</span><p style="margin-top:4px"><b>Agente Qualificador</b> lê o CRM e classifica cada lead pela objeção (OBJ-01 a 05), tier e dias sem contato.</p></div>
+<div class="arrow">↓ SE dias sem contato ≥ 3 E status ≠ "Ganho/Perdido"</div>
+<div class="branch">
+ <div class="node if"><span class="eyebrow">SE objeção = Preço</span><p style="margin-top:4px"><b>D0</b> e-mail TCO personalizado · <b>D+3</b> se abriu → convite para calculadora com o vendedor; se não abriu → assunto alternativo · <b>D+7</b> case do mesmo segmento.</p></div>
+ <div class="node if"><span class="eyebrow">SE objeção = Orçamento / CAPEX</span><p style="margin-top:4px"><b>D0</b> one-pager para o CFO · <b>D+5</b> simulação 30/60/90 ou entrega faseada · <b>D+20</b> lembrete alinhado à data de reabertura do orçamento (Q1, conselho).</p></div>
+ <div class="node if"><span class="eyebrow">SE objeção = Fornecedor atual</span><p style="margin-top:4px"><b>D0</b> proposta de piloto 15 dias · <b>D+4</b> conteúdo NR-17 para EHS/RH (multi-thread) · <b>D+10</b> convite para visita ao showroom.</p></div>
+ <div class="node if"><span class="eyebrow">SE objeção = Prazo</span><p style="margin-top:4px"><b>D0</b> (mesmo dia) cronograma por lotes após checar estoque do CD · <b>D+1</b> ligação do vendedor · sem e-mail automático depois disso.</p></div>
+ <div class="node if"><span class="eyebrow">SE objeção = Customização</span><p style="margin-top:4px"><b>D0</b> kit BIM + pedido de amostras · <b>D+2</b> confirmação de envio das amostras · <b>D+6</b> agenda com engenharia de aplicação.</p></div>
+ <div class="node if"><span class="eyebrow">SE Tier C sem resposta em 21 dias</span><p style="margin-top:4px">Sai da régua comercial e entra na nutrição de marketing (conteúdo mensal de ergonomia e NR-17). Retorna se clicar em conteúdo de fundo de funil.</p></div>
+</div>
+<div class="arrow">↓ EM QUALQUER RAMO</div>
+<div class="grid g3">
+ <div class="node"><b>SE respondeu</b><p class="note">Régua pausa, Agente Escriba resume a resposta no CRM e cria tarefa para o vendedor em até 2h.</p></div>
+ <div class="node"><b>SE clicou 2×+ ou abriu proposta</b><p class="note">Sobe prioridade e alerta o vendedor: ligar no mesmo dia.</p></div>
+ <div class="node"><b>SE pediu para parar</b><p class="note">Descadastro imediato e registro do opt-out (LGPD art. 18).</p></div>
+</div>
+<div class="callout">Portão humano: todo e-mail entra como rascunho na caixa do vendedor dono da conta. Nada sai sem aprovação, e o limite é de 1 e-mail por lead a cada 3 dias úteis.</div>`;
+$("#pAssunto").textContent=`Gere 5 opções de assunto de e-mail para {decisor} ({cargo}) da {empresa}, segmento {segmento}.
+Contexto: dor = {dor}; objeção = {objeção}; etapa da régua = {etapa}.
+Regras: até 55 caracteres; cite a empresa ou um número concreto; nada de CAIXA ALTA, emojis, "urgente", "imperdível" ou promessa de desconto; tom Taranis Black (científico, empático, sofisticado, descomplicado).
+Para cada opção, diga em 6 palavras por que ela deve ser aberta. Marque a sua favorita.`;
+$("#pCorpo").textContent=`Escreva o e-mail da etapa {etapa} da régua para {decisor} ({cargo}) da {empresa}.
+Segmento da régua: {OBJ-01..05}.
+Estrutura obrigatória:
+1. Abertura que reconhece a objeção sem repeti-la de forma literal (1 frase).
+2. Um dado que conecta a dor do cliente ao custo de não agir (use só: catálogo, política comercial, artigo técnico Taranis Labs).
+3. A prova específica do segmento: TCO (preço), condição 30/60/90 ou entrega faseada (orçamento), piloto de 15 dias (fornecedor), cronograma por lotes (prazo), amostras + BIM (customização).
+4. Um único CTA com data proposta.
+Limites: até 140 palavras; sem anexos; sem desconto; dados ausentes viram [confirmar].
+Saída: assunto, corpo, e 1 linha de nota para o CRM.`;
+LEADS.forEach(l=>$("#mailLead").insertAdjacentHTML("beforeend",`<option value="${l.id}">${esc(l.empresa)} · ${OBJ[l.obj_id]}</option>`));
+function showMail(l,subj,body,src){ $("#mailOut").innerHTML=`<div class="row sp"><p><b>Para:</b> ${esc(l.decisor)} &lt;${esc(l.email)}&gt;</p><span class="pill B">${src} · aguardando revisão</span></div><p><b>Assunto:</b> ${esc(subj)}</p><pre class="prompt">${esc(body)}</pre>`; }
+$("#mailLead").onchange=()=>{const l=LEADS.find(x=>x.id===$("#mailLead").value); showMail(l,l.email_assunto,l.email_corpo,"rascunho do agente (offline)")};
+$("#mailGen").onclick=async()=>{
+  const s=await getSample(); const l=LEADS.find(x=>x.id===$("#mailLead").value);
+  if(!s){ showMail(l,l.email_assunto,l.email_corpo,"rascunho do agente (offline)"); $("#mailOut").insertAdjacentHTML("beforeend",`<p class="note">A geração ao vivo roda quando a página é aberta no Claude.</p>`); return; }
+  $("#mailGen").disabled=true; $("#mailOut").innerHTML=`<p class="note">Escrevendo…</p>`;
+  try{ const r=await s.json(`${$("#pCorpo").textContent}
+
+Dados: decisor=${l.decisor}; cargo=${l.cargo}; empresa=${l.empresa}; segmento=${l.segmento}; produtos=${l.produtos}; valor=${brl(l.valor)}; dor=${l.dores}; objeção=${l.objecao}; segmento da régua=${l.obj_id} ${OBJ[l.obj_id]}; etapa=D0; alertas da política=${l.alertas.join(" | ")||"nenhum"}.
+Responda só com JSON: {"assunto":"...","corpo":"...","nota_crm":"..."}`,{cache:false});
+    showMail(l,r.assunto,r.corpo+"\n\n— Nota CRM: "+r.nota_crm,"gerado pelo Claude"); }
+  catch(e){ $("#mailOut").innerHTML=`<div class="callout b">${errCopy(e.code)}</div>`; }
+  finally{ $("#mailGen").disabled=false; }
+};
+
+/* ---------- Agentes ---------- */
+const AG=[["Qualificador","Preditivo · regras","Todo dia 07:00","Lê o CRM, calcula score 0–100 explicável, tier e probabilidade; monta a fila do dia.","Coordenador revisa o modelo todo mês"],
+ ["Guardião da Política","Tradicional · regras","A cada proposta","Confere preço de tabela, frete CIF/FOB, prazo do CD, personalização, alçada de desconto e afirmações sem fonte.","Bloqueia envio com alerta crítico"],
+ ["Estrategista de Objeções","Generativo (Claude)","Sob demanda","Classifica a objeção (OBJ-01 a 05) e escreve o contorno com evidência do catálogo.","Vendedor escolhe e adapta"],
+ ["Redator","Generativo (Claude)","Régua diária","Escreve e-mails da régua no tom de voz da marca e assuntos com variação.","Rascunho aprovado pelo dono da conta"],
+ ["Escriba de CRM","Generativo (Claude)","Após cada reunião","Transforma anotação ou transcrição em nota padronizada, próxima ação e data.","Vendedor confirma em 1 clique"],
+ ["Pedido (handoff)","Tradicional + extração","Ao ganhar o negócio","Converte a proposta aceita em pedido estruturado (JSON) para o crédito e o CD, sem redigitação.","Financeiro aprova crédito fora da alçada"]];
+$("#agentCards").innerHTML=AG.map(([n,t,q,d,h])=>`<div class="card agent"><span class="tag">${t} · ${q}</span><h3>Agente ${n}</h3><p class="note">${d}</p><p style="font-size:13px"><b>Portão humano:</b> ${h}</p></div>`).join("");
+$("#rotina").innerHTML=`<tbody>${[["07:00","Qualificador reordena a fila; Guardião revisa propostas abertas"],["07:15","Redator prepara os rascunhos da régua do dia"],["08:30","Vendedor aprova rascunhos e liga para o Tier A (15 min, antes 2h)"],["Pós-reunião","Escriba registra a nota e a próxima ação no CRM"],["Ao fechar","Agente de Pedido envia pedido estruturado ao crédito; meta de aprovação em 4h"],["Sexta 17:00","Relatório semanal: horas devolvidas, conversão, alertas e amostra para auditoria"]].map(r=>`<tr><td class="mono" style="white-space:nowrap">${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</tbody>`;
+function drawArch(){
+  const W=900,H=330; const box=(x,y,w,h,t,sub,fill,stroke)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="8" fill="${fill}" stroke="${stroke}"/><text x="${x+w/2}" y="${y+h/2-3}" font-size="12.5" font-weight="600" text-anchor="middle" fill="${css('--ink')}">${t}</text><text x="${x+w/2}" y="${y+h/2+13}" font-size="10.5" text-anchor="middle" fill="${css('--ink-2')}">${sub}</text>`;
+  const ar=(x1,y1,x2,y2)=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${css('--ink-2')}" stroke-width="1.4" marker-end="url(#ah)"/>`;
+  const S=css('--surface'),L=css('--line'),A=css('--accent-soft'),Ac=css('--accent'),O=css('--ok-soft'),Ok=css('--ok'),Wn=css('--warn-soft'),Wk=css('--warn');
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:720px" role="img" aria-label="Arquitetura dos agentes"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="${css('--ink-2')}"/></marker></defs>`;
+  s+=box(20,40,150,52,"CRM","20 leads, histórico",S,L)+box(20,120,150,52,"Catálogo + Política","preços, prazos, frete",S,L)+box(20,200,150,52,"Tom de voz + Matriz","5 objeções",S,L);
+  s+=box(240,40,170,52,"Qualificador","score explicável",A,Ac)+box(240,120,170,52,"Guardião","regras do catálogo",A,Ac)+box(240,200,170,52,"Estrategista","contorno (Claude)",A,Ac);
+  s+=box(480,40,170,52,"Redator","e-mail (Claude)",A,Ac)+box(480,120,170,52,"Escriba","nota CRM (Claude)",A,Ac)+box(480,200,170,52,"Pedido","JSON para crédito/CD",A,Ac);
+  s+=box(720,95,160,80,"Portão humano","vendedor · gerente",Wn,Wk)+box(720,215,160,52,"Order-to-Cash","Rota 4",O,Ok)+box(720,20,160,52,"Cliente","e-mail aprovado",O,Ok);
+  s+=ar(170,66,238,66)+ar(170,146,238,146)+ar(170,226,238,226)+ar(410,66,478,66)+ar(410,146,478,146)+ar(410,226,478,226)+ar(325,92,325,118);
+  s+=ar(650,66,718,120)+ar(650,146,718,140)+ar(650,226,718,240)+ar(800,95,800,74);
+  s+=`<text x="${W/2}" y="${H-14}" font-size="11" text-anchor="middle" fill="${css('--ink-2')}">Fontes → agentes de preparação → agentes de execução → aprovação humana → cliente / operação. Todo passo grava log para auditoria.</text></svg>`;
+  $("#arch").innerHTML=s;
+}
+
+/* ---------- utilidades ---------- */
+document.addEventListener("click",async e=>{const b=e.target.closest("[data-copy]"); if(!b) return; const el=document.getElementById(b.dataset.copy);
+  try{ await navigator.clipboard.writeText(el.textContent); b.textContent="Copiado"; setTimeout(()=>b.textContent="Copiar",1500);}catch{ const r=document.createRange(); r.selectNodeContents(el); const sel=getSelection(); sel.removeAllRanges(); sel.addRange(r); b.textContent="Selecionado — use Ctrl+C"; }});
+
+pipeKpis(); rows(); resetSim(); $("#mailLead").onchange(); route();
+</script>
+
+</body>
+</html>

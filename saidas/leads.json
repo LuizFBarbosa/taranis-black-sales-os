@@ -1,0 +1,1117 @@
+[
+ {
+  "id": "#1058",
+  "empresa": "Prime Health Operadora",
+  "segmento": "Plano de Saúde",
+  "porte": 310,
+  "decisor": "Dra. Renata Beltrão",
+  "cargo": "Superintendente de Recursos Humanos",
+  "email": "renata.beltrao@primehealth.com.br",
+  "produtos": "120x ErgoPro Specialist",
+  "valor": 298800.0,
+  "dores": "Paradoxo interno: operadora de saúde sofreu processo trabalhista por lesão por esforço repetitivo de operadores de teleatendimento e regulação médica.",
+  "objecao": "Fornecedor Atual: Histórico de comprar móveis baratos de aço sem ergonomia; resistência da diretoria tradicional em investir em design ergonômico.",
+  "status": "Aguardando Contorno",
+  "ultimo_contato": "15/10/2026 - Apresentado cálculo de custo de sinistralidade trabalhista",
+  "itens": [
+   [
+    120,
+    "ErgoPro Specialist"
+   ]
+  ],
+  "posicoes": 120,
+  "obj_id": "OBJ-03",
+  "score": 76,
+  "score_detalhe": {
+   "valor": 15.5,
+   "urgencia": 25,
+   "estagio": 12,
+   "objecao_contornavel": 10,
+   "poder_decisor": 13
+  },
+  "tier": "A",
+  "probabilidade": 0.55,
+  "valor_ponderado": 164340.0,
+  "gatilho": "Risco regulatório / NR-17",
+  "alertas": [],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "120 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Oferecer piloto de 2 posições por 15 dias com laudo antes/depois",
+  "prazo_acao": "21/10/2026",
+  "contorno": "Renata, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.",
+  "evidencias": [
+   "Piloto sem compromisso: 2 posições por 15 dias",
+   "Laudo ABERGO / NR-17 que generalistas não entregam",
+   "Ergonomistas certificados no pós-venda"
+  ],
+  "email_assunto": "Piloto de 15 dias na Prime Health Operadora, sem troca de fornecedor",
+  "email_corpo": "Olá, Dra. Renata Beltrão,\n\nObrigado pela conversa. Sei que faz todo sentido preservar a relação com fornecedores já homologados.\n\nEm operações sob fiscalização, o laudo ergonômico individual por posto é a evidência que o auditor pede — e ele acompanha toda compra B2B da Taranis Black.\n\nRenata, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.\n\nProposta de próximo passo: oferecer piloto de 2 posições por 15 dias com laudo antes/depois.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 76 (Tier A) | Gatilho: Risco regulatório / NR-17 | Objeção: OBJ-03 Fornecedor atual | Próxima ação: Oferecer piloto de 2 posições por 15 dias com laudo antes/depois até 21/10/2026 | Alertas: 0",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1044",
+  "empresa": "Studio Alfa Arquitetura",
+  "segmento": "Arquitetura & Design",
+  "porte": 45,
+  "decisor": "Renata Vasconcellos",
+  "cargo": "Sócia Proprietária",
+  "email": "renata@studioalfa.arq.br",
+  "produtos": "150x ErgoPro Executive + 4x Silence Quad",
+  "valor": 635500.0,
+  "dores": "Especificando projeto turn-key para cliente multinacional de tecnologia com sede na Faria Lima (SP); exigência de estética minimalista e acústica impecável.",
+  "objecao": "Dúvida de Customização: Exige tecido em tom 'Terracota Corporativo Pantone 18-1440' e laudo emitido em nome do cliente final.",
+  "status": "Proposta Técnica Enviada",
+  "ultimo_contato": "18/10/2026 - Reunião de alinhamento com arquitetos",
+  "itens": [
+   [
+    150,
+    "ErgoPro Executive"
+   ],
+   [
+    4,
+    "Silence Quad"
+   ]
+  ],
+  "posicoes": 150,
+  "obj_id": "OBJ-05",
+  "score": 75,
+  "score_detalhe": {
+   "valor": 22.0,
+   "urgencia": 11,
+   "estagio": 14,
+   "objecao_contornavel": 13,
+   "poder_decisor": 15
+  },
+  "tier": "A",
+  "probabilidade": 0.54,
+  "valor_ponderado": 343170.0,
+  "gatilho": "Imagem / ESG",
+  "alertas": [],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "150 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis).",
+   "Laudo ergonômico individualizado é padrão em toda compra B2B: confirmar emissão em nome do cliente final."
+  ],
+  "proxima_acao": "Enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura",
+  "prazo_acao": "21/10/2026",
+  "contorno": "Renata, esse é o tipo de projeto em que nosso núcleo de engenharia de aplicação entra junto com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento é sem custo (+5 dias úteis), e enviamos amostras físicas em 48h e os blocos BIM para a planta. Agendamos 30 minutos com o seu time?",
+  "evidencias": [
+   "Personalização gratuita acima de 30 posições (+5 dias úteis)",
+   "Biblioteca BIM/Revit/SketchUp gratuita",
+   "Amostras físicas de tecido em 48h",
+   "Tampos FSC certificados"
+  ],
+  "email_assunto": "Amostras e blocos BIM para o projeto da Studio Alfa Arquitetura",
+  "email_corpo": "Olá, Renata Vasconcellos,\n\nObrigado pela conversa. Sei que a identidade do projeto precisa estar no mobiliário também, e temos como garantir isso.\n\nProjetos com exigência estética e de certificação pedem fornecedor que entregue especificação técnica, amostra e documentação, não só catálogo.\n\nRenata, esse é o tipo de projeto em que nosso núcleo de engenharia de aplicação entra junto com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento é sem custo (+5 dias úteis), e enviamos amostras físicas em 48h e os blocos BIM para a planta. Agendamos 30 minutos com o seu time?\n\nProposta de próximo passo: enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 75 (Tier A) | Gatilho: Imagem / ESG | Objeção: OBJ-05 Customização | Próxima ação: Enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura até 21/10/2026 | Alertas: 0",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1045",
+  "empresa": "Vanguarda Softwares",
+  "segmento": "SaaS / Tecnologia",
+  "porte": 320,
+  "decisor": "Felipe Antunes",
+  "cargo": "VP de Gente & Gestão",
+  "email": "felipe.antunes@vanguardasoft.io",
+  "produtos": "110x SmartDesk Pro Dual + 110x ErgoPro Specialist",
+  "valor": 801900.0,
+  "dores": "Disputa acirrada por programadores seniores; pacote de benefícios precisa incluir estações elevatórias para atrair talentos e evitar lesões por LER.",
+  "objecao": "Orçamento Congelado: CFO travou novos investimentos em CAPEX até o início do Q1; quer parcelamento em 12x sem juros ou modelo 'as a service'.",
+  "status": "Em Nutrição Executiva",
+  "ultimo_contato": "11/10/2026 - Apresentado cálculo de ROI sobre turnover",
+  "itens": [
+   [
+    110,
+    "SmartDesk Pro Dual"
+   ],
+   [
+    110,
+    "ErgoPro Specialist"
+   ]
+  ],
+  "posicoes": 220,
+  "obj_id": "OBJ-02",
+  "score": 74,
+  "score_detalhe": {
+   "valor": 24.0,
+   "urgencia": 17,
+   "estagio": 9,
+   "objecao_contornavel": 9,
+   "poder_decisor": 15
+  },
+  "tier": "A",
+  "probabilidade": 0.53,
+  "valor_ponderado": 425007.0,
+  "gatilho": "Retenção de talentos / clientes",
+  "alertas": [
+   "Condição de pagamento fora do padrão 30/60/90: enviar ao Agente de Crédito (Rota 4) antes de prometer."
+  ],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "220 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento",
+  "prazo_acao": "21/10/2026",
+  "contorno": "Felipe, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?",
+  "evidencias": [
+   "Faturado 30/60/90 para CNPJ > 2 anos",
+   "Até 6x sem juros no cartão para pedidos < R$ 10 mil",
+   "Custo de atestados e turnover > custo da parcela mensal"
+  ],
+  "email_assunto": "Uma alternativa ao CAPEX para o projeto da Vanguarda Softwares",
+  "email_corpo": "Olá, Felipe Antunes,\n\nObrigado pela conversa. Sei que entendo que o orçamento está travado neste momento — por isso trago uma alternativa que não depende de reabrir o CAPEX.\n\nQuando o posto de trabalho vira motivo de saída, a conta da cadeira passa a competir com o custo de repor uma pessoa — que costuma ser várias vezes maior.\n\nFelipe, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?\n\nProposta de próximo passo: enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 74 (Tier A) | Gatilho: Retenção de talentos / clientes | Objeção: OBJ-02 Orçamento / CAPEX | Próxima ação: Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento até 21/10/2026 | Alertas: 1",
+  "revisao_humana": "Obrigatória — gerente comercial"
+ },
+ {
+  "id": "#1050",
+  "empresa": "Atlas Manufatura Inteligente",
+  "segmento": "Indústria 4.0",
+  "porte": 580,
+  "decisor": "Eng. Marcelo Tavares",
+  "cargo": "Gerente de EHS (Segurança)",
+  "email": "marcelo.tavares@atlasmanuf.com.br",
+  "produtos": "90x ErgoPro Specialist",
+  "valor": 224100.0,
+  "dores": "Equipe de engenharia e planejamento de fábrica auditada pela fiscalização do trabalho; exigência de apresentação de laudo ABERGO em 30 dias sob risco de multa pesada.",
+  "objecao": "Fornecedor Atual: Compras quer manter fabricante que vende barato em leilão eletrônico, mas segurança do trabalho rejeita por falta de laudo ergonômico idôneo.",
+  "status": "Aguardando Decisão",
+  "ultimo_contato": "17/10/2026 - Vendedor em contato com Engenheiro de EHS",
+  "itens": [
+   [
+    90,
+    "ErgoPro Specialist"
+   ]
+  ],
+  "posicoes": 90,
+  "obj_id": "OBJ-03",
+  "score": 74,
+  "score_detalhe": {
+   "valor": 13.0,
+   "urgencia": 25,
+   "estagio": 17,
+   "objecao_contornavel": 10,
+   "poder_decisor": 9
+  },
+  "tier": "A",
+  "probabilidade": 0.53,
+  "valor_ponderado": 118773.0,
+  "gatilho": "Risco regulatório / NR-17",
+  "alertas": [],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "90 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Oferecer piloto de 2 posições por 15 dias com laudo antes/depois",
+  "prazo_acao": "21/10/2026",
+  "contorno": "Marcelo, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.",
+  "evidencias": [
+   "Piloto sem compromisso: 2 posições por 15 dias",
+   "Laudo ABERGO / NR-17 que generalistas não entregam",
+   "Ergonomistas certificados no pós-venda"
+  ],
+  "email_assunto": "Piloto de 15 dias na Atlas Manufatura Inteligente, sem troca de fornecedor",
+  "email_corpo": "Olá, Eng. Marcelo Tavares,\n\nObrigado pela conversa. Sei que faz todo sentido preservar a relação com fornecedores já homologados.\n\nEm operações sob fiscalização, o laudo ergonômico individual por posto é a evidência que o auditor pede — e ele acompanha toda compra B2B da Taranis Black.\n\nMarcelo, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.\n\nProposta de próximo passo: oferecer piloto de 2 posições por 15 dias com laudo antes/depois.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 74 (Tier A) | Gatilho: Risco regulatório / NR-17 | Objeção: OBJ-03 Fornecedor atual | Próxima ação: Oferecer piloto de 2 posições por 15 dias com laudo antes/depois até 21/10/2026 | Alertas: 0",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1056",
+  "empresa": "Prisma Sociedade de Advogados",
+  "segmento": "Jurídico",
+  "porte": 80,
+  "decisor": "Dr. Henrique Vasques",
+  "cargo": "Sócio Administrador",
+  "email": "henrique@prismaadvogados.com.br",
+  "produtos": "25x ErgoPro Executive + 1x Silence Duo",
+  "valor": 108250.0,
+  "dores": "Advogados lidam com prazos judiciais estressantes e processos físicos/virtuais; foco em imagem de autoridade e conforto postural impecável.",
+  "objecao": "Prazo de Entrega: Reforma da nova sede termina em 8 dias corridos; necessitam de entrega urgente em São Paulo (Itaim Bibi).",
+  "status": "Qualificação Concluída",
+  "ultimo_contato": "18/10/2026 - Verificando disponibilidade de pronta-entrega no CD",
+  "itens": [
+   [
+    25,
+    "ErgoPro Executive"
+   ],
+   [
+    1,
+    "Silence Duo"
+   ]
+  ],
+  "posicoes": 25,
+  "obj_id": "OBJ-04",
+  "score": 74,
+  "score_detalhe": {
+   "valor": 6.7,
+   "urgencia": 20,
+   "estagio": 17,
+   "objecao_contornavel": 15,
+   "poder_decisor": 15
+  },
+  "tier": "A",
+  "probabilidade": 0.53,
+  "valor_ponderado": 57372.5,
+  "gatilho": "Data-limite (obra / mudança)",
+  "alertas": [],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "Itaim Bibi (SP): itens em estoque saem em 5–8 dias úteis; reservar lote no CD Joinville hoje para caber nos 8 dias corridos da obra."
+  ],
+  "proxima_acao": "Confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada",
+  "prazo_acao": "20/10/2026",
+  "contorno": "Henrique, o prazo importa e podemos melhorá-lo. Nosso CD em Joinville tem estoque regulador dos modelos de maior giro: o lote essencial sai em até 7 dias úteis e o saldo segue escalonado. Confirmo hoje a disponibilidade e te envio o cronograma por lote?",
+  "evidencias": [
+   "CD Joinville/SC com estoque regulador (ErgoPro preta, SmartDesk 140)",
+   "Sudeste/Sul: 5–8 dias úteis em estoque",
+   "Entrega escalonada do lote essencial"
+  ],
+  "email_assunto": "Prisma Sociedade de Advogados: cronograma de entrega por lote",
+  "email_corpo": "Olá, Dr. Henrique Vasques,\n\nObrigado pela conversa. Sei que o prazo é crítico para vocês, e revisei o que conseguimos fazer a partir do nosso CD.\n\nComo há uma data de ocupação definida, organizamos a proposta em torno do cronograma, e não só do preço.\n\nHenrique, o prazo importa e podemos melhorá-lo. Nosso CD em Joinville tem estoque regulador dos modelos de maior giro: o lote essencial sai em até 7 dias úteis e o saldo segue escalonado. Confirmo hoje a disponibilidade e te envio o cronograma por lote?\n\nProposta de próximo passo: confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 74 (Tier A) | Gatilho: Data-limite (obra / mudança) | Objeção: OBJ-04 Prazo de entrega | Próxima ação: Confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada até 20/10/2026 | Alertas: 0",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1061",
+  "empresa": "NeoOffice Hub de Coworking",
+  "segmento": "Espaços Flexíveis",
+  "porte": 90,
+  "decisor": "Lucas Silveira",
+  "cargo": "CEO",
+  "email": "lucas@neooffice.com.br",
+  "produtos": "60x ErgoPro Core + 8x Silence Solo",
+  "valor": 229400.0,
+  "dores": "Membros do coworking cancelando planos por falta de privacidade para call e cadeiras desconfortáveis nas estações compartilhadas.",
+  "objecao": "Prazo e Pagamento: Quer parcelamento em 10 boletos mensais vinculados ao fluxo de caixa de assinaturas dos clientes.",
+  "status": "Negociação Aberta",
+  "ultimo_contato": "17/10/2026 - Avaliando contrato de garantia de recebíveis",
+  "itens": [
+   [
+    60,
+    "ErgoPro Core"
+   ],
+   [
+    8,
+    "Silence Solo"
+   ]
+  ],
+  "posicoes": 60,
+  "obj_id": "OBJ-02",
+  "score": 68,
+  "score_detalhe": {
+   "valor": 13.2,
+   "urgencia": 17,
+   "estagio": 14,
+   "objecao_contornavel": 9,
+   "poder_decisor": 15
+  },
+  "tier": "B",
+  "probabilidade": 0.48,
+  "valor_ponderado": 110112.0,
+  "gatilho": "Retenção de talentos / clientes",
+  "alertas": [
+   "Condição de pagamento fora do padrão 30/60/90: enviar ao Agente de Crédito (Rota 4) antes de prometer."
+  ],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "60 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento",
+  "prazo_acao": "22/10/2026",
+  "contorno": "Lucas, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?",
+  "evidencias": [
+   "Faturado 30/60/90 para CNPJ > 2 anos",
+   "Até 6x sem juros no cartão para pedidos < R$ 10 mil",
+   "Custo de atestados e turnover > custo da parcela mensal"
+  ],
+  "email_assunto": "Uma alternativa ao CAPEX para o projeto da NeoOffice Hub de Coworking",
+  "email_corpo": "Olá, Lucas Silveira,\n\nObrigado pela conversa. Sei que entendo que o orçamento está travado neste momento — por isso trago uma alternativa que não depende de reabrir o CAPEX.\n\nQuando o posto de trabalho vira motivo de saída, a conta da cadeira passa a competir com o custo de repor uma pessoa — que costuma ser várias vezes maior.\n\nLucas, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?\n\nProposta de próximo passo: enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 68 (Tier B) | Gatilho: Retenção de talentos / clientes | Objeção: OBJ-02 Orçamento / CAPEX | Próxima ação: Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento até 22/10/2026 | Alertas: 1",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1046",
+  "empresa": "BioSaúde Diagnósticos",
+  "segmento": "Saúde / Laboratórios",
+  "porte": 175,
+  "decisor": "Dra. Camila Toledo",
+  "cargo": "Diretora de Operações",
+  "email": "camila.toledo@biosaude.med.br",
+  "produtos": "45x ErgoPro Specialist + 2x Silence Duo",
+  "valor": 154050.0,
+  "dores": "Médicos laudadores e biomédicos relatam dores cervicais severas; laboratório foi advertido pelo sindicato sobre adequação de NR-17 nos postos de microscopia.",
+  "objecao": "Fornecedor Atual: Contrato de 4 anos com fabricante tradicional de móveis de escritório; relutância do financeiro em homologar novo fornecedor.",
+  "status": "Qualificação Avançada",
+  "ultimo_contato": "15/10/2026 - Enviada amostra de cadeira para teste piloto",
+  "itens": [
+   [
+    45,
+    "ErgoPro Specialist"
+   ],
+   [
+    2,
+    "Silence Duo"
+   ]
+  ],
+  "posicoes": 45,
+  "obj_id": "OBJ-03",
+  "score": 68,
+  "score_detalhe": {
+   "valor": 9.7,
+   "urgencia": 25,
+   "estagio": 10,
+   "objecao_contornavel": 10,
+   "poder_decisor": 13
+  },
+  "tier": "B",
+  "probabilidade": 0.48,
+  "valor_ponderado": 73944.0,
+  "gatilho": "Risco regulatório / NR-17",
+  "alertas": [],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "45 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Oferecer piloto de 2 posições por 15 dias com laudo antes/depois",
+  "prazo_acao": "22/10/2026",
+  "contorno": "Camila, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.",
+  "evidencias": [
+   "Piloto sem compromisso: 2 posições por 15 dias",
+   "Laudo ABERGO / NR-17 que generalistas não entregam",
+   "Ergonomistas certificados no pós-venda"
+  ],
+  "email_assunto": "Piloto de 15 dias na BioSaúde Diagnósticos, sem troca de fornecedor",
+  "email_corpo": "Olá, Dra. Camila Toledo,\n\nObrigado pela conversa. Sei que faz todo sentido preservar a relação com fornecedores já homologados.\n\nEm operações sob fiscalização, o laudo ergonômico individual por posto é a evidência que o auditor pede — e ele acompanha toda compra B2B da Taranis Black.\n\nCamila, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.\n\nProposta de próximo passo: oferecer piloto de 2 posições por 15 dias com laudo antes/depois.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 68 (Tier B) | Gatilho: Risco regulatório / NR-17 | Objeção: OBJ-03 Fornecedor atual | Próxima ação: Oferecer piloto de 2 posições por 15 dias com laudo antes/depois até 22/10/2026 | Alertas: 0",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1060",
+  "empresa": "Zenith Seguradora Global",
+  "segmento": "Seguros & Previdência",
+  "porte": 340,
+  "decisor": "Otávio Mesquita Jr.",
+  "cargo": "Diretor de TI e Infraestrutura",
+  "email": "otavio@zenithseguros.com.br",
+  "produtos": "80x SmartDesk Studio + 80x ErgoPro Specialist",
+  "valor": 488000.0,
+  "dores": "Implantação de modelo de trabalho 3x2 (3 dias presencial, 2 home office); mesas rotativas precisam de memórias de altura individuais automáticas para múltiplos colaboradores.",
+  "objecao": "Preço: Compras encontrou mesa similar em marketplace e questiona por que a SmartDesk é mais cara.",
+  "status": "Aguardando Contorno",
+  "ultimo_contato": "18/10/2026 - Destacado motor duplo alemão vs motor simples chinês",
+  "itens": [
+   [
+    80,
+    "SmartDesk Studio"
+   ],
+   [
+    80,
+    "ErgoPro Specialist"
+   ]
+  ],
+  "posicoes": 160,
+  "obj_id": "OBJ-01",
+  "score": 67,
+  "score_detalhe": {
+   "valor": 19.7,
+   "urgencia": 15,
+   "estagio": 12,
+   "objecao_contornavel": 7,
+   "poder_decisor": 13
+  },
+  "tier": "B",
+  "probabilidade": 0.47,
+  "valor_ponderado": 229360.0,
+  "gatilho": "Saúde ocupacional / absenteísmo",
+  "alertas": [
+   "Valor do CRM (R$ 488,000) diverge do preço de tabela (R$ 487,200)."
+  ],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "160 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada",
+  "prazo_acao": "21/10/2026",
+  "contorno": "Otávio, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?",
+  "evidencias": [
+   "Garantia estrutural de 5 anos (ErgoPro Executive/Specialist)",
+   "Laudo NR-17 individualizado por posto",
+   "TCO 5 anos: cadeira de R$ 800 com vida útil de ~14 meses = 4,3 trocas = R$ 3.430"
+  ],
+  "email_assunto": "Zenith Seguradora Global: custo por posto em 5 anos, lado a lado",
+  "email_corpo": "Olá, Otávio Mesquita Jr.,\n\nObrigado pela conversa. Sei que comparar preço é uma decisão responsável, e quero te ajudar a fazer essa comparação com o ciclo completo.\n\nCada dia de atestado por dor lombar ou cervical tem custo direto e de continuidade; é esse número que a ergonomia ativa reduz.\n\nOtávio, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?\n\nProposta de próximo passo: enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 67 (Tier B) | Gatilho: Saúde ocupacional / absenteísmo | Objeção: OBJ-01 Preço | Próxima ação: Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada até 21/10/2026 | Alertas: 1",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1042",
+  "empresa": "FinCloud Soluções",
+  "segmento": "Fintech",
+  "porte": 85,
+  "decisor": "Mariana Silveira",
+  "cargo": "Diretora de RH",
+  "email": "m.silveira@fincloud.com.br",
+  "produtos": "80x ErgoPro Specialist",
+  "valor": 199200.0,
+  "dores": "80 colaboradores reclamando de lombalgia após retorno híbrido; aumento de 15% nos atestados médicos de coluna no último trimestre.",
+  "objecao": "Prazo de entrega: Acha o prazo de 25 dias para Belo Horizonte longo demais; quer em 10 dias.",
+  "status": "Aguardando Contorno",
+  "ultimo_contato": "14/10/2026 - Enviada proposta com laudo NR-17",
+  "itens": [
+   [
+    80,
+    "ErgoPro Specialist"
+   ]
+  ],
+  "posicoes": 80,
+  "obj_id": "OBJ-04",
+  "score": 67,
+  "score_detalhe": {
+   "valor": 12.0,
+   "urgencia": 15,
+   "estagio": 12,
+   "objecao_contornavel": 15,
+   "poder_decisor": 13
+  },
+  "tier": "B",
+  "probabilidade": 0.47,
+  "valor_ponderado": 93624.0,
+  "gatilho": "Saúde ocupacional / absenteísmo",
+  "alertas": [
+   "Prazo cotado (25 dias para BH) contradiz o catálogo: Sudeste = 5 a 8 dias úteis para itens em estoque. Corrigir proposta — a objeção pode desaparecer."
+  ],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "80 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada",
+  "prazo_acao": "20/10/2026",
+  "contorno": "Mariana, o prazo importa e podemos melhorá-lo. Nosso CD em Joinville tem estoque regulador dos modelos de maior giro: o lote essencial sai em até 7 dias úteis e o saldo segue escalonado. Confirmo hoje a disponibilidade e te envio o cronograma por lote?",
+  "evidencias": [
+   "CD Joinville/SC com estoque regulador (ErgoPro preta, SmartDesk 140)",
+   "Sudeste/Sul: 5–8 dias úteis em estoque",
+   "Entrega escalonada do lote essencial"
+  ],
+  "email_assunto": "FinCloud Soluções: cronograma de entrega por lote",
+  "email_corpo": "Olá, Mariana Silveira,\n\nObrigado pela conversa. Sei que o prazo é crítico para vocês, e revisei o que conseguimos fazer a partir do nosso CD.\n\nCada dia de atestado por dor lombar ou cervical tem custo direto e de continuidade; é esse número que a ergonomia ativa reduz.\n\nMariana, o prazo importa e podemos melhorá-lo. Nosso CD em Joinville tem estoque regulador dos modelos de maior giro: o lote essencial sai em até 7 dias úteis e o saldo segue escalonado. Confirmo hoje a disponibilidade e te envio o cronograma por lote?\n\nProposta de próximo passo: confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 67 (Tier B) | Gatilho: Saúde ocupacional / absenteísmo | Objeção: OBJ-04 Prazo de entrega | Próxima ação: Confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada até 20/10/2026 | Alertas: 1",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1052",
+  "empresa": "Apex Capital Gestão",
+  "segmento": "Asset Management",
+  "porte": 90,
+  "decisor": "Bernardo Rezende",
+  "cargo": "Chief Operating Officer",
+  "email": "bernardo.rezende@apexcap.com.br",
+  "produtos": "30x ErgoPro Executive + 2x Silence Quad",
+  "valor": 160700.0,
+  "dores": "Traders e gestores de fundos operando com 4 a 6 telas simultâneas; tensão severa em trapézios e ombros.",
+  "objecao": "Preço: Quer inclusão de suportes articulados de monitor (Taranis DualArm) como brinde de bonificação.",
+  "status": "Negociação Final",
+  "ultimo_contato": "18/10/2026 - Analisando margem para bonificação de acessórios",
+  "itens": [
+   [
+    30,
+    "ErgoPro Executive"
+   ],
+   [
+    2,
+    "Silence Quad"
+   ]
+  ],
+  "posicoes": 30,
+  "obj_id": "OBJ-01",
+  "score": 67,
+  "score_detalhe": {
+   "valor": 10.1,
+   "urgencia": 15,
+   "estagio": 20,
+   "objecao_contornavel": 7,
+   "poder_decisor": 15
+  },
+  "tier": "B",
+  "probabilidade": 0.47,
+  "valor_ponderado": 75529.0,
+  "gatilho": "Saúde ocupacional / absenteísmo",
+  "alertas": [],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "Acessórios têm margem bruta de 61%: bonificar suportes DualArm custa pouco vs. ticket de R$ 160 mil."
+  ],
+  "proxima_acao": "Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada",
+  "prazo_acao": "21/10/2026",
+  "contorno": "Bernardo, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?",
+  "evidencias": [
+   "Garantia estrutural de 5 anos (ErgoPro Executive/Specialist)",
+   "Laudo NR-17 individualizado por posto",
+   "TCO 5 anos: cadeira de R$ 800 com vida útil de ~14 meses = 4,3 trocas = R$ 3.430"
+  ],
+  "email_assunto": "Apex Capital Gestão: custo por posto em 5 anos, lado a lado",
+  "email_corpo": "Olá, Bernardo Rezende,\n\nObrigado pela conversa. Sei que comparar preço é uma decisão responsável, e quero te ajudar a fazer essa comparação com o ciclo completo.\n\nCada dia de atestado por dor lombar ou cervical tem custo direto e de continuidade; é esse número que a ergonomia ativa reduz.\n\nBernardo, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?\n\nProposta de próximo passo: enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 67 (Tier B) | Gatilho: Saúde ocupacional / absenteísmo | Objeção: OBJ-01 Preço | Próxima ação: Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada até 21/10/2026 | Alertas: 0",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1059",
+  "empresa": "Aurora Cosméticos Naturais",
+  "segmento": "Indústria de Beleza",
+  "porte": 190,
+  "decisor": "Juliana Paes Leme",
+  "cargo": "Gerente de Facilities",
+  "email": "juliana@auroracosmeticos.com.br",
+  "produtos": "50x ErgoPro Specialist + 2x Silence Quad",
+  "valor": 180500.0,
+  "dores": "Mudança para novo prédio corporativo conceito 'Wellbeing'; exigência de selos ergonômicos internacionais e estética alinhada à marca.",
+  "objecao": "Dúvida de Customização: Exige acabamento em madeira clara de reflorestamento nas mesas e rodízios especiais para piso de cimento queimado.",
+  "status": "Em Ajuste de Escopo",
+  "ultimo_contato": "16/10/2026 - Enviadas amostras de rodízios e laminados",
+  "itens": [
+   [
+    50,
+    "ErgoPro Specialist"
+   ],
+   [
+    2,
+    "Silence Quad"
+   ]
+  ],
+  "posicoes": 50,
+  "obj_id": "OBJ-05",
+  "score": 65,
+  "score_detalhe": {
+   "valor": 11.1,
+   "urgencia": 20,
+   "estagio": 12,
+   "objecao_contornavel": 13,
+   "poder_decisor": 9
+  },
+  "tier": "B",
+  "probabilidade": 0.45,
+  "valor_ponderado": 81225.0,
+  "gatilho": "Data-limite (obra / mudança)",
+  "alertas": [],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "50 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura",
+  "prazo_acao": "21/10/2026",
+  "contorno": "Juliana, esse é o tipo de projeto em que nosso núcleo de engenharia de aplicação entra junto com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento é sem custo (+5 dias úteis), e enviamos amostras físicas em 48h e os blocos BIM para a planta. Agendamos 30 minutos com o seu time?",
+  "evidencias": [
+   "Personalização gratuita acima de 30 posições (+5 dias úteis)",
+   "Biblioteca BIM/Revit/SketchUp gratuita",
+   "Amostras físicas de tecido em 48h",
+   "Tampos FSC certificados"
+  ],
+  "email_assunto": "Amostras e blocos BIM para o projeto da Aurora Cosméticos Naturais",
+  "email_corpo": "Olá, Juliana Paes Leme,\n\nObrigado pela conversa. Sei que a identidade do projeto precisa estar no mobiliário também, e temos como garantir isso.\n\nComo há uma data de ocupação definida, organizamos a proposta em torno do cronograma, e não só do preço.\n\nJuliana, esse é o tipo de projeto em que nosso núcleo de engenharia de aplicação entra junto com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento é sem custo (+5 dias úteis), e enviamos amostras físicas em 48h e os blocos BIM para a planta. Agendamos 30 minutos com o seu time?\n\nProposta de próximo passo: enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 65 (Tier B) | Gatilho: Data-limite (obra / mudança) | Objeção: OBJ-05 Customização | Próxima ação: Enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura até 21/10/2026 | Alertas: 0",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1049",
+  "empresa": "Nexo Consultoria Estratégica",
+  "segmento": "Consultoria",
+  "porte": 70,
+  "decisor": "Guilherme Boulos Jr.",
+  "cargo": "Sócio Diretor",
+  "email": "guilherme@nexoconsulting.com",
+  "produtos": "40x ErgoPro Executive",
+  "valor": 139600.0,
+  "dores": "Consultores trabalham até 14 horas diárias; foco em manter padrão premium para impressionar clientes internacionais que visitam a sede.",
+  "objecao": "Prazo de Entrega: Quer entrega escalonada em duas semanas sem cobrança de frete fracionado.",
+  "status": "Negociação Aberta",
+  "ultimo_contato": "15/10/2026 - Discutindo política de frete CIF com diretoria",
+  "itens": [
+   [
+    40,
+    "ErgoPro Executive"
+   ]
+  ],
+  "posicoes": 40,
+  "obj_id": "OBJ-04",
+  "score": 64,
+  "score_detalhe": {
+   "valor": 8.9,
+   "urgencia": 11,
+   "estagio": 14,
+   "objecao_contornavel": 15,
+   "poder_decisor": 15
+  },
+  "tier": "B",
+  "probabilidade": 0.44,
+  "valor_ponderado": 61424.0,
+  "gatilho": "Imagem / ESG",
+  "alertas": [],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "40 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada",
+  "prazo_acao": "20/10/2026",
+  "contorno": "Guilherme, o prazo importa e podemos melhorá-lo. Nosso CD em Joinville tem estoque regulador dos modelos de maior giro: o lote essencial sai em até 7 dias úteis e o saldo segue escalonado. Confirmo hoje a disponibilidade e te envio o cronograma por lote?",
+  "evidencias": [
+   "CD Joinville/SC com estoque regulador (ErgoPro preta, SmartDesk 140)",
+   "Sudeste/Sul: 5–8 dias úteis em estoque",
+   "Entrega escalonada do lote essencial"
+  ],
+  "email_assunto": "Nexo Consultoria Estratégica: cronograma de entrega por lote",
+  "email_corpo": "Olá, Guilherme Boulos Jr.,\n\nObrigado pela conversa. Sei que o prazo é crítico para vocês, e revisei o que conseguimos fazer a partir do nosso CD.\n\nProjetos com exigência estética e de certificação pedem fornecedor que entregue especificação técnica, amostra e documentação, não só catálogo.\n\nGuilherme, o prazo importa e podemos melhorá-lo. Nosso CD em Joinville tem estoque regulador dos modelos de maior giro: o lote essencial sai em até 7 dias úteis e o saldo segue escalonado. Confirmo hoje a disponibilidade e te envio o cronograma por lote?\n\nProposta de próximo passo: confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 64 (Tier B) | Gatilho: Imagem / ESG | Objeção: OBJ-04 Prazo de entrega | Próxima ação: Confirmar estoque no CD Joinville e enviar cronograma de entrega escalonada até 20/10/2026 | Alertas: 0",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1057",
+  "empresa": "Delta Cadeia de Suprimentos",
+  "segmento": "Supply Chain",
+  "porte": 220,
+  "decisor": "Aline Fontes",
+  "cargo": "Coordenadora de Compras",
+  "email": "aline.fontes@deltasupply.com.br",
+  "produtos": "40x ErgoPro Specialist + 5x SmartDesk Studio",
+  "valor": 117600.0,
+  "dores": "Turnover de analistas de logística elevado; estações operacionais improvisadas pós-fusão de empresas.",
+  "objecao": "Orçamento Congelado: Compras autorizadas apenas com faturamento para 45/90/120 dias.",
+  "status": "Em Análise Financeira",
+  "ultimo_contato": "13/10/2026 - Solicitado balanço contábil para limite estendido",
+  "itens": [
+   [
+    40,
+    "ErgoPro Specialist"
+   ],
+   [
+    5,
+    "SmartDesk Studio"
+   ]
+  ],
+  "posicoes": 45,
+  "obj_id": "OBJ-02",
+  "score": 63,
+  "score_detalhe": {
+   "valor": 7.4,
+   "urgencia": 17,
+   "estagio": 15,
+   "objecao_contornavel": 9,
+   "poder_decisor": 15
+  },
+  "tier": "B",
+  "probabilidade": 0.43,
+  "valor_ponderado": 50568.0,
+  "gatilho": "Retenção de talentos / clientes",
+  "alertas": [
+   "Condição de pagamento fora do padrão 30/60/90: enviar ao Agente de Crédito (Rota 4) antes de prometer."
+  ],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "45 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento",
+  "prazo_acao": "22/10/2026",
+  "contorno": "Aline, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?",
+  "evidencias": [
+   "Faturado 30/60/90 para CNPJ > 2 anos",
+   "Até 6x sem juros no cartão para pedidos < R$ 10 mil",
+   "Custo de atestados e turnover > custo da parcela mensal"
+  ],
+  "email_assunto": "Uma alternativa ao CAPEX para o projeto da Delta Cadeia de Suprimentos",
+  "email_corpo": "Olá, Aline Fontes,\n\nObrigado pela conversa. Sei que entendo que o orçamento está travado neste momento — por isso trago uma alternativa que não depende de reabrir o CAPEX.\n\nQuando o posto de trabalho vira motivo de saída, a conta da cadeira passa a competir com o custo de repor uma pessoa — que costuma ser várias vezes maior.\n\nAline, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?\n\nProposta de próximo passo: enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 63 (Tier B) | Gatilho: Retenção de talentos / clientes | Objeção: OBJ-02 Orçamento / CAPEX | Próxima ação: Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento até 22/10/2026 | Alertas: 1",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1054",
+  "empresa": "MetaData Ciência de Dados",
+  "segmento": "Inteligência Artificial",
+  "porte": 150,
+  "decisor": "Dr. Thiago Ferraz",
+  "cargo": "CTO & Co-fundador",
+  "email": "thiago@metadata.ai",
+  "produtos": "50x ErgoPro Specialist + 4x Silence Solo",
+  "valor": 182500.0,
+  "dores": "Engenheiros de machine learning trabalham focados por longos blocos; ruídos de conversas paralelas prejudicam concentração profunda.",
+  "objecao": "Fornecedor Atual: Cotação simultânea com importadora de cadeiras chinesas sem garantia no Brasil por valor 35% inferior.",
+  "status": "Aguardando Contorno",
+  "ultimo_contato": "17/10/2026 - Enviado comparativo de TCO (Custo Total de Posse em 5 anos)",
+  "itens": [
+   [
+    50,
+    "ErgoPro Specialist"
+   ],
+   [
+    4,
+    "Silence Solo"
+   ]
+  ],
+  "posicoes": 50,
+  "obj_id": "OBJ-03",
+  "score": 62,
+  "score_detalhe": {
+   "valor": 11.2,
+   "urgencia": 14,
+   "estagio": 12,
+   "objecao_contornavel": 10,
+   "poder_decisor": 15
+  },
+  "tier": "B",
+  "probabilidade": 0.43,
+  "valor_ponderado": 78475.0,
+  "gatilho": "Acústica / confidencialidade",
+  "alertas": [],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "50 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Oferecer piloto de 2 posições por 15 dias com laudo antes/depois",
+  "prazo_acao": "22/10/2026",
+  "contorno": "Thiago, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.",
+  "evidencias": [
+   "Piloto sem compromisso: 2 posições por 15 dias",
+   "Laudo ABERGO / NR-17 que generalistas não entregam",
+   "Ergonomistas certificados no pós-venda"
+  ],
+  "email_assunto": "Piloto de 15 dias na MetaData Ciência de Dados, sem troca de fornecedor",
+  "email_corpo": "Olá, Dr. Thiago Ferraz,\n\nObrigado pela conversa. Sei que faz todo sentido preservar a relação com fornecedores já homologados.\n\nApós uma interrupção sonora, uma pessoa leva em média 23 minutos para recuperar a concentração profunda; isolamento de 32 dB devolve esse tempo.\n\nThiago, não propomos trocar o fornecedor homologado. Propomos um piloto de 15 dias com 2 posições na área com mais queixas, com laudo ergonômico antes e depois. Se os dados não convencerem, vocês seguem como estão — sem custo.\n\nProposta de próximo passo: oferecer piloto de 2 posições por 15 dias com laudo antes/depois.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 62 (Tier B) | Gatilho: Acústica / confidencialidade | Objeção: OBJ-03 Fornecedor atual | Próxima ação: Oferecer piloto de 2 posições por 15 dias com laudo antes/depois até 22/10/2026 | Alertas: 0",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1051",
+  "empresa": "Solaris Energia Sustentável",
+  "segmento": "Energia Solar",
+  "porte": 130,
+  "decisor": "Vanessa Kuhlmann",
+  "cargo": "Head de People & Culture",
+  "email": "vanessa@solarisenergia.com.br",
+  "produtos": "35x SmartDesk Studio + 35x ErgoPro Specialist",
+  "valor": 213500.0,
+  "dores": "Empresa com forte apelo ESG quer certificar novo escritório com selo sustentável; móveis precisam comprovar origem de madeira reciclada e selo FSC.",
+  "objecao": "Dúvida de Customização: Pergunta se a Taranis Black tem relatório de emissões de carbono e cadeia produtiva sustentável comprovada.",
+  "status": "Em Demonstração",
+  "ultimo_contato": "12/10/2026 - Enviado certificado de sustentabilidade FSC",
+  "itens": [
+   [
+    35,
+    "SmartDesk Studio"
+   ],
+   [
+    35,
+    "ErgoPro Specialist"
+   ]
+  ],
+  "posicoes": 70,
+  "obj_id": "OBJ-05",
+  "score": 59,
+  "score_detalhe": {
+   "valor": 12.6,
+   "urgencia": 11,
+   "estagio": 10,
+   "objecao_contornavel": 13,
+   "poder_decisor": 12
+  },
+  "tier": "C",
+  "probabilidade": 0.4,
+  "valor_ponderado": 85400.0,
+  "gatilho": "Imagem / ESG",
+  "alertas": [
+   "Valor do CRM (R$ 213,500) diverge do preço de tabela (R$ 213,150).",
+   "Não há relatório de emissões no catálogo. NÃO afirmar dados de carbono — oferecer FSC e escalar ao time ESG."
+  ],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "70 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura",
+  "prazo_acao": "21/10/2026",
+  "contorno": "Vanessa, esse é o tipo de projeto em que nosso núcleo de engenharia de aplicação entra junto com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento é sem custo (+5 dias úteis), e enviamos amostras físicas em 48h e os blocos BIM para a planta. Agendamos 30 minutos com o seu time?",
+  "evidencias": [
+   "Personalização gratuita acima de 30 posições (+5 dias úteis)",
+   "Biblioteca BIM/Revit/SketchUp gratuita",
+   "Amostras físicas de tecido em 48h",
+   "Tampos FSC certificados"
+  ],
+  "email_assunto": "Amostras e blocos BIM para o projeto da Solaris Energia Sustentável",
+  "email_corpo": "Olá, Vanessa Kuhlmann,\n\nObrigado pela conversa. Sei que a identidade do projeto precisa estar no mobiliário também, e temos como garantir isso.\n\nProjetos com exigência estética e de certificação pedem fornecedor que entregue especificação técnica, amostra e documentação, não só catálogo.\n\nVanessa, esse é o tipo de projeto em que nosso núcleo de engenharia de aplicação entra junto com a arquitetura. Acima de 30 posições a personalização de tecido e acabamento é sem custo (+5 dias úteis), e enviamos amostras físicas em 48h e os blocos BIM para a planta. Agendamos 30 minutos com o seu time?\n\nProposta de próximo passo: enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 59 (Tier C) | Gatilho: Imagem / ESG | Objeção: OBJ-05 Customização | Próxima ação: Enviar amostras físicas (48h) + blocos BIM e agendar call com arquitetura até 21/10/2026 | Alertas: 2",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1055",
+  "empresa": "OmniVarejo Soluções Digitais",
+  "segmento": "E-commerce",
+  "porte": 480,
+  "decisor": "Danilo Castro",
+  "cargo": "Diretor de Atendimento ao Cliente",
+  "email": "danilo.castro@omnivarejo.com",
+  "produtos": "75x ErgoPro Core",
+  "valor": 141750.0,
+  "dores": "Central de SAC e pós-vendas com 38% de taxa de evasão anual; cadeiras velhas com espuma gasta são apontadas como motivo recorrente de desmotivação.",
+  "objecao": "Preço: Compras exige preço unitário abaixo de R$ 1.500 para fechar o lote de 75 unidades.",
+  "status": "Aguardando Negociação",
+  "ultimo_contato": "14/10/2026 - Avaliando desconto para pedido em lote único",
+  "itens": [
+   [
+    75,
+    "ErgoPro Core"
+   ]
+  ],
+  "posicoes": 75,
+  "obj_id": "OBJ-01",
+  "score": 58,
+  "score_detalhe": {
+   "valor": 9.0,
+   "urgencia": 17,
+   "estagio": 12,
+   "objecao_contornavel": 7,
+   "poder_decisor": 13
+  },
+  "tier": "C",
+  "probabilidade": 0.39,
+  "valor_ponderado": 55282.5,
+  "gatilho": "Retenção de talentos / clientes",
+  "alertas": [
+   "Preço-alvo R$ 1,500 = 20.6% abaixo da tabela da ErgoPro Core: fora da alçada. Contraproposta: 10% (gerente) + 6x no cartão ou TCO de 3 anos."
+  ],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "75 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada",
+  "prazo_acao": "21/10/2026",
+  "contorno": "Danilo, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?",
+  "evidencias": [
+   "Garantia estrutural de 5 anos (ErgoPro Executive/Specialist)",
+   "Laudo NR-17 individualizado por posto",
+   "TCO 5 anos: cadeira de R$ 800 com vida útil de ~14 meses = 4,3 trocas = R$ 3.430"
+  ],
+  "email_assunto": "OmniVarejo Soluções Digitais: custo por posto em 5 anos, lado a lado",
+  "email_corpo": "Olá, Danilo Castro,\n\nObrigado pela conversa. Sei que comparar preço é uma decisão responsável, e quero te ajudar a fazer essa comparação com o ciclo completo.\n\nQuando o posto de trabalho vira motivo de saída, a conta da cadeira passa a competir com o custo de repor uma pessoa — que costuma ser várias vezes maior.\n\nDanilo, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?\n\nProposta de próximo passo: enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 58 (Tier C) | Gatilho: Retenção de talentos / clientes | Objeção: OBJ-01 Preço | Próxima ação: Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada até 21/10/2026 | Alertas: 1",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1047",
+  "empresa": "InovaPay Meios de Pagamento",
+  "segmento": "Fintech",
+  "porte": 110,
+  "decisor": "Rodrigo Nogueira",
+  "cargo": "Head de Facilities",
+  "email": "rodrigo.nogueira@inovapay.com.br",
+  "produtos": "6x Silence Solo + 2x Silence Quad",
+  "valor": 143000.0,
+  "dores": "Escritório em conceito open-space com nível de ruído insuportável; reuniões virtuais vazam áudio confidencial de transações e clientes.",
+  "objecao": "Preço / Custo de Instalação: Considera investimento de cabine acústica alto em relação a fazer reformas com drywall no prédio alugado.",
+  "status": "Aguardando Contorno",
+  "ultimo_contato": "13/10/2026 - Enviado comparativo de custo de obra vs cabine móvel",
+  "itens": [
+   [
+    6,
+    "Silence Solo"
+   ],
+   [
+    2,
+    "Silence Quad"
+   ]
+  ],
+  "posicoes": 0,
+  "obj_id": "OBJ-01",
+  "score": 54,
+  "score_detalhe": {
+   "valor": 9.1,
+   "urgencia": 14,
+   "estagio": 12,
+   "objecao_contornavel": 7,
+   "poder_decisor": 12
+  },
+  "tier": "C",
+  "probabilidade": 0.36,
+  "valor_ponderado": 51480.0,
+  "gatilho": "Acústica / confidencialidade",
+  "alertas": [],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça)."
+  ],
+  "proxima_acao": "Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada",
+  "prazo_acao": "21/10/2026",
+  "contorno": "Rodrigo, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?",
+  "evidencias": [
+   "Garantia estrutural de 5 anos (ErgoPro Executive/Specialist)",
+   "Laudo NR-17 individualizado por posto",
+   "TCO 5 anos: cadeira de R$ 800 com vida útil de ~14 meses = 4,3 trocas = R$ 3.430"
+  ],
+  "email_assunto": "InovaPay Meios de Pagamento: custo por posto em 5 anos, lado a lado",
+  "email_corpo": "Olá, Rodrigo Nogueira,\n\nObrigado pela conversa. Sei que comparar preço é uma decisão responsável, e quero te ajudar a fazer essa comparação com o ciclo completo.\n\nApós uma interrupção sonora, uma pessoa leva em média 23 minutos para recuperar a concentração profunda; isolamento de 32 dB devolve esse tempo.\n\nRodrigo, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?\n\nProposta de próximo passo: enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 54 (Tier C) | Gatilho: Acústica / confidencialidade | Objeção: OBJ-01 Preço | Próxima ação: Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada até 21/10/2026 | Alertas: 0",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1053",
+  "empresa": "Hub Criativo Comunicação",
+  "segmento": "Publicidade / Mídia",
+  "porte": 50,
+  "decisor": "Bia Arantes",
+  "cargo": "Head de Produção",
+  "email": "bia@hubcriativo.ag",
+  "produtos": "20x SmartDesk Pro Dual",
+  "valor": 96000.0,
+  "dores": "Designers e editores de vídeo exigem alternância entre trabalhar em pé e sentados para fluidez criativa.",
+  "objecao": "Orçamento: Empresa sofreu corte de verba de cliente e solicitou renegociação em 6 parcelas sem entrada.",
+  "status": "Aguardando Aprovação de Crédito",
+  "ultimo_contato": "16/10/2026 - Planilha em análise pelo financeiro",
+  "itens": [
+   [
+    20,
+    "SmartDesk Pro Dual"
+   ]
+  ],
+  "posicoes": 20,
+  "obj_id": "OBJ-02",
+  "score": 51,
+  "score_detalhe": {
+   "valor": 5.6,
+   "urgencia": 8,
+   "estagio": 16,
+   "objecao_contornavel": 9,
+   "poder_decisor": 12
+  },
+  "tier": "C",
+  "probabilidade": 0.34,
+  "valor_ponderado": 32640.0,
+  "gatilho": "Sem gatilho explícito",
+  "alertas": [
+   "Condição de pagamento fora do padrão 30/60/90: enviar ao Agente de Crédito (Rota 4) antes de prometer."
+  ],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça)."
+  ],
+  "proxima_acao": "Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento",
+  "prazo_acao": "22/10/2026",
+  "contorno": "Bia, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?",
+  "evidencias": [
+   "Faturado 30/60/90 para CNPJ > 2 anos",
+   "Até 6x sem juros no cartão para pedidos < R$ 10 mil",
+   "Custo de atestados e turnover > custo da parcela mensal"
+  ],
+  "email_assunto": "Uma alternativa ao CAPEX para o projeto da Hub Criativo Comunicação",
+  "email_corpo": "Olá, Bia Arantes,\n\nObrigado pela conversa. Sei que entendo que o orçamento está travado neste momento — por isso trago uma alternativa que não depende de reabrir o CAPEX.\n\nOrganizamos as condições para caber no processo de aprovação de vocês.\n\nBia, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?\n\nProposta de próximo passo: enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 51 (Tier C) | Gatilho: Sem gatilho explícito | Objeção: OBJ-02 Orçamento / CAPEX | Próxima ação: Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento até 22/10/2026 | Alertas: 1",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1048",
+  "empresa": "Rede Orion Educação",
+  "segmento": "EdTech / Escolas",
+  "porte": 420,
+  "decisor": "Letícia Mendonça",
+  "cargo": "Gerente Administrativa",
+  "email": "leticia@orioneducacao.com.br",
+  "produtos": "60x ErgoPro Core",
+  "valor": 113400.0,
+  "dores": "Professores do estúdio de gravação de videoaulas e suporte pedagógico sofrem com cadeiras quebradas e braços sem regulagem.",
+  "objecao": "Orçamento: Depende de aprovação em conselho diretor bimestral; quer carência de 60 dias para o primeiro pagamento.",
+  "status": "Proposta em Avaliação",
+  "ultimo_contato": "17/10/2026 - Enviado formulário de cadastro de crédito",
+  "itens": [
+   [
+    60,
+    "ErgoPro Core"
+   ]
+  ],
+  "posicoes": 60,
+  "obj_id": "OBJ-02",
+  "score": 46,
+  "score_detalhe": {
+   "valor": 7.1,
+   "urgencia": 8,
+   "estagio": 13,
+   "objecao_contornavel": 9,
+   "poder_decisor": 9
+  },
+  "tier": "C",
+  "probabilidade": 0.3,
+  "valor_ponderado": 34020.0,
+  "gatilho": "Sem gatilho explícito",
+  "alertas": [
+   "Condição de pagamento fora do padrão 30/60/90: enviar ao Agente de Crédito (Rota 4) antes de prometer."
+  ],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça).",
+   "60 posições (>30): personalização de tecido/acabamento sem custo (+5 dias úteis)."
+  ],
+  "proxima_acao": "Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento",
+  "prazo_acao": "22/10/2026",
+  "contorno": "Letícia, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?",
+  "evidencias": [
+   "Faturado 30/60/90 para CNPJ > 2 anos",
+   "Até 6x sem juros no cartão para pedidos < R$ 10 mil",
+   "Custo de atestados e turnover > custo da parcela mensal"
+  ],
+  "email_assunto": "Uma alternativa ao CAPEX para o projeto da Rede Orion Educação",
+  "email_corpo": "Olá, Letícia Mendonça,\n\nObrigado pela conversa. Sei que entendo que o orçamento está travado neste momento — por isso trago uma alternativa que não depende de reabrir o CAPEX.\n\nOrganizamos as condições para caber no processo de aprovação de vocês.\n\nLetícia, entendo que o CAPEX está travado. A proposta pode sair do CAPEX: faturamento 30/60/90 ou parcelamento alinhado ao fluxo de caixa, tratado como mitigação de risco (absenteísmo e passivo NR-17). Preparo uma página para o CFO com o custo mensal da parcela frente ao custo atual de atestados?\n\nProposta de próximo passo: enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 46 (Tier C) | Gatilho: Sem gatilho explícito | Objeção: OBJ-02 Orçamento / CAPEX | Próxima ação: Enviar one-pager para o CFO (OPEX vs. custo de atestados) + simulação de faturamento até 22/10/2026 | Alertas: 1",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ },
+ {
+  "id": "#1043",
+  "empresa": "LogiMax Transportes",
+  "segmento": "Logística",
+  "porte": 260,
+  "decisor": "Carlos Eduardo Prado",
+  "cargo": "Gerente de Compras",
+  "email": "carlos.prado@logimax.log.br",
+  "produtos": "12x ErgoPro Core + 12x SmartDesk Studio",
+  "valor": 65880.0,
+  "dores": "Turnover alto na equipe de rastreamento 24/7; operadores reclamam de cansaço extremo por ficarem sentados 10h direto.",
+  "objecao": "Preço: Orçamento rígido do semestre; alega que cadeira de magazine concorrente custa R$ 800 e pede 25% de desconto à vista.",
+  "status": "Negociação Travada",
+  "ultimo_contato": "16/10/2026 - Solicitou contraproposta com desconto",
+  "itens": [
+   [
+    12,
+    "ErgoPro Core"
+   ],
+   [
+    12,
+    "SmartDesk Studio"
+   ]
+  ],
+  "posicoes": 24,
+  "obj_id": "OBJ-01",
+  "score": 35,
+  "score_detalhe": {
+   "valor": 2.4,
+   "urgencia": 17,
+   "estagio": 8,
+   "objecao_contornavel": 7,
+   "poder_decisor": 9,
+   "penalidade_desconto": -8
+  },
+  "tier": "C",
+  "probabilidade": 0.23,
+  "valor_ponderado": 15152.4,
+  "gatilho": "Retenção de talentos / clientes",
+  "alertas": [
+   "Desconto pedido de 25% está acima de qualquer alçada (máx. 15%). Responder com TCO e composição de mix, não com preço."
+  ],
+  "oportunidades": [
+   "Pedido acima de R$ 35 mil: frete CIF garantido para capitais Sul/Sudeste (confirmar praça)."
+  ],
+  "proxima_acao": "Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada",
+  "prazo_acao": "21/10/2026",
+  "contorno": "Carlos, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?",
+  "evidencias": [
+   "Garantia estrutural de 5 anos (ErgoPro Executive/Specialist)",
+   "Laudo NR-17 individualizado por posto",
+   "TCO 5 anos: cadeira de R$ 800 com vida útil de ~14 meses = 4,3 trocas = R$ 3.430"
+  ],
+  "email_assunto": "LogiMax Transportes: custo por posto em 5 anos, lado a lado",
+  "email_corpo": "Olá, Carlos Eduardo Prado,\n\nObrigado pela conversa. Sei que comparar preço é uma decisão responsável, e quero te ajudar a fazer essa comparação com o ciclo completo.\n\nQuando o posto de trabalho vira motivo de saída, a conta da cadeira passa a competir com o custo de repor uma pessoa — que costuma ser várias vezes maior.\n\nCarlos, faz sentido comparar preço — por isso vale comparar o custo do ciclo inteiro. Uma cadeira de R$ 800 dura em média 14 meses: em 5 anos são 4 trocas e cerca de R$ 3.430 por posto, sem laudo NR-17. A ErgoPro tem 5 anos de garantia estrutural e laudo individual por posto, que serve de evidência na fiscalização. Posso montar o comparativo de TCO com os números da sua operação?\n\nProposta de próximo passo: enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada.\n\nAbraço,\n[Nome do consultor] | Taranis Black — Ergonomia Corporativa\n",
+  "nota_crm": "[20/10/2026] Score 35 (Tier C) | Gatilho: Retenção de talentos / clientes | Objeção: OBJ-01 Preço | Próxima ação: Enviar comparativo de TCO 5 anos + proposta com mix alternativo dentro da alçada até 21/10/2026 | Alertas: 1",
+  "revisao_humana": "Obrigatória — vendedor responsável"
+ }
+]
